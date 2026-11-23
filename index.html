@@ -388,22 +388,26 @@
 
   .project-card--static:hover .thumb img { transform: none; }
 
-  .project-card:has(a[data-case]:focus-visible) {
+  .project-card:has(a[data-case]:focus-visible),
+  .project-card:has(a.card-link:focus-visible) {
     outline: 2px solid var(--white);
     outline-offset: 3px;
   }
 
-  .project-card a[data-case] {
+  .project-card a[data-case],
+  .project-card a.card-link {
     display: block;
     color: inherit;
     text-decoration: none;
     border-radius: var(--radius-sm);
   }
 
-  .project-card a[data-case]:focus-visible { outline: none; }
+  .project-card a[data-case]:focus-visible,
+  .project-card a.card-link:focus-visible { outline: none; }
 
   /* The whole card opens the case; the site link and chips sit above it */
-  .project-card a[data-case]::after {
+  .project-card a[data-case]::after,
+  .project-card a.card-link::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -483,6 +487,10 @@
 
   .project-card a.card-site:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.22em; }
   .project-card a.card-site:hover svg { opacity: 1; transform: translate(2px, -2px); }
+
+  /* Whole card opens the live site: name and arrow on one line, arrow reacts to the card */
+  .card-link .card-site { display: flex; align-items: center; gap: 0.4em; }
+  .project-card:hover .card-link .card-site svg { opacity: 1; transform: translate(2px, -2px); }
 
   .card-chip {
     position: relative;
@@ -1663,9 +1671,11 @@
         <span class="card-meta">Visual Identity, Banner Production, Merch Design</span>
       </a>
     </li>
-    <li class="project-card project-card--lg project-card--static">
-      <span class="thumb"><img src="img/cover-vitali-alekseenok-1280.webp" srcset="img/cover-vitali-alekseenok-1280.webp 1280w, img/cover-vitali-alekseenok-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Vitali Alekseenok website on a laptop" loading="lazy" decoding="async"></span>
-      <span class="card-name">Vitali Alekseenok</span>
+    <li class="project-card project-card--lg">
+      <a class="card-link" href="https://www.alekseenok.com/" target="_blank" rel="noopener">
+        <span class="thumb"><img src="img/cover-vitali-alekseenok-1280.webp" srcset="img/cover-vitali-alekseenok-1280.webp 1280w, img/cover-vitali-alekseenok-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Vitali Alekseenok website on a laptop" loading="lazy" decoding="async"></span>
+        <span class="card-name card-site">Vitali Alekseenok<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (alekseenok.com, opens the live site in a new tab)</span></span>
+      </a>
     </li>
     <li class="project-card project-card--lg">
       <a href="#maramora" data-case="maramora">
