@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Unbounded:wght@800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #060B1F;
@@ -32,7 +32,7 @@
     --radius-sm: clamp(10px, 0.85vw, 14px);
     --section: clamp(96px, 10vw, 192px);
     --header-h: clamp(68px, 5.4vw, 88px);
-    --display: "Unbounded", "Outfit", system-ui, sans-serif;
+    --display: "Outfit", system-ui, sans-serif;
     --fs-h1: clamp(36px, 5.4vw, 100px);
     --fs-h2: clamp(26px, 2.8vw, 52px);
     --fs-h3: clamp(16px, 1.25vw, 22px);
@@ -273,6 +273,9 @@
 
   html[data-view="igaming"] .view-switch [data-view-link="igaming"],
   html[data-view="other"] .view-switch [data-view-link="other"] { color: #0B1236; }
+
+  /* Header CTA: same outer height as the view switch (48px; 44px and 42px on phones) */
+  .site-header .talk-btn { height: 48px; }
 
   /* ---------- Hero ---------- */
 
@@ -1331,7 +1334,7 @@
   }
 
   .bh h3,
-  .bh h4 { font-family: inherit; letter-spacing: 0; color: inherit; }
+  .bh h4 { font-family: var(--display); letter-spacing: 0; color: inherit; }
 
   .bh-img { position: relative; margin: 0; }
   .bh-img img { display: block; width: 100%; height: auto; }
@@ -1493,7 +1496,7 @@
 
   @media (max-width: 760px) {
     .site-header { gap: 12px; }
-    .site-header .talk-btn { height: 38px; padding: 0 16px; font-size: 14px; }
+    .site-header .talk-btn { padding: 0 16px; font-size: 14px; }
   }
 
   /* Phones: logo + Let's talk on top, the switch gets its own full-width row */
@@ -1534,6 +1537,7 @@
     .brand img { height: 28px; }
     .site-header { gap: 12px; }
     .view-switch a { padding: 8px 12px; font-size: 12.5px; line-height: 18px; }
+    .site-header .talk-btn { height: 44px; }
     .back-btn { height: 44px; padding: 0 16px 0 10px; font-size: 14px; }
     .case-pager .nav-btn { width: 44px; height: 44px; }
     .case-bar { gap: 10px; }
@@ -1563,6 +1567,7 @@
   @media (max-width: 380px) {
     .brand img { height: 24px; }
     .view-switch a { padding: 7px 9px; font-size: 12px; }
+    .site-header .talk-btn { height: 42px; }
     .case-bar { gap: 8px; }
     .case-pager { gap: 6px; }
     .case-bar .case-talk { padding: 0 14px; font-size: 13.5px; }
@@ -1639,11 +1644,11 @@
 
 <main>
   <section class="hero">
-    <h1><span data-for="igaming">Design for iGaming that doesn’t look like everyone else</span><span data-for="other">Any kind of design for any kind of product</span></h1>
+    <h1><span data-for="igaming">Design for iGaming that doesn’t look like everyone else</span><span data-for="other">Brands, games and apps beyond iGaming</span></h1>
   </section>
 
   <section class="section projects" id="projects" aria-labelledby="projects-title">
-    <h2 class="section-title" id="projects-title"><span data-for="igaming">We already know the industry</span><span data-for="other">We know how to stand out in any industry</span></h2>
+    <h2 class="section-title" id="projects-title"><span data-for="igaming">We already know the industry</span><span data-for="other">Different categories, same standard</span></h2>
     <ul class="project-grid" data-for="igaming">
     <li class="project-card project-card--lg ring">
       <a href="#onlyplay" data-case="onlyplay" aria-label="Onlyplay: open the case">
@@ -2030,9 +2035,9 @@
       <div class="about-copy">
         <p class="lead" data-for="igaming">We help iGaming companies build brands, products, and digital experiences that stand out in a crowded market.</p>
         <p data-for="igaming">We can support an iGaming brand across the whole visual experience: branding, visual identity, website design and development, product design, exhibition stand concepts, stand graphics, and motion content for events.</p>
-        <p class="lead" data-for="other">We help companies build brands, products, and digital experiences that stand out in a crowded market.</p>
-        <p data-for="other">We can support a brand across the whole visual experience: branding, visual identity, website design and development, product design, exhibition stand concepts, stand graphics, and motion content for events.</p>
-        <ul class="facts ring">
+        <p class="lead" data-for="other">We design brands, websites and apps for blockchain games, collectibles and businesses outside gambling.</p>
+        <p data-for="other">Branding, visual identity, website design and development, app design, merch and print. We take each project from first concept to production-ready files.</p>
+        <ul class="facts">
         <li>Human-led, enhanced by AI tools studio</li>
         <li>Team with 10+ years in design for iGaming and casino</li>
         <li>10+ designers and developers in-house</li>
@@ -2488,7 +2493,7 @@
       <li class="rail step">
         <h4 class="rail-title"><span class="num" aria-hidden="true">2</span>Website Design &amp; Development</h4>
         <div class="rail-body">
-          <div class="text"><p>We designed and built the platform: the home page with featured packs, Pokémon and sports pack catalogues, collector levels, the marketplace and a content hub.</p><p><a href="https://collectify.io/">collectify.io</a></p></div>
+          <div class="text"><p>We designed and built the platform: the home page with featured packs, trading card and sports pack catalogues, collector levels, the marketplace and a content hub.</p><p><a href="https://collectify.io/">collectify.io</a></p></div>
 <div class="shots">
   <figure class="shot span-2 ring"><img src="img/cf-web-1-1280.webp" srcset="img/cf-web-1-1280.webp 1280w, img/cf-web-1-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1964" alt="Collectify website pages" loading="lazy" decoding="async"></figure>
   <figure class="shot ring"><img src="img/cf-web-2-1280.webp" srcset="img/cf-web-2-1280.webp 1280w, img/cf-web-2-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 29vw" width="2400" height="1964" alt="Collectify pack catalogue and marketplace" loading="lazy" decoding="async"></figure>
