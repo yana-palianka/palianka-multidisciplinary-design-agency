@@ -9,7 +9,9 @@ Two tabs at the top:
 
 A case slug in the address opens that case, e.g. `#onlyplay` or `#metarun`.
 
-Static site, no build step. `index.html` at the root, images in `img/` and `banners/`, videos and their posters in `video/`. Card covers are `img/cover-<slug>-1280.webp` and `-2400.webp`, exported from the "Обложки clean" page of the IGaming Case Studies Figma file.
+Static site, no build step. `index.html` at the root, images in `img/` and `banners/`, videos and their posters in `video/`.
+
+Banners Production (iGaming tab) is seven rows of single banners that loop endlessly: drag, swipe, sideways trackpad scroll or arrow keys. The banners are in `banners/s/` as `<brand>-<kind>-<nn>-<width>.webp`, exported from the Figma files Websites by Palianka, IGaming Case Studies and Palianka Banners. Card covers are `img/cover-<slug>-1280.webp` and `-2400.webp`, exported from the "Обложки clean" page of the IGaming Case Studies Figma file.
 
 Run locally:
 
