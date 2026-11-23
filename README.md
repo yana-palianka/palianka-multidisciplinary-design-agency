@@ -2,9 +2,14 @@
 
 Studio site for Palianka: branding, websites, product design, exhibition, merch and motion, with cases for iGaming and other clients.
 
-Static site, no build step. `index.html` at the root, images in `img/` and `banners/`, videos and their posters in `video/`.
+Two tabs at the top:
 
-Currently a copy of the iGaming proposal site. Content and layout for the general studio version are still to be adapted.
+- **iGaming cases** (`#igaming`, default): the iGaming projects, Motion Graphics and Banners Production.
+- **Other cases** (`#other`): work for other kinds of products.
+
+A case slug in the address opens that case, e.g. `#onlyplay` or `#metarun`.
+
+Static site, no build step. `index.html` at the root, images in `img/` and `banners/`, videos and their posters in `video/`. Card covers are `img/cover-<slug>-1280.webp` and `-2400.webp`, exported from the "Обложки clean" page of the IGaming Case Studies Figma file.
 
 Run locally:
 

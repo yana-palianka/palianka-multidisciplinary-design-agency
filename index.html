@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" data-view="operators">
+<html lang="en" data-view="igaming">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Palianka — iGaming design partner</title>
-<meta name="description" content="Palianka is a design studio for iGaming: branding, mascots, websites, front-end development and daily marketing banners.">
+<title>Palianka — Multidisciplinary design agency</title>
+<meta name="description" content="Palianka is a multidisciplinary design agency: branding, websites, product design, motion and front-end development for iGaming and any other kind of product.">
 <meta name="theme-color" content="#060B1F">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -240,10 +240,10 @@
 
   .talk-btn--lg .talk-btn__fill { inset: 2.5px; }
 
-  /* For operators / For providers — segmented switch with a sliding thumb */
+  /* iGaming cases / Other cases — segmented switch with a sliding thumb */
 
-  html[data-view="operators"] [data-for="providers"],
-  html[data-view="providers"] [data-for="operators"] { display: none !important; }
+  html[data-view="igaming"] [data-for="other"],
+  html[data-view="other"] [data-for="igaming"] { display: none !important; }
 
   .view-switch {
     position: relative;
@@ -273,7 +273,7 @@
     transition: transform 420ms cubic-bezier(0.3, 0.75, 0.2, 1);
   }
 
-  html[data-view="providers"] .switch-thumb { transform: translateX(100%); }
+  html[data-view="other"] .switch-thumb { transform: translateX(100%); }
 
   .view-switch a {
     position: relative;
@@ -292,8 +292,8 @@
 
   .view-switch a:hover { color: var(--white); }
 
-  html[data-view="operators"] .view-switch [data-view-link="operators"],
-  html[data-view="providers"] .view-switch [data-view-link="providers"] { color: #0B1236; }
+  html[data-view="igaming"] .view-switch [data-view-link="igaming"],
+  html[data-view="other"] .view-switch [data-view-link="other"] { color: #0B1236; }
 
   /* ---------- Hero ---------- */
 
@@ -378,6 +378,15 @@
     background: var(--glass-hover);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.11), inset 0 -1px 0 rgba(0, 0, 0, 0.35), 0 1px 0 rgba(0, 0, 0, 0.45), 0 40px 80px -40px rgba(70, 100, 255, 0.45);
   }
+
+  .project-card--static:hover {
+    transform: none;
+    border-color: var(--line);
+    background: var(--glass);
+    box-shadow: var(--bevel), var(--depth);
+  }
+
+  .project-card--static:hover .thumb img { transform: none; }
 
   .project-card:has(a[data-case]:focus-visible) {
     outline: 2px solid var(--white);
@@ -524,9 +533,6 @@
     display: grid;
     gap: clamp(40px, 4vw, 72px);
   }
-
-  /* For providers the game release trailers come first */
-  html[data-view="providers"] .motion-group--trailers { order: -1; }
 
   .motion-label {
     margin: 0 0 clamp(14px, 1.25vw, 22px);
@@ -1300,7 +1306,7 @@
     .site-footer.is-waiting .footer-glow { opacity: 1; transform: none; }
   }
 </style>
-<script>(function(){var h="";try{h=decodeURIComponent(location.hash.slice(1));}catch(e){}if(["providers", "onlyplay", "bgaming", "rectangle-games", "wicked-games", "1spin4win", "encore", "metarun"].indexOf(h)>-1)document.documentElement.setAttribute("data-view","providers");})();</script>
+<script>(function(){var h="";try{h=decodeURIComponent(location.hash.slice(1));}catch(e){}if(["other", "metarun", "encore"].indexOf(h)>-1)document.documentElement.setAttribute("data-view","other");})();</script>
 </head>
 <body>
 
@@ -1308,15 +1314,15 @@
   <a class="brand" href="#top" data-to-top aria-label="Palianka, back to top">
     <img src="logo.svg" alt="palianka." width="601" height="154">
   </a>
-  <nav class="view-switch" aria-label="Show cases for">
+  <nav class="view-switch" aria-label="Show cases">
     <span class="switch-thumb" aria-hidden="true"></span>
-    <a href="#operators" data-view-link="operators" aria-current="true">For operators</a>
-    <a href="#providers" data-view-link="providers" aria-current="false">For providers</a>
+    <a href="#igaming" data-view-link="igaming" aria-current="true">iGaming cases</a>
+    <a href="#other" data-view-link="other" aria-current="false">Other cases</a>
   </nav>
   <div class="header-end">
     <nav class="site-nav" aria-label="Sections">
       <a href="#projects" data-scroll>Projects</a>
-      <a href="#banners-production" data-scroll data-for="operators">Banners</a>
+      <a href="#banners-production" data-scroll data-for="igaming">Banners</a>
       <a href="#about" data-scroll>About us</a>
       <a href="#contacts" data-scroll>Contacts</a>
     </nav>
@@ -1326,64 +1332,62 @@
 
 <main>
   <section class="hero">
-    <h1>Design for iGaming that doesn’t look like everyone else</h1>
+    <h1><span data-for="igaming">Design for iGaming that doesn’t look like everyone else</span><span data-for="other">Any kind of design for any kind of product</span></h1>
   </section>
 
   <section class="section projects" id="projects" aria-labelledby="projects-title">
-    <h2 class="section-title" id="projects-title">We already know the industry</h2>
-    <ul class="project-grid" data-for="operators">
+    <h2 class="section-title" id="projects-title"><span data-for="igaming">We already know the industry</span><span data-for="other">Examples</span></h2>
+    <ul class="project-grid" data-for="igaming">
     <li class="project-card project-card--lg">
       <a href="#lucky-rush" data-case="lucky-rush" aria-label="Lucky Rush: open the case">
-        <span class="thumb"><img src="img/thumb-lucky-rush-1280.webp" srcset="img/thumb-lucky-rush-1280.webp 1280w, img/thumb-lucky-rush-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Lucky Rush casino website home screen" loading="lazy" decoding="async"></span>
+        <span class="thumb"><img src="img/cover-lucky-rush-1280.webp" srcset="img/cover-lucky-rush-1280.webp 1280w, img/cover-lucky-rush-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Lucky Rush logo" loading="lazy" decoding="async"></span>
       </a>
       <a class="card-name card-site" href="https://luckyrush.io/" target="_blank" rel="noopener">Lucky Rush<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (luckyrush.io, opens the live site)</span></a>
       <span class="card-meta">Branding, Brand Mascot Design, Web Design, Front-end Development, Social Marketing Design, Motion Design, Email Templates Design &amp; Setup</span>
     </li>
     <li class="project-card project-card--lg">
       <a href="#tao-sweeps" data-case="tao-sweeps">
-        <span class="thumb"><img src="img/thumb-tao-sweeps-1280.webp" srcset="img/thumb-tao-sweeps-1280.webp 1280w, img/thumb-tao-sweeps-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Tao Sweeps mobile website screens" loading="lazy" decoding="async"></span>
+        <span class="thumb"><img src="img/cover-tao-sweeps-1280.webp" srcset="img/cover-tao-sweeps-1280.webp 1280w, img/cover-tao-sweeps-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Tao Sweeps logo" loading="lazy" decoding="async"></span>
         <span class="card-name">Tao Sweeps</span>
         <span class="card-meta">Visual Identity, Logo Design, Mascot Design, Website Design, Front-end Development</span>
       </a>
     </li>
     <li class="project-card">
       <a href="#winarcade" data-case="winarcade" aria-label="WinArcade: open the case">
-        <span class="thumb"><img src="img/thumb-winarcade-1280.webp" srcset="img/thumb-winarcade-1280.webp 1280w, img/thumb-winarcade-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="WinArcade cat mascot close-up" loading="lazy" decoding="async"></span>
+        <span class="thumb"><img src="img/cover-winarcade-1280.webp" srcset="img/cover-winarcade-1280.webp 1280w, img/cover-winarcade-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="WinArcade logo" loading="lazy" decoding="async"></span>
       </a>
       <a class="card-name card-site" href="https://winarcade.io/" target="_blank" rel="noopener">WinArcade<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (winarcade.io, opens the live site)</span></a>
       <span class="card-meta">Visual Identity, Logo Design, Mascot Design, Website Design, Front-end Development</span>
     </li>
     <li class="project-card">
       <a href="#fortuna-rush" data-case="fortuna-rush">
-        <span class="thumb"><img src="img/thumb-fortuna-rush-1280.webp" srcset="img/thumb-fortuna-rush-1280.webp 1280w, img/thumb-fortuna-rush-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="Fortuna Rush logo with the dog mascots" loading="lazy" decoding="async"></span>
+        <span class="thumb"><img src="img/cover-fortuna-rush-1280.webp" srcset="img/cover-fortuna-rush-1280.webp 1280w, img/cover-fortuna-rush-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="Fortuna Rush logo with the dog mascots" loading="lazy" decoding="async"></span>
         <span class="card-name">Fortuna Rush</span>
       </a>
     </li>
     <li class="project-card">
       <a href="#goatbet" data-case="goatbet">
-        <span class="thumb"><img src="img/thumb-goatbet-2-1280.webp" srcset="img/thumb-goatbet-2-1280.webp 1280w, img/thumb-goatbet-2-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="Goatbet goat mascot on green crystals among gold and sweeps coins" loading="lazy" decoding="async"></span>
+        <span class="thumb"><img src="img/cover-goatbet-1280.webp" srcset="img/cover-goatbet-1280.webp 1280w, img/cover-goatbet-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="Goatbet logo" loading="lazy" decoding="async"></span>
         <span class="card-name">Goatbet</span>
       </a>
     </li>
     <li class="project-card project-card--lg">
       <a href="#collectify" data-case="collectify">
-        <span class="thumb"><img src="img/thumb-collectify-1280.webp" srcset="img/thumb-collectify-1280.webp 1280w, img/thumb-collectify-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Collectify website pages" loading="lazy" decoding="async"></span>
+        <span class="thumb"><img src="img/cover-collectify-1280.webp" srcset="img/cover-collectify-1280.webp 1280w, img/cover-collectify-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Collectify logo with an illustrated character" loading="lazy" decoding="async"></span>
         <span class="card-name">Collectify</span>
         <span class="card-meta">Branding, Logo Design, Website Design &amp; Development, Pack Design, Social Media Design</span>
       </a>
     </li>
     <li class="project-card project-card--lg">
       <a href="#gambler-guides" data-case="gambler-guides">
-        <span class="thumb"><img src="img/thumb-gambler-guides-1280.webp" srcset="img/thumb-gambler-guides-1280.webp 1280w, img/thumb-gambler-guides-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Gambler Guides website pages with the robot mascot" loading="lazy" decoding="async"></span>
+        <span class="thumb"><img src="img/cover-gambler-guides-1280.webp" srcset="img/cover-gambler-guides-1280.webp 1280w, img/cover-gambler-guides-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Gambler Guides logo" loading="lazy" decoding="async"></span>
         <span class="card-name">Gambler Guides</span>
         <span class="card-meta">Branding, Logo Design, Mascot Design, Web Design</span>
       </a>
     </li>
-    </ul>
-    <ul class="project-grid" data-for="providers">
     <li class="project-card project-card--lg">
       <a href="#onlyplay" data-case="onlyplay" aria-label="Onlyplay: open the case">
-        <span class="thumb"><img src="img/thumb-onlyplay-1280.webp" srcset="img/thumb-onlyplay-1280.webp 1280w, img/thumb-onlyplay-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Onlyplay exhibition stand" loading="lazy" decoding="async"></span>
+        <span class="thumb"><img src="img/cover-onlyplay-1280.webp" srcset="img/cover-onlyplay-1280.webp 1280w, img/cover-onlyplay-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Onlyplay logo" loading="lazy" decoding="async"></span>
       </a>
       <a class="card-name card-site" href="https://onlyplay.net/" target="_blank" rel="noopener">Onlyplay<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (onlyplay.net, opens the live site)</span></a>
       <span class="card-meta">Logo &amp; Visual Identity, Website Design &amp; Development, Stand Design, Motion Graphics, Merchandise, SMM Communications</span>
@@ -1397,7 +1401,7 @@
     </li>
     <li class="project-card">
       <a href="#rectangle-games" data-case="rectangle-games" aria-label="Rectangle Games: open the case">
-        <span class="thumb"><img src="img/thumb-rectangle-games-1280.webp" srcset="img/thumb-rectangle-games-1280.webp 1280w, img/thumb-rectangle-games-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="Rectangle Games website pages" loading="lazy" decoding="async"></span>
+        <span class="thumb"><img src="img/cover-rectangle-games-1280.webp" srcset="img/cover-rectangle-games-1280.webp 1280w, img/cover-rectangle-games-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="Rectangle Games logo" loading="lazy" decoding="async"></span>
       </a>
       <span class="card-name">Rectangle Games</span>
       <span class="card-meta">Branding, Logo Design, Brand Guidelines, Web Design, Website Development</span>
@@ -1405,7 +1409,7 @@
     </li>
     <li class="project-card">
       <a href="#wicked-games" data-case="wicked-games" aria-label="Wicked Games: open the case">
-        <span class="thumb"><img src="img/thumb-wicked-games-1280.webp" srcset="img/thumb-wicked-games-1280.webp 1280w, img/thumb-wicked-games-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="Wicked Games website pages" loading="lazy" decoding="async"></span>
+        <span class="thumb"><img src="img/cover-wicked-games-1280.webp" srcset="img/cover-wicked-games-1280.webp 1280w, img/cover-wicked-games-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="Wicked Games logo" loading="lazy" decoding="async"></span>
       </a>
       <a class="card-name card-site" href="https://www.wicked.games/" target="_blank" rel="noopener">Wicked Games<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (wicked.games, opens the live site)</span></a>
       <span class="card-meta">Web Design, Website Development</span>
@@ -1417,24 +1421,42 @@
       <a class="card-name card-site" href="https://www.1spin4win.com/" target="_blank" rel="noopener">1Spin4Win<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (1spin4win.com, opens the live site)</span></a>
       <span class="card-meta">Branding, Web Design, Website Development, Art Direction, Motion Graphics</span>
     </li>
-    <li class="project-card project-card--lg">
-      <a href="#encore" data-case="encore">
-        <span class="thumb"><img src="img/thumb-encore-1280.webp" srcset="img/thumb-encore-1280.webp 1280w, img/thumb-encore-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Encore Games brand identity" loading="lazy" decoding="async"></span>
-        <span class="card-name">Encore Games</span>
-        <span class="card-meta">Visual Identity, Website Design, Website Development</span>
-      </a>
+    </ul>
+    <ul class="project-grid" data-for="other">
+    <li class="project-card project-card--lg project-card--static">
+      <span class="thumb"><img src="img/cover-collectem-1280.webp" srcset="img/cover-collectem-1280.webp 1280w, img/cover-collectem-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Collect’em logo" loading="lazy" decoding="async"></span>
+      <span class="card-name">Collect’em</span>
     </li>
     <li class="project-card project-card--lg">
       <a href="#metarun" data-case="metarun">
-        <span class="thumb"><img src="img/thumb-metarun-1280.webp" srcset="img/thumb-metarun-1280.webp 1280w, img/thumb-metarun-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Metarun brand identity" loading="lazy" decoding="async"></span>
+        <span class="thumb"><img src="img/cover-metarun-1280.webp" srcset="img/cover-metarun-1280.webp 1280w, img/cover-metarun-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Metarun logo" loading="lazy" decoding="async"></span>
         <span class="card-name">Metarun</span>
         <span class="card-meta">Visual Identity, Website Design, Website Development</span>
       </a>
     </li>
+    <li class="project-card project-card--lg project-card--static">
+      <span class="thumb"><img src="img/cover-vitali-alekseenok-1280.webp" srcset="img/cover-vitali-alekseenok-1280.webp 1280w, img/cover-vitali-alekseenok-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Vitali Alekseenok website on a laptop" loading="lazy" decoding="async"></span>
+      <span class="card-name">Vitali Alekseenok</span>
+    </li>
+    <li class="project-card project-card--lg project-card--static">
+      <span class="thumb"><img src="img/cover-fotando-1280.webp" srcset="img/cover-fotando-1280.webp 1280w, img/cover-fotando-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Fotando logo" loading="lazy" decoding="async"></span>
+      <span class="card-name">Fotando</span>
+    </li>
+    <li class="project-card project-card--lg">
+      <a href="#encore" data-case="encore">
+        <span class="thumb"><img src="img/cover-encore-1280.webp" srcset="img/cover-encore-1280.webp 1280w, img/cover-encore-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Encore logo" loading="lazy" decoding="async"></span>
+        <span class="card-name">Encore Games</span>
+        <span class="card-meta">Visual Identity, Website Design, Website Development</span>
+      </a>
+    </li>
+    <li class="project-card project-card--lg project-card--static">
+      <span class="thumb"><img src="img/cover-maramora-1280.webp" srcset="img/cover-maramora-1280.webp 1280w, img/cover-maramora-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Maramora poster: Transform stress into creativity" loading="lazy" decoding="async"></span>
+      <span class="card-name">Maramora</span>
+    </li>
     </ul>
   </section>
 
-  <section class="section motion" id="motion-graphics" aria-labelledby="mg-title">
+  <section class="section motion" id="motion-graphics" data-for="igaming" aria-labelledby="mg-title">
     <h2 class="section-title" id="mg-title">Motion Graphics</h2>
     <div class="motion-list">
       <div class="motion-group">
@@ -1455,7 +1477,7 @@
     </div>
   </section>
 
-  <section class="section stream" id="banners-production" data-for="operators" aria-labelledby="bp-title">
+  <section class="section stream" id="banners-production" data-for="igaming" aria-labelledby="bp-title">
     <h2 class="section-title stream-title" id="bp-title">Banners Production <span class="muted">Design Stream</span></h2>
     <div class="banner-list">
       <figure class="shot"><img src="banners/lr-daily-1280.webp" srcset="banners/lr-daily-1280.webp 1280w, banners/lr-daily-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Lucky Rush — social media daily posts" loading="lazy" decoding="async"></figure>
@@ -1482,8 +1504,10 @@
     <h2 class="section-title" id="about-title">About us</h2>
     <div class="about-grid">
       <div class="about-copy">
-        <p class="lead">We help iGaming companies build brands, products, and digital experiences that stand out in a crowded market.</p>
-        <p>We can support an iGaming brand across the whole visual experience: branding, visual identity, website design and development, product design, exhibition stand concepts, stand graphics, and motion content for events.</p>
+        <p class="lead" data-for="igaming">We help iGaming companies build brands, products, and digital experiences that stand out in a crowded market.</p>
+        <p data-for="igaming">We can support an iGaming brand across the whole visual experience: branding, visual identity, website design and development, product design, exhibition stand concepts, stand graphics, and motion content for events.</p>
+        <p class="lead" data-for="other">We help companies build brands, products, and digital experiences that stand out in a crowded market.</p>
+        <p data-for="other">We can support a brand across the whole visual experience: branding, visual identity, website design and development, product design, exhibition stand concepts, stand graphics, and motion content for events.</p>
         <ul class="facts">
         <li>Human-led, enhanced by AI tools studio</li>
         <li>Team with 10+ years in design for iGaming and casino</li>
@@ -2033,7 +2057,7 @@
   <figure class="shot"><img src="img/gg-g-mobile2-1280.webp" srcset="img/gg-g-mobile2-1280.webp 1280w, img/gg-g-mobile2-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="900" alt="Gambler Guides mobile pages" loading="lazy" decoding="async"></figure>
   <figure class="shot span-2"><img src="img/gg-g-mobile-1280.webp" srcset="img/gg-g-mobile-1280.webp 1280w, img/gg-g-mobile-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 88vw" width="1600" height="900" alt="Gambler Guides mobile website" loading="lazy" decoding="async"></figure>
 </div>
-  <a class="case-next" href="#lucky-rush"><strong>Next project</strong><span>Lucky Rush</span></a>
+  <a class="case-next" href="#onlyplay"><strong>Next project</strong><span>Onlyplay</span></a>
 </article>
 <article class="case" data-slug="onlyplay" data-name="Onlyplay" aria-labelledby="t-onlyplay" hidden>
   <h2 class="case-title" id="t-onlyplay" tabindex="-1">Onlyplay</h2>
@@ -2439,7 +2463,7 @@
 </div>
     </div>
   </section>
-  <a class="case-next" href="#encore"><strong>Next project</strong><span>Encore Games</span></a>
+  <a class="case-next" href="#lucky-rush"><strong>Next project</strong><span>Lucky Rush</span></a>
 </article>
 <article class="case" data-slug="encore" data-name="Encore Games" aria-labelledby="t-encore" hidden>
   <h2 class="case-title" id="t-encore" tabindex="-1">Encore Games</h2>
@@ -2564,14 +2588,14 @@
   <figure class="shot"><img src="img/mr-g-3-1280.webp" srcset="img/mr-g-3-1280.webp 1280w, img/mr-g-3-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="1716" alt="Metarun posters" loading="lazy" decoding="async"></figure>
   <figure class="shot"><img src="img/mr-g-8-1280.webp" srcset="img/mr-g-8-1280.webp 1280w, img/mr-g-8-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="900" alt="Metarun on a phone" loading="lazy" decoding="async"></figure>
 </div>
-  <a class="case-next" href="#onlyplay"><strong>Next project</strong><span>Onlyplay</span></a>
+  <a class="case-next" href="#encore"><strong>Next project</strong><span>Encore Games</span></a>
 </article>
 </div>
 
 <script>
-/* Two views (for operators / for providers) and project views that open over the page at their own #link */
+/* Two views (iGaming cases / other cases) and project views that open over the page at their own #link */
 (function () {
-  const groups = {"operators": ["lucky-rush", "tao-sweeps", "winarcade", "fortuna-rush", "goatbet", "collectify", "gambler-guides"], "providers": ["onlyplay", "bgaming", "rectangle-games", "wicked-games", "1spin4win", "encore", "metarun"]};
+  const groups = {"igaming": ["lucky-rush", "tao-sweeps", "winarcade", "fortuna-rush", "goatbet", "collectify", "gambler-guides", "onlyplay", "bgaming", "rectangle-games", "wicked-games", "1spin4win"], "other": ["metarun", "encore"]};
   const groupOf = {};
   Object.keys(groups).forEach(g => groups[g].forEach(s => { groupOf[s] = g; }));
   const root = document.documentElement;
@@ -2583,7 +2607,7 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let current = null;
   let deepLinked = false;
-  let view = 'operators';
+  let view = 'igaming';
 
   const hashSlug = () => {
     try { return decodeURIComponent(location.hash.slice(1)); } catch (_) { return ''; }
@@ -2634,7 +2658,7 @@
   const route = (animate) => {
     const h = hashSlug();
     if (cases.has(h)) { setView(groupOf[h]); show(h, animate); return; }
-    if (h === 'operators' || h === 'providers') setView(h);
+    if (h === 'igaming' || h === 'other') setView(h);
     hide();
   };
 
@@ -2654,7 +2678,7 @@
     if (e.key === 'Escape' && current) { e.preventDefault(); close(); }
   });
 
-  /* Section links scroll without replacing #operators / #providers in the address */
+  /* Section links scroll without replacing #igaming / #other in the address */
   document.querySelectorAll('a[data-scroll]').forEach(a => a.addEventListener('click', (e) => {
     const target = document.getElementById(a.getAttribute('href').slice(1));
     if (!target) return;
@@ -2668,14 +2692,14 @@
     window.scrollTo({ top: 0, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
   }));
 
-  /* Switching For operators / For providers brings the page back to the top */
+  /* Switching iGaming cases / Other cases brings the page back to the top */
   switchLinks.forEach(a => a.addEventListener('click', () => {
     if (window.scrollY > 0) window.scrollTo({ top: 0, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
   }));
 
   const first = hashSlug();
   if (cases.has(first)) { deepLinked = true; route(false); }
-  else setView(first === 'providers' ? 'providers' : 'operators');
+  else setView(first === 'other' ? 'other' : 'igaming');
 })();
 </script>
 <script>
