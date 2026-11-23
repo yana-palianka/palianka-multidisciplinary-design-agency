@@ -1,0 +1,2773 @@
+<!DOCTYPE html>
+<html lang="en" data-view="operators">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Palianka — iGaming design partner</title>
+<meta name="description" content="Palianka is a design studio for iGaming: branding, mascots, websites, front-end development and daily marketing banners.">
+<meta name="theme-color" content="#060B1F">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Unbounded:wght@800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060B1F;
+    --bg-2: #0A1230;
+    --bg-glow: rgba(46, 72, 190, 0.32);
+    --white: #FFFFFF;
+    --text: rgba(236, 240, 255, 0.9);
+    --dim: rgba(214, 222, 255, 0.62);
+    --grey: #6F7896;
+    --line: rgba(255, 255, 255, 0.09);
+    --line-strong: rgba(255, 255, 255, 0.16);
+    --glass: linear-gradient(180deg, rgba(255, 255, 255, 0.055) 0%, rgba(255, 255, 255, 0.018) 100%);
+    --glass-hover: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+    --bevel: inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -1px 0 rgba(0, 0, 0, 0.35);
+    --depth: 0 1px 0 rgba(0, 0, 0, 0.45), 0 30px 60px -36px rgba(0, 0, 0, 0.85);
+    --pad: clamp(20px, 6.25vw, 120px);
+    --gap: clamp(12px, 1.4vw, 24px);
+    --radius: clamp(14px, 1.25vw, 22px);
+    --radius-sm: clamp(10px, 0.85vw, 14px);
+    --section: clamp(96px, 10vw, 192px);
+    --header-h: clamp(68px, 5.4vw, 88px);
+    --display: "Unbounded", "Outfit", system-ui, sans-serif;
+    --fs-h1: clamp(36px, 5.4vw, 100px);
+    --fs-h2: clamp(26px, 2.8vw, 52px);
+    --fs-h3: clamp(16px, 1.25vw, 22px);
+    --fs-lead: clamp(20px, 1.9vw, 34px);
+    --fs-body: clamp(16px, 1.15vw, 20px);
+    --fs-small: clamp(14px, 0.97vw, 16px);
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { background: var(--bg); scroll-behavior: smooth; }
+  html.case-open { overflow: hidden; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--text);
+    font-family: "Outfit", system-ui, sans-serif;
+    font-weight: 300;
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    background:
+      radial-gradient(70% 55% at 50% -8%, var(--bg-glow) 0%, rgba(6, 11, 31, 0) 70%) no-repeat,
+      linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 900px) no-repeat,
+      var(--bg);
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection { background: rgba(130, 24, 243, 0.55); color: var(--white); }
+
+  b, strong { font-weight: 600; color: var(--white); }
+  a { color: inherit; }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0);
+    white-space: nowrap; border: 0;
+  }
+
+  /* ---------- Header: sticky glass bar ---------- */
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+    height: var(--header-h);
+    padding: 0 var(--pad);
+    border-bottom: 1px solid transparent;
+    transition: background-color 300ms ease, border-color 300ms ease, -webkit-backdrop-filter 300ms ease, backdrop-filter 300ms ease;
+  }
+
+  .site-header.is-stuck {
+    background: rgba(6, 11, 31, 0.72);
+    border-bottom-color: var(--line);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    backdrop-filter: blur(18px) saturate(150%);
+  }
+
+  .brand { display: inline-block; justify-self: start; line-height: 0; border-radius: 8px; }
+
+  .brand img {
+    display: block;
+    height: clamp(34px, 2.6vw, 46px);
+    width: auto;
+  }
+
+  .header-end {
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 1vw, 18px);
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .site-nav a {
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: 500;
+    color: var(--dim);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 200ms ease, background-color 200ms ease;
+  }
+
+  .site-nav a:hover { color: var(--white); background: rgba(255, 255, 255, 0.06); }
+
+
+  /* "Let's talk": white beveled pill. On hover it turns into the mushroom-cap gradient
+     and a light runs around its rim. */
+
+  @property --talk-angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+  }
+
+  .talk-btn {
+    position: relative;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    padding: 0 22px;
+    border-radius: 999px;
+    font-size: 15px;
+    line-height: 1;
+    font-weight: 600;
+    color: #0B1236;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: color 300ms ease, transform 260ms var(--ease), text-shadow 300ms ease;
+  }
+
+  /* rim: a conic gradient that runs around the edge */
+  .talk-btn::before {
+    content: "";
+    position: absolute;
+    z-index: -3;
+    inset: 0;
+    border-radius: inherit;
+    background: conic-gradient(from var(--talk-angle), #177DDC, #6FE1FF 12%, #8218F3 28%, #C940FF 42%, #FF287E 56%, #FFFFFF 64%, #FF4949 72%, #C940FF 86%, #177DDC);
+    box-shadow:
+      -14px 12px 30px -14px rgba(23, 125, 220, 0.95),
+      14px 12px 30px -14px rgba(255, 40, 126, 0.9);
+    opacity: 0;
+    transition: opacity 300ms ease;
+    animation: talk-rim 2.4s linear infinite paused;
+  }
+
+  /* fill: the same blue-to-pink as the mushroom cap */
+  .talk-btn__fill {
+    position: absolute;
+    z-index: -2;
+    inset: 2px;
+    border-radius: inherit;
+    background: linear-gradient(100deg, #177DDC 0%, #8218F3 42%, #C940FF 66%, #FF287E 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32);
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+
+  /* resting state: white pill, same material as the switch thumb */
+  .talk-btn::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(180deg, #FFFFFF 0%, #DCE3FF 100%);
+    box-shadow:
+      inset 0 1px 0 #FFFFFF,
+      inset 0 -1px 0 rgba(28, 40, 110, 0.28),
+      0 1px 2px rgba(0, 0, 0, 0.45),
+      0 8px 22px -8px rgba(130, 150, 255, 0.6);
+    transition: opacity 300ms ease;
+  }
+
+  .talk-btn:hover,
+  .talk-btn:focus-visible {
+    color: var(--white);
+    text-shadow: 0 1px 10px rgba(30, 6, 80, 0.35);
+    transform: translateY(-1px);
+  }
+
+  .talk-btn:hover::before,
+  .talk-btn:focus-visible::before { opacity: 1; animation-play-state: running; }
+  .talk-btn:hover .talk-btn__fill,
+  .talk-btn:focus-visible .talk-btn__fill { opacity: 1; }
+  .talk-btn:hover::after,
+  .talk-btn:focus-visible::after { opacity: 0; }
+  .talk-btn:active { transform: translateY(0); }
+  .talk-btn:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
+
+  @keyframes talk-rim { to { --talk-angle: 360deg; } }
+
+  .talk-btn--lg {
+    height: clamp(54px, 4.2vw, 68px);
+    padding: 0 clamp(28px, 2.4vw, 42px);
+    font-size: clamp(16px, 1.25vw, 20px);
+  }
+
+  .talk-btn--lg .talk-btn__fill { inset: 2.5px; }
+
+  /* For operators / For providers — segmented switch with a sliding thumb */
+
+  html[data-view="operators"] [data-for="providers"],
+  html[data-view="providers"] [data-for="operators"] { display: none !important; }
+
+  .view-switch {
+    position: relative;
+    justify-self: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 4px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: var(--bevel), 0 10px 30px -14px rgba(0, 0, 0, 0.7);
+  }
+
+  .switch-thumb {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    border-radius: 999px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #DCE3FF 100%);
+    box-shadow:
+      inset 0 1px 0 #FFFFFF,
+      inset 0 -1px 0 rgba(28, 40, 110, 0.28),
+      0 1px 2px rgba(0, 0, 0, 0.45),
+      0 8px 22px -8px rgba(130, 150, 255, 0.6);
+    transition: transform 420ms cubic-bezier(0.3, 0.75, 0.2, 1);
+  }
+
+  html[data-view="providers"] .switch-thumb { transform: translateX(100%); }
+
+  .view-switch a {
+    position: relative;
+    z-index: 1;
+    padding: 9px 22px;
+    border-radius: 999px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    color: rgba(226, 232, 255, 0.72);
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 260ms ease;
+  }
+
+  .view-switch a:hover { color: var(--white); }
+
+  html[data-view="operators"] .view-switch [data-view-link="operators"],
+  html[data-view="providers"] .view-switch [data-view-link="providers"] { color: #0B1236; }
+
+  /* ---------- Hero ---------- */
+
+  .hero {
+    position: relative;
+    padding: clamp(64px, 9vw, 176px) var(--pad) 0;
+    text-align: center;
+  }
+
+  .hero h1 {
+    margin: 0 auto;
+    max-width: 14.5em;
+    font-family: var(--display);
+    font-size: var(--fs-h1);
+    font-weight: 800;
+    line-height: 1.06;
+    letter-spacing: -0.012em;
+    word-spacing: 0.06em;
+    text-wrap: balance;
+    color: var(--white);
+    background: linear-gradient(180deg, #FFFFFF 35%, #B4C1F7 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* ---------- Sections ---------- */
+
+  main { padding-bottom: 0; }
+
+  .section {
+    margin-top: var(--section);
+    padding: 0 var(--pad);
+    scroll-margin-top: calc(var(--header-h) + 20px);
+  }
+
+  .hero + .section { margin-top: clamp(72px, 7.5vw, 144px); }
+
+  .section-title {
+    margin: 0 0 clamp(28px, 3vw, 56px);
+    font-family: var(--display);
+    font-size: var(--fs-h2);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.005em;
+    word-spacing: 0.08em;
+    color: var(--white);
+    text-wrap: balance;
+  }
+
+  .stream-title .muted { color: var(--grey); }
+
+  /* ---------- Project cards ---------- */
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: var(--gap);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .project-card {
+    position: relative;
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 18px;
+    border-radius: var(--radius);
+    background: var(--glass);
+    border: 1px solid var(--line);
+    box-shadow: var(--bevel), var(--depth);
+    transition: transform 450ms var(--ease), border-color 300ms ease, box-shadow 450ms var(--ease), background 300ms ease;
+  }
+
+  .project-card--lg { grid-column: span 3; }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--line-strong);
+    background: var(--glass-hover);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.11), inset 0 -1px 0 rgba(0, 0, 0, 0.35), 0 1px 0 rgba(0, 0, 0, 0.45), 0 40px 80px -40px rgba(70, 100, 255, 0.45);
+  }
+
+  .project-card:has(a[data-case]:focus-visible) {
+    outline: 2px solid var(--white);
+    outline-offset: 3px;
+  }
+
+  .project-card a[data-case] {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+  }
+
+  .project-card a[data-case]:focus-visible { outline: none; }
+
+  /* The whole card opens the case; the site link and chips sit above it */
+  .project-card a[data-case]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+  }
+
+  .thumb {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    background: #0B1230;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  }
+
+  .thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 700ms var(--ease);
+  }
+
+  .thumb::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+    pointer-events: none;
+  }
+
+  .project-card:hover .thumb img { transform: scale(1.035); }
+
+  .card-name {
+    display: block;
+    margin: 18px 10px 0;
+    font-family: var(--display);
+    font-size: var(--fs-h3);
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--white);
+  }
+
+  .card-meta {
+    display: block;
+    max-width: 40em;
+    margin: 8px 10px 0;
+    font-size: var(--fs-small);
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--dim);
+  }
+
+  /* Project name that opens the live site */
+  .project-card a.card-site {
+    position: relative;
+    z-index: 2;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    text-decoration: none;
+    border-radius: 6px;
+  }
+
+  .card-site svg {
+    width: 0.8em;
+    height: 0.8em;
+    flex: none;
+    opacity: 0.6;
+    transition: transform 250ms var(--ease), opacity 250ms ease;
+  }
+
+  .project-card a.card-site:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.22em; }
+  .project-card a.card-site:hover svg { opacity: 1; transform: translate(2px, -2px); }
+
+  .card-chip {
+    position: relative;
+    z-index: 2;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 14px 10px 0;
+    padding: 6px 12px 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 500;
+    color: var(--white);
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: var(--bevel);
+    transition: background-color 200ms ease, border-color 200ms ease;
+  }
+
+  .card-chip svg { width: 12px; height: 12px; opacity: 0.75; }
+  .card-chip:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.24); }
+
+  /* ---------- Banners Production ---------- */
+
+  .banner-list {
+    display: grid;
+    gap: clamp(16px, 1.67vw, 32px);
+  }
+
+  .banner-list .shot {
+    padding: clamp(6px, 0.6vw, 10px);
+    border-radius: var(--radius);
+    background: var(--glass);
+    border: 1px solid var(--line);
+    box-shadow: var(--bevel), var(--depth);
+    outline: none;
+  }
+
+  .banner-list .shot img { border-radius: var(--radius-sm); }
+
+
+  /* ---------- Motion Graphics ---------- */
+
+  .motion-list {
+    display: grid;
+    gap: clamp(40px, 4vw, 72px);
+  }
+
+  /* For providers the game release trailers come first */
+  html[data-view="providers"] .motion-group--trailers { order: -1; }
+
+  .motion-label {
+    margin: 0 0 clamp(14px, 1.25vw, 22px);
+    font-size: clamp(17px, 1.25vw, 22px);
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--white);
+  }
+
+  .motion-label .muted { margin-left: 0.3em; font-weight: 400; color: var(--grey); }
+
+  /* One row, every video the same height: each card grows in proportion to its video's width-to-height ratio */
+  .motion-row {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(16px, 1.67vw, 32px);
+  }
+
+  .motion-row .shot {
+    flex: 16 1 0%;
+    min-width: 0;
+    padding: clamp(6px, 0.6vw, 10px);
+    border-radius: var(--radius);
+    background: var(--glass);
+    border: 1px solid var(--line);
+    box-shadow: var(--bevel), var(--depth);
+  }
+
+  .motion-row .shot::after { display: none; }
+
+  .motion-row .is-portrait { flex-grow: 9; }       /* 9:16 */
+  .motion-row .is-square { flex-grow: 16; }        /* 1:1 */
+  .motion-row .is-landscape { flex-grow: 28.444; } /* 16:9 */
+
+  .motion-frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    background: #0B1230;
+  }
+
+  @media (max-width: 640px) {
+    .motion-row { flex-wrap: wrap; }
+    .motion-row .is-square,
+    .motion-row .is-landscape { flex-basis: 100%; }
+  }
+
+  /* ---------- About ---------- */
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: clamp(32px, 6.25vw, 120px);
+    align-items: start;
+  }
+
+  .about-copy p { max-width: 36em; margin: 0 0 1.1em; }
+
+  .about-copy .lead {
+    max-width: 22em;
+    margin-bottom: 0.9em;
+    font-size: var(--fs-lead);
+    line-height: 1.35;
+    font-weight: 300;
+    color: var(--white);
+  }
+
+  .facts {
+    max-width: 36em;
+    margin: clamp(28px, 3vw, 48px) 0 0;
+    padding: 6px 0;
+    list-style: none;
+    border-radius: var(--radius);
+    background: var(--glass);
+    border: 1px solid var(--line);
+    box-shadow: var(--bevel), var(--depth);
+  }
+
+  .facts li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 22px;
+    font-weight: 500;
+    color: var(--white);
+  }
+
+  .facts li + li { border-top: 1px solid var(--line); }
+
+  .facts li::before {
+    content: "";
+    flex: none;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.55);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.06);
+  }
+
+  .founders {
+    margin: 0;
+    padding: clamp(6px, 0.6vw, 10px);
+    border-radius: var(--radius);
+    background: var(--glass);
+    border: 1px solid var(--line);
+    box-shadow: var(--bevel), var(--depth);
+  }
+
+  .founders img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-sm);
+  }
+
+  .founders figcaption {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
+    padding: 14px 10px 6px;
+    font-size: var(--fs-small);
+    line-height: 1.4;
+    font-weight: 400;
+    color: var(--dim);
+  }
+
+  .founders figcaption b { display: block; color: var(--white); font-weight: 600; }
+
+  /* ---------- Contacts ---------- */
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--gap);
+  }
+
+  .contact {
+    padding: clamp(20px, 1.8vw, 30px);
+    border-radius: var(--radius);
+    background: var(--glass);
+    border: 1px solid var(--line);
+    box-shadow: var(--bevel), var(--depth);
+  }
+
+  .contact h3 {
+    margin: 0;
+    font-family: var(--display);
+    font-size: var(--fs-h3);
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--white);
+  }
+
+  .contact .role { margin: 6px 0 0; color: var(--dim); font-size: var(--fs-small); font-weight: 400; }
+
+  .contact ul { margin: 22px 0 0; padding: 0; list-style: none; }
+  .contact li + li { margin-top: 8px; }
+
+  .contact a,
+  .rail-body a,
+  .case-meta a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: rgba(255, 255, 255, 0.3);
+    text-underline-offset: 0.24em;
+    transition: text-decoration-color 200ms ease, color 200ms ease;
+  }
+
+  .contact a:hover,
+  .rail-body a:hover,
+  .case-meta a:hover { color: var(--white); text-decoration-color: var(--white); }
+
+  /* ---------- Footer: mushroom-cap gradient and a growing mushroom ---------- */
+
+  .site-footer {
+    position: relative;
+    margin-top: var(--section);
+    min-height: clamp(380px, 38vw, 640px);
+    display: flex;
+    flex-direction: column;
+    padding: clamp(40px, 4vw, 72px) var(--pad) clamp(28px, 2.6vw, 44px);
+    overflow: hidden;
+    isolation: isolate;
+    border-top: 1px solid var(--line);
+  }
+
+  .site-footer::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(23, 125, 220, 0) 0%, #177DDC 18%, #8218F3 40%, #C940FF 55%, #FF287E 72%, #FF4949 84%, rgba(255, 237, 109, 0) 100%);
+    opacity: 0.75;
+  }
+
+  .footer-glow {
+    position: absolute;
+    z-index: -1;
+    left: -10%;
+    right: -10%;
+    bottom: -12%;
+    height: 100%;
+    background:
+      radial-gradient(42% 70% at 10% 100%, rgba(22, 164, 229, 0.62) 0%, rgba(22, 164, 229, 0) 70%),
+      radial-gradient(38% 78% at 30% 100%, rgba(23, 125, 220, 0.58) 0%, rgba(23, 125, 220, 0) 72%),
+      radial-gradient(44% 86% at 50% 100%, rgba(130, 24, 243, 0.72) 0%, rgba(130, 24, 243, 0) 72%),
+      radial-gradient(36% 74% at 67% 100%, rgba(201, 64, 255, 0.58) 0%, rgba(201, 64, 255, 0) 70%),
+      radial-gradient(40% 80% at 83% 100%, rgba(255, 40, 126, 0.62) 0%, rgba(255, 40, 126, 0) 72%),
+      radial-gradient(28% 60% at 97% 100%, rgba(255, 73, 73, 0.58) 0%, rgba(255, 73, 73, 0) 70%);
+    filter: blur(40px);
+    opacity: 1;
+    transform: none;
+    transition: opacity 1400ms ease, transform 1600ms var(--ease);
+  }
+
+  .footer-veil {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, var(--bg) 0%, rgba(6, 11, 31, 0.5) 28%, rgba(6, 11, 31, 0) 58%);
+  }
+
+  .footer-inner {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 44em;
+  }
+
+  .footer-inner .brand img { height: clamp(34px, 2.6vw, 46px); }
+  .footer-inner > .brand { margin-bottom: clamp(26px, 2.6vw, 40px); }
+  .footer-inner > .talk-btn { margin-bottom: 16px; }
+
+  /* copyright sits at the very bottom of the footer */
+  .footer-copy {
+    margin: auto 0 0;
+    padding-top: clamp(48px, 6vw, 96px);
+    font-size: var(--fs-small);
+    font-weight: 400;
+    color: rgba(236, 240, 255, 0.78);
+    text-shadow: 0 1px 12px rgba(6, 11, 31, 0.6);
+  }
+
+  .footer-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+
+  .footer-links a {
+    display: inline-flex;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    color: var(--white);
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: var(--bevel);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    transition: background-color 200ms ease, border-color 200ms ease;
+  }
+
+  .footer-links a:hover { background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.26); }
+
+  .footer-mushroom {
+    position: absolute;
+    right: clamp(8px, 7vw, 150px);
+    bottom: -3.2%;
+    height: clamp(250px, 34vw, 600px);
+    aspect-ratio: 90 / 121;
+    transform-origin: 50% 100%;
+    filter: drop-shadow(0 30px 60px rgba(130, 24, 243, 0.35));
+    transition: transform 1500ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 900ms ease;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* gentle sway around the foot of the stem */
+  .footer-mushroom svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    transform-origin: 58% 98%;
+    animation: mushroom-sway 3.8s ease-in-out -1.9s infinite alternate;
+    animation-play-state: paused;
+  }
+
+  /* the gradient under the cap slowly shifts back and forth */
+  .mush-shimmer {
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+    animation: mushroom-shimmer 4.6s ease-in-out -3.2s infinite alternate;
+    animation-play-state: paused;
+  }
+
+  .site-footer.is-live .footer-mushroom svg,
+  .site-footer.is-live .mush-shimmer { animation-play-state: running; }
+
+  @keyframes mushroom-sway {
+    from { transform: rotate(-2.4deg); }
+    to { transform: rotate(2.4deg); }
+  }
+
+  /* range kept inside the cap's blue-to-pink part of the logo gradient */
+  @keyframes mushroom-shimmer {
+    from { transform: rotate(-45deg); }
+    to { transform: rotate(15deg); }
+  }
+
+  .site-footer.is-waiting .footer-mushroom { transform: translateY(22%) scale(0.86); opacity: 0; }
+  .site-footer.is-waiting .footer-glow { opacity: 0; transform: translateY(12%); }
+
+  /* ---------- Buttons shared by the project view ---------- */
+
+  .case-pager { display: flex; gap: 10px; }
+
+  .nav-btn,
+  .back-btn {
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+    box-shadow: var(--bevel), 0 10px 26px -14px rgba(0, 0, 0, 0.8);
+    color: var(--white);
+    cursor: pointer;
+    transition: background-color 200ms ease, border-color 200ms ease, transform 200ms ease;
+  }
+
+  .nav-btn {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    flex: none;
+    padding: 0;
+    border-radius: 50%;
+  }
+
+  .nav-btn svg { width: 20px; height: 20px; }
+
+  .nav-btn:hover:not(:disabled),
+  .back-btn:hover { border-color: rgba(255, 255, 255, 0.3); background: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.05) 100%); }
+
+  .nav-btn:active, .back-btn:active { transform: translateY(1px); }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 48px;
+    padding: 0 20px 0 14px;
+    border-radius: 999px;
+    font: inherit;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .back-btn svg { width: 20px; height: 20px; }
+
+  /* ---------- Project view ---------- */
+
+  .case-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background:
+      radial-gradient(70% 45% at 50% -6%, var(--bg-glow) 0%, rgba(6, 11, 31, 0) 70%) no-repeat,
+      var(--bg);
+    transition: opacity 300ms ease, transform 300ms var(--ease);
+  }
+
+  .case-layer[hidden] { display: none; }
+  .case-layer.is-entering { opacity: 0; transform: translateY(16px); }
+
+  .case-bar {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 16px;
+    height: clamp(68px, 5.4vw, 88px);
+    padding: 0 var(--pad);
+    background: rgba(6, 11, 31, 0.72);
+    border-bottom: 1px solid var(--line);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    backdrop-filter: blur(18px) saturate(150%);
+  }
+
+  .case-bar .back-btn { justify-self: start; }
+  .case-bar .case-pager { justify-self: end; }
+  .case-bar .case-talk { justify-self: center; height: 48px; padding: 0 26px; }
+
+  .case { padding: clamp(36px, 4.4vw, 84px) var(--pad) clamp(72px, 8vw, 160px); }
+
+  .case-title {
+    margin: 0;
+    font-family: var(--display);
+    font-size: clamp(34px, 4.6vw, 86px);
+    font-weight: 800;
+    line-height: 1.06;
+    letter-spacing: -0.012em;
+    word-spacing: 0.06em;
+    color: var(--white);
+  }
+
+  .case-title:focus { outline: none; }
+
+  .shot {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: #0B1230;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4), 0 28px 60px -34px rgba(0, 0, 0, 0.9);
+  }
+
+  .shot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    pointer-events: none;
+  }
+
+  .banner-list .shot::after { display: none; }
+
+  .shot img { display: block; width: 100%; height: auto; }
+
+  .case-hero { margin-top: clamp(28px, 3.3vw, 56px); }
+
+  .case-meta {
+    display: grid;
+    grid-template-columns: minmax(0, 6fr) minmax(0, 3fr) minmax(0, 3fr);
+    margin: clamp(20px, 2.2vw, 36px) 0 0;
+    padding: 0;
+    border-radius: var(--radius);
+    background: var(--glass);
+    border: 1px solid var(--line);
+    box-shadow: var(--bevel), var(--depth);
+    overflow: hidden;
+  }
+
+  .case-meta:has(> div:nth-child(4)) { grid-template-columns: minmax(0, 5fr) repeat(3, minmax(0, 2fr)); }
+
+  .case-meta > div { padding: clamp(16px, 1.5vw, 24px) clamp(18px, 1.7vw, 28px); }
+  .case-meta > div + div { border-left: 1px solid var(--line); }
+
+  .case-meta dt { margin-bottom: 6px; font-size: 13px; line-height: 18px; font-weight: 500; color: var(--dim); }
+  .case-meta dd { margin: 0; max-width: 34em; color: var(--white); font-weight: 400; }
+
+  .rail {
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: 16px clamp(24px, 3.3vw, 64px);
+    margin-top: clamp(44px, 4.4vw, 84px);
+  }
+
+  .rail-title {
+    position: sticky;
+    top: calc(var(--header-h) + 24px);
+    align-self: start;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0;
+    font-family: var(--display);
+    font-size: var(--fs-h3);
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--white);
+  }
+
+  .rail-body > :first-child,
+  .rail-body .text > :first-child { margin-top: 0; }
+
+  .rail-body p,
+  .rail-body ul { max-width: 38em; margin: 0 0 1em; }
+
+  .rail-body .text > :last-child,
+  .rail-body > :last-child { margin-bottom: 0; }
+
+  .rail-body ul { padding-left: 1.1em; }
+  .rail-body li { margin: 0.35em 0; }
+  .rail-body li::marker { color: var(--grey); }
+  .rail-body .sub { margin-bottom: 0.4em; font-weight: 600; color: var(--white); }
+  .rail-body ul.links { padding-left: 0; list-style: none; }
+
+  .scope { margin-top: clamp(64px, 7vw, 140px); }
+
+  .scope-title {
+    margin: 0;
+    font-family: var(--display);
+    font-size: var(--fs-h2);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.005em;
+    word-spacing: 0.08em;
+    color: var(--white);
+  }
+
+  .steps { margin: 0; padding: 0; list-style: none; }
+
+  .step {
+    padding-top: clamp(24px, 2.2vw, 40px);
+    border-top: 1px solid var(--line);
+  }
+
+  .steps .step:first-child { margin-top: clamp(28px, 3.3vw, 56px); }
+
+  .num {
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-family: "Outfit", system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--white);
+    font-variant-numeric: tabular-nums;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: var(--bevel);
+  }
+
+  .shots {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--gap);
+    margin-top: clamp(24px, 2.2vw, 40px);
+  }
+
+  .shots .span-2 { grid-column: 1 / -1; }
+
+  /* ---------- Video shots ---------- */
+
+  .shot video { display: block; width: 100%; height: auto; }
+  .shots .shot.center { grid-column: 1 / -1; justify-self: center; width: calc((100% - var(--gap)) / 2); }
+
+  .video-sound {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    background: rgba(6, 11, 31, 0.6);
+    color: #fff;
+    cursor: pointer;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    transition: background-color 180ms ease;
+  }
+
+  .video-sound:hover { background: rgba(6, 11, 31, 0.85); }
+  .video-sound:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+  .video-sound svg { width: 18px; height: 18px; }
+  .video-sound .i-on, .video-sound[aria-pressed="true"] .i-off { display: none; }
+  .video-sound[aria-pressed="true"] .i-on { display: block; }
+
+  @media (max-width: 640px) {
+    .shots .shot.center { width: 100%; }
+  }
+
+  .results { margin-top: clamp(64px, 7vw, 140px); }
+
+  .gallery { margin-top: clamp(32px, 3.3vw, 64px); }
+  .gallery--first { margin-top: clamp(28px, 3.3vw, 56px); }
+
+  .case-next {
+    --next-pad: clamp(24px, 2.8vw, 48px);
+    --next-btn: clamp(52px, 4.4vw, 76px);
+    position: relative;
+    display: block;
+    isolation: isolate;
+    overflow: hidden;
+    margin-top: clamp(72px, 8vw, 160px);
+    padding: clamp(28px, 3vw, 52px) calc(var(--next-pad) * 2 + var(--next-btn)) clamp(28px, 3vw, 52px) var(--next-pad);
+    border-radius: var(--radius);
+    background-color: #8218F3;
+    background-image: linear-gradient(100deg, #177DDC 0%, #8218F3 38%, #C940FF 64%, #FF287E 100%);
+    background-origin: border-box;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      inset 0 -1px 0 rgba(20, 8, 60, 0.25),
+      0 30px 70px -30px rgba(201, 64, 255, 0.75),
+      0 20px 50px -32px rgba(23, 125, 220, 0.85);
+    color: var(--white);
+    text-decoration: none;
+    transition: transform 450ms var(--ease), box-shadow 450ms var(--ease);
+  }
+
+  .case-next::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 55%);
+    pointer-events: none;
+  }
+
+  .case-next:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.55),
+      inset 0 -1px 0 rgba(20, 8, 60, 0.25),
+      0 36px 80px -28px rgba(255, 40, 126, 0.7),
+      0 20px 50px -32px rgba(23, 125, 220, 0.85);
+  }
+
+  .case-next:focus-visible { outline: 2px solid var(--white); outline-offset: 4px; }
+
+  .case-next strong {
+    display: block;
+    font-family: var(--display);
+    font-size: clamp(30px, 4vw, 72px);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -0.012em;
+    word-spacing: 0.06em;
+    color: var(--white);
+    text-shadow: 0 2px 20px rgba(40, 6, 90, 0.22);
+  }
+
+  .case-next strong + span {
+    display: block;
+    margin-top: clamp(8px, 0.8vw, 14px);
+    font-size: clamp(16px, 1.3vw, 22px);
+    font-weight: 500;
+    line-height: 1.3;
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  .case-next::after {
+    content: "";
+    position: absolute;
+    right: var(--next-pad);
+    top: 50%;
+    width: var(--next-btn);
+    height: var(--next-btn);
+    margin-top: calc(var(--next-btn) / -2);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.16) no-repeat center / 44% url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    transition: transform 300ms var(--ease), background-color 300ms ease;
+  }
+
+  .case-next:hover::after { transform: translateX(6px); background-color: rgba(255, 255, 255, 0.26); }
+
+
+  /* ---------- Responsive ---------- */
+
+  /* Laptops: compact nav so it fits next to the button with the switch still centred */
+  @media (max-width: 1439px) {
+    .site-header { gap: 16px; }
+    .site-nav a { padding: 8px 10px; font-size: 14px; }
+    .site-header .talk-btn { padding: 0 18px; }
+  }
+
+  @media (max-width: 1279px) {
+    .site-nav { display: none; }
+  }
+
+  @media (max-width: 760px) {
+    .site-header { gap: 12px; }
+    .site-header .talk-btn { height: 38px; padding: 0 16px; font-size: 14px; }
+  }
+
+  /* Phones: logo + Let's talk on top, the switch gets its own full-width row */
+  @media (max-width: 520px) {
+    :root { --header-h: 115px; }
+    .site-header {
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto auto;
+      row-gap: 8px;
+      height: auto;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    .site-header .brand { grid-column: 1; grid-row: 1; }
+    .header-end { grid-column: 2; grid-row: 1; }
+    .view-switch { grid-column: 1 / -1; grid-row: 2; justify-self: stretch; }
+  }
+
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .founders { max-width: 520px; }
+    .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .project-card, .project-card--lg { grid-column: span 1; }
+    .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .rail { grid-template-columns: 1fr; }
+    .rail-title { position: static; }
+    .case-meta,
+    .case-meta:has(> div:nth-child(4)) { grid-template-columns: 1fr 1fr; }
+    .case-meta .meta-wide { grid-column: 1 / -1; }
+    .case-meta > div + div { border-left: 0; border-top: 1px solid var(--line); }
+    .case-meta > div:nth-child(n+3):nth-child(odd) { border-left: 1px solid var(--line); }
+  }
+
+  @media (max-width: 640px) {
+    .project-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .shots { grid-template-columns: 1fr; }
+    .brand img { height: 28px; }
+    .site-header { gap: 12px; }
+    .view-switch a { padding: 8px 12px; font-size: 12.5px; line-height: 18px; }
+    .back-btn { height: 44px; padding: 0 16px 0 10px; font-size: 14px; }
+    .case-pager .nav-btn { width: 44px; height: 44px; }
+    .case-bar { gap: 10px; }
+    .case-bar .case-talk { height: 44px; padding: 0 18px; font-size: 14px; }
+    .case-next { --next-btn: 44px; --next-pad: 20px; }
+    .footer-mushroom { right: 14px; height: 230px; }
+    .site-footer { min-height: 520px; }
+  }
+
+  /* small phones: "All projects" becomes a round back arrow so Let's talk fits in the middle */
+  .back-btn .back-ico-grid { display: none; }
+
+  @media (max-width: 480px) {
+    .case-bar .back-btn { width: 44px; padding: 0; justify-content: center; }
+    .case-bar .back-btn .back-ico-arrow { display: none; }
+    .case-bar .back-btn .back-ico-grid { display: block; }
+    .case-bar .back-btn span {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .brand img { height: 24px; }
+    .view-switch a { padding: 7px 9px; font-size: 12px; }
+    .case-bar { gap: 8px; }
+    .case-pager { gap: 6px; }
+    .case-bar .case-talk { padding: 0 14px; font-size: 13.5px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .project-card, .thumb img, .case-layer, .switch-thumb, .nav-btn, .back-btn,
+    .case-next, .case-next::after, .footer-mushroom, .footer-glow, .site-header,
+    .talk-btn, .talk-btn::before, .talk-btn::after, .talk-btn__fill { transition: none; }
+    .talk-btn:hover, .talk-btn:focus-visible { transform: none; }
+    .talk-btn::before, .footer-mushroom svg, .mush-shimmer { animation: none; }
+    .project-card:hover, .case-next:hover { transform: none; }
+    .project-card:hover .thumb img { transform: none; }
+    .site-footer.is-waiting .footer-mushroom { transform: none; opacity: 1; }
+    .site-footer.is-waiting .footer-glow { opacity: 1; transform: none; }
+  }
+</style>
+<script>(function(){var h="";try{h=decodeURIComponent(location.hash.slice(1));}catch(e){}if(["providers", "onlyplay", "bgaming", "rectangle-games", "wicked-games", "1spin4win", "encore", "metarun"].indexOf(h)>-1)document.documentElement.setAttribute("data-view","providers");})();</script>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="#top" data-to-top aria-label="Palianka, back to top">
+    <img src="logo.svg" alt="palianka." width="601" height="154">
+  </a>
+  <nav class="view-switch" aria-label="Show cases for">
+    <span class="switch-thumb" aria-hidden="true"></span>
+    <a href="#operators" data-view-link="operators" aria-current="true">For operators</a>
+    <a href="#providers" data-view-link="providers" aria-current="false">For providers</a>
+  </nav>
+  <div class="header-end">
+    <nav class="site-nav" aria-label="Sections">
+      <a href="#projects" data-scroll>Projects</a>
+      <a href="#banners-production" data-scroll data-for="operators">Banners</a>
+      <a href="#about" data-scroll>About us</a>
+      <a href="#contacts" data-scroll>Contacts</a>
+    </nav>
+    <a class="talk-btn" href="https://calendly.com/yana-palianka/30min" target="_blank" rel="noopener"><span class="talk-btn__fill" aria-hidden="true"></span>Let’s talk<span class="sr-only"> (book a 30-minute call on Calendly, opens in a new tab)</span></a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Design for iGaming that doesn’t look like everyone else</h1>
+  </section>
+
+  <section class="section projects" id="projects" aria-labelledby="projects-title">
+    <h2 class="section-title" id="projects-title">We already know the industry</h2>
+    <ul class="project-grid" data-for="operators">
+    <li class="project-card project-card--lg">
+      <a href="#lucky-rush" data-case="lucky-rush" aria-label="Lucky Rush: open the case">
+        <span class="thumb"><img src="img/thumb-lucky-rush-1280.webp" srcset="img/thumb-lucky-rush-1280.webp 1280w, img/thumb-lucky-rush-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Lucky Rush casino website home screen" loading="lazy" decoding="async"></span>
+      </a>
+      <a class="card-name card-site" href="https://luckyrush.io/" target="_blank" rel="noopener">Lucky Rush<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (luckyrush.io, opens the live site)</span></a>
+      <span class="card-meta">Branding, Brand Mascot Design, Web Design, Front-end Development, Social Marketing Design, Motion Design, Email Templates Design &amp; Setup</span>
+    </li>
+    <li class="project-card project-card--lg">
+      <a href="#tao-sweeps" data-case="tao-sweeps">
+        <span class="thumb"><img src="img/thumb-tao-sweeps-1280.webp" srcset="img/thumb-tao-sweeps-1280.webp 1280w, img/thumb-tao-sweeps-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Tao Sweeps mobile website screens" loading="lazy" decoding="async"></span>
+        <span class="card-name">Tao Sweeps</span>
+        <span class="card-meta">Visual Identity, Logo Design, Mascot Design, Website Design, Front-end Development</span>
+      </a>
+    </li>
+    <li class="project-card">
+      <a href="#winarcade" data-case="winarcade" aria-label="WinArcade: open the case">
+        <span class="thumb"><img src="img/thumb-winarcade-1280.webp" srcset="img/thumb-winarcade-1280.webp 1280w, img/thumb-winarcade-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="WinArcade cat mascot close-up" loading="lazy" decoding="async"></span>
+      </a>
+      <a class="card-name card-site" href="https://winarcade.io/" target="_blank" rel="noopener">WinArcade<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (winarcade.io, opens the live site)</span></a>
+      <span class="card-meta">Visual Identity, Logo Design, Mascot Design, Website Design, Front-end Development</span>
+    </li>
+    <li class="project-card">
+      <a href="#fortuna-rush" data-case="fortuna-rush">
+        <span class="thumb"><img src="img/thumb-fortuna-rush-1280.webp" srcset="img/thumb-fortuna-rush-1280.webp 1280w, img/thumb-fortuna-rush-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="Fortuna Rush logo with the dog mascots" loading="lazy" decoding="async"></span>
+        <span class="card-name">Fortuna Rush</span>
+      </a>
+    </li>
+    <li class="project-card">
+      <a href="#goatbet" data-case="goatbet">
+        <span class="thumb"><img src="img/thumb-goatbet-2-1280.webp" srcset="img/thumb-goatbet-2-1280.webp 1280w, img/thumb-goatbet-2-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="Goatbet goat mascot on green crystals among gold and sweeps coins" loading="lazy" decoding="async"></span>
+        <span class="card-name">Goatbet</span>
+      </a>
+    </li>
+    <li class="project-card project-card--lg">
+      <a href="#collectify" data-case="collectify">
+        <span class="thumb"><img src="img/thumb-collectify-1280.webp" srcset="img/thumb-collectify-1280.webp 1280w, img/thumb-collectify-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Collectify website pages" loading="lazy" decoding="async"></span>
+        <span class="card-name">Collectify</span>
+        <span class="card-meta">Branding, Logo Design, Website Design &amp; Development, Pack Design, Social Media Design</span>
+      </a>
+    </li>
+    <li class="project-card project-card--lg">
+      <a href="#gambler-guides" data-case="gambler-guides">
+        <span class="thumb"><img src="img/thumb-gambler-guides-1280.webp" srcset="img/thumb-gambler-guides-1280.webp 1280w, img/thumb-gambler-guides-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Gambler Guides website pages with the robot mascot" loading="lazy" decoding="async"></span>
+        <span class="card-name">Gambler Guides</span>
+        <span class="card-meta">Branding, Logo Design, Mascot Design, Web Design</span>
+      </a>
+    </li>
+    </ul>
+    <ul class="project-grid" data-for="providers">
+    <li class="project-card project-card--lg">
+      <a href="#onlyplay" data-case="onlyplay" aria-label="Onlyplay: open the case">
+        <span class="thumb"><img src="img/thumb-onlyplay-1280.webp" srcset="img/thumb-onlyplay-1280.webp 1280w, img/thumb-onlyplay-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Onlyplay exhibition stand" loading="lazy" decoding="async"></span>
+      </a>
+      <a class="card-name card-site" href="https://onlyplay.net/" target="_blank" rel="noopener">Onlyplay<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (onlyplay.net, opens the live site)</span></a>
+      <span class="card-meta">Logo &amp; Visual Identity, Website Design &amp; Development, Stand Design, Motion Graphics, Merchandise, SMM Communications</span>
+    </li>
+    <li class="project-card project-card--lg">
+      <a href="#bgaming" data-case="bgaming" aria-label="BGaming: open the case">
+        <span class="thumb"><img src="img/thumb-bgaming-1280.webp" srcset="img/thumb-bgaming-1280.webp 1280w, img/thumb-bgaming-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="BGaming brand identity" loading="lazy" decoding="async"></span>
+      </a>
+      <a class="card-name card-site" href="https://bgaming.com/" target="_blank" rel="noopener">BGaming<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (bgaming.com, opens the live site)</span></a>
+      <span class="card-meta">Branding, Web Design, Website Development, Exhibition Stands, Art Direction</span>
+    </li>
+    <li class="project-card">
+      <a href="#rectangle-games" data-case="rectangle-games" aria-label="Rectangle Games: open the case">
+        <span class="thumb"><img src="img/thumb-rectangle-games-1280.webp" srcset="img/thumb-rectangle-games-1280.webp 1280w, img/thumb-rectangle-games-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="Rectangle Games website pages" loading="lazy" decoding="async"></span>
+      </a>
+      <span class="card-name">Rectangle Games</span>
+      <span class="card-meta">Branding, Logo Design, Brand Guidelines, Web Design, Website Development</span>
+      <a class="card-chip" href="https://www.behance.net/gallery/250176209/iGaming-Provider-Logo-Branding-Web-Design" target="_blank" rel="noopener">Behance case<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (opens Behance)</span></a>
+    </li>
+    <li class="project-card">
+      <a href="#wicked-games" data-case="wicked-games" aria-label="Wicked Games: open the case">
+        <span class="thumb"><img src="img/thumb-wicked-games-1280.webp" srcset="img/thumb-wicked-games-1280.webp 1280w, img/thumb-wicked-games-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="Wicked Games website pages" loading="lazy" decoding="async"></span>
+      </a>
+      <a class="card-name card-site" href="https://www.wicked.games/" target="_blank" rel="noopener">Wicked Games<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (wicked.games, opens the live site)</span></a>
+      <span class="card-meta">Web Design, Website Development</span>
+    </li>
+    <li class="project-card">
+      <a href="#1spin4win" data-case="1spin4win" aria-label="1Spin4Win: open the case">
+        <span class="thumb"><img src="img/thumb-1spin4win-1280.webp" srcset="img/thumb-1spin4win-1280.webp 1280w, img/thumb-1spin4win-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="1Spin4Win brand identity" loading="lazy" decoding="async"></span>
+      </a>
+      <a class="card-name card-site" href="https://www.1spin4win.com/" target="_blank" rel="noopener">1Spin4Win<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (1spin4win.com, opens the live site)</span></a>
+      <span class="card-meta">Branding, Web Design, Website Development, Art Direction, Motion Graphics</span>
+    </li>
+    <li class="project-card project-card--lg">
+      <a href="#encore" data-case="encore">
+        <span class="thumb"><img src="img/thumb-encore-1280.webp" srcset="img/thumb-encore-1280.webp 1280w, img/thumb-encore-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Encore Games brand identity" loading="lazy" decoding="async"></span>
+        <span class="card-name">Encore Games</span>
+        <span class="card-meta">Visual Identity, Website Design, Website Development</span>
+      </a>
+    </li>
+    <li class="project-card project-card--lg">
+      <a href="#metarun" data-case="metarun">
+        <span class="thumb"><img src="img/thumb-metarun-1280.webp" srcset="img/thumb-metarun-1280.webp 1280w, img/thumb-metarun-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Metarun brand identity" loading="lazy" decoding="async"></span>
+        <span class="card-name">Metarun</span>
+        <span class="card-meta">Visual Identity, Website Design, Website Development</span>
+      </a>
+    </li>
+    </ul>
+  </section>
+
+  <section class="section motion" id="motion-graphics" aria-labelledby="mg-title">
+    <h2 class="section-title" id="mg-title">Motion Graphics</h2>
+    <div class="motion-list">
+      <div class="motion-group">
+        <h3 class="motion-label">Lucky Rush <span class="muted">Video ads</span></h3>
+        <div class="motion-row">
+          <figure class="shot is-portrait"><div class="motion-frame"><video src="video/lr-ad-ugc.mp4" poster="video/lr-ad-ugc-poster.webp" width="720" height="1280" muted loop playsinline preload="none" data-autoplay aria-label="Lucky Rush video ad: the mascot and Ocean King gameplay"></video><button class="video-sound" type="button" aria-pressed="false" aria-label="Sound on"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div></figure>
+          <figure class="shot is-portrait"><div class="motion-frame"><video src="video/lr-ad-promo.mp4" poster="video/lr-ad-promo-poster.webp" width="720" height="1280" muted loop playsinline preload="none" data-autoplay aria-label="Lucky Rush promo video: gold coins, instant prize redemption and three easy steps"></video><button class="video-sound" type="button" aria-pressed="false" aria-label="Sound on"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div></figure>
+          <figure class="shot is-square"><div class="motion-frame"><video src="video/lr-ad-square.mp4" poster="video/lr-ad-square-poster.webp" width="720" height="720" muted loop playsinline preload="none" data-autoplay aria-label="Lucky Rush video ad: Ocean King Jackpot and the sign-up bonus"></video><button class="video-sound" type="button" aria-pressed="false" aria-label="Sound on"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div></figure>
+        </div>
+      </div>
+      <div class="motion-group motion-group--trailers">
+        <h3 class="motion-label">1Spin4Win <span class="muted">Game release trailers</span></h3>
+        <div class="motion-row">
+          <figure class="shot is-landscape"><div class="motion-frame"><video src="video/cash-n-fruits.mp4" poster="video/cash-n-fruits-poster.webp" width="1280" height="720" muted loop playsinline preload="none" data-autoplay aria-label="Cash’n Fruits 40: game release trailer for 1Spin4Win"></video><button class="video-sound" type="button" aria-pressed="false" aria-label="Sound on"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div></figure>
+          <figure class="shot is-landscape"><div class="motion-frame"><video src="video/classic-chilli-fortune.mp4" poster="video/classic-chilli-fortune-poster.webp" width="1280" height="720" muted loop playsinline preload="none" data-autoplay aria-label="Classic Chilli Fortune: game release trailer for 1Spin4Win"></video><button class="video-sound" type="button" aria-pressed="false" aria-label="Sound on"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section stream" id="banners-production" data-for="operators" aria-labelledby="bp-title">
+    <h2 class="section-title stream-title" id="bp-title">Banners Production <span class="muted">Design Stream</span></h2>
+    <div class="banner-list">
+      <figure class="shot"><img src="banners/lr-daily-1280.webp" srcset="banners/lr-daily-1280.webp 1280w, banners/lr-daily-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Lucky Rush — social media daily posts" loading="lazy" decoding="async"></figure>
+      <figure class="shot"><img src="banners/lr-stories-1280.webp" srcset="banners/lr-stories-1280.webp 1280w, banners/lr-stories-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Lucky Rush — stories" loading="lazy" decoding="async"></figure>
+      <figure class="shot"><img src="banners/lr-inapp-1280.webp" srcset="banners/lr-inapp-1280.webp 1280w, banners/lr-inapp-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Lucky Rush — in-app promo cards" loading="lazy" decoding="async"></figure>
+      <figure class="shot"><img src="banners/lr-event-1-1280.webp" srcset="banners/lr-event-1-1280.webp 1280w, banners/lr-event-1-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Lucky Rush — event themed posts: New Year and Christmas" loading="lazy" decoding="async"></figure>
+      <figure class="shot"><img src="banners/lr-event-2-1280.webp" srcset="banners/lr-event-2-1280.webp 1280w, banners/lr-event-2-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Lucky Rush — event themed posts: Halloween and Thanksgiving" loading="lazy" decoding="async"></figure>
+      <figure class="shot"><img src="banners/tao-daily-1280.webp" srcset="banners/tao-daily-1280.webp 1280w, banners/tao-daily-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Tao Sweeps — social media daily posts" loading="lazy" decoding="async"></figure>
+      <figure class="shot"><img src="banners/tao-inapp-1280.webp" srcset="banners/tao-inapp-1280.webp 1280w, banners/tao-inapp-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Tao Sweeps — in-app promo cards" loading="lazy" decoding="async"></figure>
+      <figure class="shot"><img src="banners/tao-appstore-1280.webp" srcset="banners/tao-appstore-1280.webp 1280w, banners/tao-appstore-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Tao Sweeps — App Store screenshots" loading="lazy" decoding="async"></figure>
+      <figure class="shot"><img src="banners/tao-website-1280.webp" srcset="banners/tao-website-1280.webp 1280w, banners/tao-website-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Tao Sweeps — website" loading="lazy" decoding="async"></figure>
+      <figure class="shot"><img src="banners/goatbet-daily-1-1280.webp" srcset="banners/goatbet-daily-1-1280.webp 1280w, banners/goatbet-daily-1-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="GoatBet — social media daily posts" loading="lazy" decoding="async"></figure>
+      <figure class="shot"><img src="banners/goatbet-daily-2-1280.webp" srcset="banners/goatbet-daily-2-1280.webp 1280w, banners/goatbet-daily-2-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="GoatBet — social media daily posts" loading="lazy" decoding="async"></figure>
+      <figure class="shot"><img src="banners/fortuna-daily-1-1280.webp" srcset="banners/fortuna-daily-1-1280.webp 1280w, banners/fortuna-daily-1-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Fortuna Rush — social media daily posts" loading="lazy" decoding="async"></figure>
+      <figure class="shot"><img src="banners/fortuna-daily-2-1280.webp" srcset="banners/fortuna-daily-2-1280.webp 1280w, banners/fortuna-daily-2-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Fortuna Rush — social media daily posts" loading="lazy" decoding="async"></figure>
+      <figure class="shot"><img src="banners/winarcade-launch-1-1280.webp" srcset="banners/winarcade-launch-1-1280.webp 1280w, banners/winarcade-launch-1-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="WinArcade — social media launch campaign" loading="lazy" decoding="async"></figure>
+      <figure class="shot"><img src="banners/winarcade-launch-2-1280.webp" srcset="banners/winarcade-launch-2-1280.webp 1280w, banners/winarcade-launch-2-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="WinArcade — social media launch campaign" loading="lazy" decoding="async"></figure>
+      <figure class="shot"><img src="banners/collectify-product-1-1280.webp" srcset="banners/collectify-product-1-1280.webp 1280w, banners/collectify-product-1-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Collectify — social media product posts" loading="lazy" decoding="async"></figure>
+      <figure class="shot"><img src="banners/collectify-product-2-1280.webp" srcset="banners/collectify-product-2-1280.webp 1280w, banners/collectify-product-2-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Collectify — social media product posts" loading="lazy" decoding="async"></figure>
+    </div>
+  </section>
+
+  <section class="section about" id="about" aria-labelledby="about-title">
+    <h2 class="section-title" id="about-title">About us</h2>
+    <div class="about-grid">
+      <div class="about-copy">
+        <p class="lead">We help iGaming companies build brands, products, and digital experiences that stand out in a crowded market.</p>
+        <p>We can support an iGaming brand across the whole visual experience: branding, visual identity, website design and development, product design, exhibition stand concepts, stand graphics, and motion content for events.</p>
+        <ul class="facts">
+        <li>Human-led, enhanced by AI tools studio</li>
+        <li>Team with 10+ years in design for iGaming and casino</li>
+        <li>10+ designers and developers in-house</li>
+        <li>A flexible subscription-based workflow</li>
+        <li>Design-driven frontend development</li>
+        </ul>
+      </div>
+      <figure class="founders">
+        <img src="img/founders-800.webp" width="800" height="925" alt="Yana Perhurovich and Nick Kuznetsov, co-founders of Palianka" loading="lazy" decoding="async">
+        <figcaption>
+          <span><b>Yana Perhurovich</b>Co-Founder / CEO</span>
+          <span><b>Nick Kuznetsov</b>Co-Founder / Art Director</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section contacts" id="contacts" aria-labelledby="contacts-title">
+    <h2 class="section-title" id="contacts-title">Contacts</h2>
+    <div class="contact-grid">
+    <div class="contact">
+      <h3>Yana Perhurovich</h3>
+      <p class="role">Co-Founder / CEO</p>
+      <ul><li><a href="mailto:yana@palianka.com">yana@palianka.com</a></li><li><a href="https://www.linkedin.com/in/yana-perhurovich-163954127/">LinkedIn</a></li><li><a href="https://t.me/Yanaperhurovich">Telegram – @Yanaperhurovich</a></li></ul>
+    </div>
+    <div class="contact">
+      <h3>Nick Kuznetsov</h3>
+      <p class="role">Co-Founder / Art Director</p>
+      <ul><li><a href="mailto:nick@palianka.com">nick@palianka.com</a></li><li><a href="https://www.linkedin.com/in/nick-kuznetsov/?locale=en_US">LinkedIn</a></li></ul>
+    </div>
+    <div class="contact">
+      <h3>Palianka Studio</h3>
+      <ul><li><a href="mailto:contact@palianka.com">contact@palianka.com</a></li><li><a href="https://palianka.com/">palianka.com</a></li></ul>
+    </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-glow" aria-hidden="true"></div>
+  <div class="footer-veil" aria-hidden="true"></div>
+  <div class="footer-inner">
+    <a class="brand" href="https://palianka.com/" aria-label="Palianka — palianka.com"><img src="logo.svg" alt="palianka." width="601" height="154" loading="lazy" decoding="async"></a>
+    <a class="talk-btn talk-btn--lg" href="https://calendly.com/yana-palianka/30min" target="_blank" rel="noopener"><span class="talk-btn__fill" aria-hidden="true"></span>Let’s talk<span class="sr-only"> (book a 30-minute call on Calendly, opens in a new tab)</span></a>
+    <ul class="footer-links">
+      <li><a href="mailto:contact@palianka.com">contact@palianka.com</a></li>
+      <li><a href="https://palianka.com/">palianka.com</a></li>
+    </ul>
+    <p class="footer-copy">© 2026 Palianka Studio</p>
+  </div>
+  <div class="footer-mushroom" aria-hidden="true">
+<svg viewBox="-1 16 90 121" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
+<g filter="url(#filter0_i_79_6365)">
+<g clip-path="url(#paint0_angular_79_6365_clip_path)"><g transform="matrix(0.00860518 0.0195922 -0.0732881 0.0321893 38.1667 48.8328)"><g class="mush-shimmer"><foreignObject x="-2294.83" y="-2294.83" width="4589.65" height="4589.65"><div xmlns="http://www.w3.org/1999/xhtml" style="background:conic-gradient(from 90deg,rgba(201, 62, 249, 1) 0deg,rgba(201, 64, 255, 1) 1.10395deg,rgba(130, 24, 243, 1) 11.7731deg,rgba(23, 125, 220, 1) 31.9323deg,rgba(22, 164, 229, 1) 45.4774deg,rgba(111, 225, 255, 1) 61.859deg,rgba(42, 215, 175, 1) 141.474deg,rgba(48, 207, 67, 1) 163.127deg,rgba(191, 218, 39, 1) 220.771deg,rgba(255, 237, 109, 1) 270.204deg,rgba(255, 73, 73, 1) 300.949deg,rgba(255, 40, 126, 1) 328.084deg,rgba(206, 35, 180, 1) 346.485deg,rgba(201, 62, 249, 1) 360deg);height:100%;width:100%;opacity:1"></div></foreignObject></g></g></g><path d="M86.9542 38.8603C89.1703 43.4559 72.3004 56.1832 49.2738 67.2872C26.2474 78.3915 5.78414 83.6675 3.568 79.0717C1.35185 74.4761 16.2759 58.9986 39.3022 47.8944C62.3288 36.7903 84.7379 34.2645 86.9542 38.8603Z"/>
+<path d="M39.4024 48.1019C50.8971 42.5589 62.2351 39.1585 70.9696 37.7172C75.3381 36.9964 79.0459 36.7674 81.7922 37.0012C83.1658 37.1181 84.2882 37.3498 85.129 37.6873C85.9726 38.026 86.5049 38.4591 86.7466 38.9602C86.9871 39.459 86.9811 40.0915 86.6993 40.8669C86.4173 41.6429 85.8672 42.5377 85.0605 43.5342C83.4479 45.5258 80.8444 47.8817 77.4412 50.4491C70.6377 55.5818 60.6775 61.5321 49.1736 67.0795C37.6699 72.6271 26.812 76.7159 18.5595 78.8437C14.4314 79.908 10.9671 80.4784 8.40458 80.5001C7.12256 80.511 6.0798 80.3842 5.29703 80.1217C4.51473 79.8593 4.01609 79.4702 3.7756 78.9714C3.5322 78.4666 3.51176 77.7851 3.74503 76.9286C3.97767 76.0742 4.45618 75.0711 5.17287 73.9468C6.60548 71.699 8.96714 69.0017 12.1252 66.0933C18.4395 60.278 27.9079 53.645 39.4024 48.1019Z" stroke-width="0.460992" stroke="url(#paint1_radial_79_6365)"/>
+</g>
+<g filter="url(#filter1_i_79_6365)">
+<path d="M26.4884 25.1687C53.2259 12.5683 83.3441 25.1688 87.1222 39.404C87.0918 39.2121 87.0366 39.0308 86.9546 38.8605C84.7383 34.2649 62.3293 36.7907 39.3027 47.8949C16.4537 58.9134 1.58285 74.2381 3.52055 78.9639C-4.24439 66.8885 -0.248975 37.7692 26.4884 25.1687Z" fill="url(#paint2_radial_79_6365)"/>
+</g>
+<g style="mix-blend-mode:luminosity" filter="url(#filter2_i_79_6365)">
+<path d="M40.4717 47.834C38.7814 48.6023 37.168 49.4475 35.8618 50.1389C43.3658 67.2994 53.6868 84.3292 44.8247 134.01H57.6053C61.2164 86.9415 48.4669 62.4594 40.4717 47.834Z" fill="url(#paint3_radial_79_6365)"/>
+</g>
+<defs>
+<filter id="filter0_i_79_6365" x="2.57057" y="35.9026" width="84.5793" height="44.8288" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="-0.78002" dy="-0.78002"/>
+<feGaussianBlur stdDeviation="2.30496"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0"/>
+<feBlend mode="luminosity" in2="shape" result="effect1_innerShadow_79_6365"/>
+</filter>
+<clipPath id="paint0_angular_79_6365_clip_path"><path d="M86.9542 38.8603C89.1703 43.4559 72.3004 56.1832 49.2738 67.2872C26.2474 78.3915 5.78414 83.6675 3.568 79.0717C1.35185 74.4761 16.2759 58.9986 39.3022 47.8944C62.3288 36.7903 84.7379 34.2645 86.9542 38.8603Z"/></clipPath><filter id="filter1_i_79_6365" x="0" y="17.2238" width="87.1221" height="61.7401" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="-2.76595"/>
+<feGaussianBlur stdDeviation="3.66489"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_79_6365"/>
+</filter>
+<filter id="filter2_i_79_6365" x="34.0332" y="46.0054" width="26.0302" height="89.8335" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="-0.307328" dy="-0.921984"/>
+<feGaussianBlur stdDeviation="0.637706"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_79_6365"/>
+</filter>
+<radialGradient id="paint1_radial_79_6365" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(46.6182 68.348) rotate(156.432) scale(40.7383 8.22178)">
+<stop stop-color="white" stop-opacity="0"/>
+<stop offset="0.418024" stop-color="white" stop-opacity="0"/>
+<stop offset="1" stop-color="white"/>
+</radialGradient>
+<radialGradient id="paint2_radial_79_6365" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(27.2122 25.469) rotate(66.5506) scale(27.1421 176.767)">
+<stop stop-color="#ABA9DB"/>
+<stop offset="1" stop-color="#E2E0FF"/>
+</radialGradient>
+<radialGradient id="paint3_radial_79_6365" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(47.0793 70.3458) rotate(80.3544) scale(65.8313 41.9547)">
+<stop stop-color="#0F1016"/>
+<stop offset="1" stop-color="#E9E9E9"/>
+</radialGradient>
+</defs>
+</svg>
+  </div>
+</footer>
+
+<div class="case-layer" id="case-layer" role="dialog" aria-modal="true" hidden>
+  <div class="case-bar">
+    <button class="back-btn" type="button" data-close>
+      <svg class="back-ico-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="back-ico-grid" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4.5" y="4.5" width="6" height="6" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="13.5" y="4.5" width="6" height="6" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="4.5" y="13.5" width="6" height="6" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="13.5" y="13.5" width="6" height="6" rx="1.6" stroke="currentColor" stroke-width="1.6"/></svg>
+      <span>All projects</span>
+    </button>
+    <a class="talk-btn case-talk" href="https://calendly.com/yana-palianka/30min" target="_blank" rel="noopener"><span class="talk-btn__fill" aria-hidden="true"></span>Let’s talk<span class="sr-only"> (book a 30-minute call on Calendly, opens in a new tab)</span></a>
+    <div class="case-pager">
+      <button class="nav-btn" type="button" data-step="-1" aria-label="Previous project">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="nav-btn" type="button" data-step="1" aria-label="Next project">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+<article class="case" data-slug="lucky-rush" data-name="Lucky Rush" aria-labelledby="t-lucky-rush" hidden>
+  <h2 class="case-title" id="t-lucky-rush" tabindex="-1">Lucky Rush</h2>
+  <figure class="case-hero shot"><img src="img/lr-hero-1280.webp" srcset="img/lr-hero-1280.webp 1280w, img/lr-hero-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Lucky Rush rabbit mascot lounging on a pile of coins" loading="lazy" decoding="async"></figure>
+  <dl class="case-meta">
+    <div class="meta-wide"><dt>Deliverables</dt><dd>Branding, Brand Mascot Design, Web Design, Front-end Development, Social Marketing Design, Motion Design, Email Templates Design &amp; Setup</dd></div>
+    <div><dt>Website</dt><dd><a href="https://luckyrush.io/">luckyrush.io</a></dd></div>
+    <div><dt>Year</dt><dd>2025</dd></div>
+  </dl>
+  <section class="rail">
+    <h3 class="rail-title">About</h3>
+    <div class="rail-body"><p><a href="https://luckyrush.io/">LuckyRush</a> is a fast-growing social casino platform for the US market, offering engaging sweepstakes-based games with a strong focus on entertainment, accessibility, and trust. The platform combines bold visuals with intuitive gameplay to create a fun and approachable gaming experience.</p></div>
+  </section>
+  <section class="rail">
+    <h3 class="rail-title">Project Goals</h3>
+    <div class="rail-body"><ul><li>Define LuckyRush as a bold, modern, and trustworthy social casino brand.</li><li>Build a cohesive visual identity across digital channels.</li><li>Design scalable brand assets to support marketing and growth.</li></ul></div>
+  </section>
+  <section class="scope" aria-labelledby="s-lucky-rush">
+    <h3 class="scope-title" id="s-lucky-rush">Project Scope</h3>
+    <ol class="steps">
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">1</span>Logo Concepts</h4>
+        <div class="rail-body">
+          <div class="text"><p class="sub">Visual Identity Concepts</p><p>We developed several visual identity concepts to demonstrate the proposed styles and feel of the new identity.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/lr-logo-concepts-1280.webp" srcset="img/lr-logo-concepts-1280.webp 1280w, img/lr-logo-concepts-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1350" alt="Lucky Rush logo concepts" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">2</span>Logo Design</h4>
+        <div class="rail-body">
+          <div class="text"><p class="sub">Logo Refresh</p><p>We designed a bold logo for LuckyRush that reflects the brand’s energetic character and playfulness.</p><p>The lightning symbol reinforces the idea of speed, excitement, and instant fun.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/lr-logo-1280.webp" srcset="img/lr-logo-1280.webp 1280w, img/lr-logo-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1350" alt="Lucky Rush logo with the lightning symbol" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">3</span>Brand Mascot Design</h4>
+        <div class="rail-body">
+          <div class="text"><p>We designed a playful and expressive brand mascot. The character reinforces the brand’s energetic personality and supports storytelling across marketing and in-product experiences.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/lr-mascot-coins-1280.webp" srcset="img/lr-mascot-coins-1280.webp 1280w, img/lr-mascot-coins-2106.webp 2106w" sizes="(max-width: 900px) 92vw, 58vw" width="2106" height="1184" alt="Lucky Rush mascot holding a Gold Coin and a Sweeps Coin" loading="lazy" decoding="async"></figure>
+  <figure class="shot span-2"><img src="img/lr-mascot-poses-1280.webp" srcset="img/lr-mascot-poses-1280.webp 1280w, img/lr-mascot-poses-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1350" alt="Lucky Rush mascot in eight poses" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/lr-mascot-2-1280.webp" srcset="img/lr-mascot-2-1280.webp 1280w, img/lr-mascot-2-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 29vw" width="2400" height="1350" alt="Lucky Rush mascot in action poses with coins" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/lr-mascot-3-1280.webp" srcset="img/lr-mascot-3-1280.webp 1280w, img/lr-mascot-3-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 29vw" width="2400" height="1350" alt="Lucky Rush mascot with a gift, cash and a safe" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">4</span>Social Marketing Templates</h4>
+        <div class="rail-body">
+          <div class="text"><p>We developed streamlined templates for all needed communications across the channels:</p><ul><li>Social Media Posts</li><li>Website Banners</li><li>Press Banners</li><li>Personal Banners</li></ul></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/lr-social-1280.webp" srcset="img/lr-social-1280.webp 1280w, img/lr-social-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1350" alt="Lucky Rush social media post templates" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">5</span>Ongoing Marketing Support</h4>
+        <div class="rail-body">
+          <div class="text"><ul><li>Provided ongoing daily delivery of custom marketing banners for various promotional needs</li><li>Used fully custom graphics to ensure visual consistency and strong brand recognition</li><li>Maintained a distinctive and cohesive look across all campaigns</li></ul></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/lr-ongoing-1280.webp" srcset="img/lr-ongoing-1280.webp 1280w, img/lr-ongoing-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1350" alt="Lucky Rush promotional stories" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">6</span>Motion Design</h4>
+        <div class="rail-body">
+          <div class="text"><p>Check our motion design works here:</p><ul class="links"><li><a href="https://drive.google.com/file/d/1qArO3wR3s6gQn5RZ67OWwdHQnZnPzNX5/view?usp=sharing">Watch video 1</a></li><li><a href="https://drive.google.com/file/d/1r-aN1FoMAPr-zaBVsnQ13JyLoDKJFUgd/view?usp=sharing">Watch video 2</a></li></ul></div>
+<div class="shots">
+  <figure class="shot video-shot"><video src="video/lr-ad-ugc.mp4" poster="video/lr-ad-ugc-poster.webp" width="720" height="1280" muted loop playsinline preload="none" data-autoplay aria-label="Lucky Rush video ad: the mascot and Ocean King gameplay"></video><button class="video-sound" type="button" aria-pressed="false" aria-label="Sound on"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></figure>
+  <figure class="shot video-shot"><video src="video/lr-ad-promo.mp4" poster="video/lr-ad-promo-poster.webp" width="720" height="1280" muted loop playsinline preload="none" data-autoplay aria-label="Lucky Rush promo video: gold coins, instant prize redemption and three easy steps"></video><button class="video-sound" type="button" aria-pressed="false" aria-label="Sound on"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></figure>
+  <figure class="shot video-shot center"><video src="video/lr-ad-square.mp4" poster="video/lr-ad-square-poster.webp" width="720" height="720" muted loop playsinline preload="none" data-autoplay aria-label="Lucky Rush video ad: Ocean King Jackpot and the sign-up bonus"></video><button class="video-sound" type="button" aria-pressed="false" aria-label="Sound on"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">7</span>Web Design</h4>
+        <div class="rail-body">
+          <div class="text"><p>We designed a website UI that brings the LuckyRush visual identity to the web, with clear layouts, bold visuals, and easy-to-use navigation.</p><p><a href="https://luckyrush.io/">luckyrush.io</a></p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/lr-web-1280.webp" srcset="img/lr-web-1280.webp 1280w, img/lr-web-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1350" alt="Lucky Rush website home screen" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">8</span>Front-end Development</h4>
+        <div class="rail-body">
+          <div class="text"><p>Our approach included:</p><ul><li>Built the website using <strong>React.js</strong> for a fast, scalable, and component-based architecture</li><li>Implemented <strong>GSAP animations</strong> to create smooth and engaging motion</li><li>Used modern frontend practices for performance optimization</li><li>Ensured cross-browser compatibility and consistent experience across devices</li></ul></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/lr-frontend-1280.webp" srcset="img/lr-frontend-1280.webp 1280w, img/lr-frontend-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1350" alt="Lucky Rush website pages" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+    </ol>
+  </section>
+  <section class="rail results">
+    <h3 class="rail-title">Results</h3>
+    <div class="rail-body"><p>The project delivered a cohesive and recognizable brand, consistent visual communication across channels, and an engaging website experience that supports marketing and user growth.</p><p>Motion design: <a href="https://drive.google.com/drive/folders/1utLi1w2B8NIgAc_BLVUsl4MskpzgRyFC?usp=sharing">Google Drive folder</a></p></div>
+  </section>
+<div class="shots gallery">
+  <figure class="shot span-2"><img src="img/lr-g-banner-web-1280.webp" srcset="img/lr-g-banner-web-1280.webp 1280w, img/lr-g-banner-web-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1257" alt="Lucky Rush website banner" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/lr-g-dribbble-5-1280.webp" srcset="img/lr-g-dribbble-5-1280.webp 1280w, img/lr-g-dribbble-5-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1800" alt="Lucky Rush casino website" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/lr-g-dribbble-2-1280.webp" srcset="img/lr-g-dribbble-2-1280.webp 1280w, img/lr-g-dribbble-2-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1800" alt="Lucky Rush affiliate website" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/lr-g-inapp-1280.webp" srcset="img/lr-g-inapp-1280.webp 1280w, img/lr-g-inapp-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Lucky Rush in-app promo cards" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/lr-g-posts-1280.webp" srcset="img/lr-g-posts-1280.webp 1280w, img/lr-g-posts-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Lucky Rush social media posts" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/lr-g-thematic-3-1280.webp" srcset="img/lr-g-thematic-3-1280.webp 1280w, img/lr-g-thematic-3-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Lucky Rush New Year and Christmas posts" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/lr-g-thematic-4-1280.webp" srcset="img/lr-g-thematic-4-1280.webp 1280w, img/lr-g-thematic-4-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Lucky Rush Halloween and Thanksgiving posts" loading="lazy" decoding="async"></figure>
+  <figure class="shot span-2"><img src="img/lr-g-mascot-4-1280.webp" srcset="img/lr-g-mascot-4-1280.webp 1280w, img/lr-g-mascot-4-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Lucky Rush mascot on a pile of coins" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/lr-g-xmas-1280.webp" srcset="img/lr-g-xmas-1280.webp 1280w, img/lr-g-xmas-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Lucky Rush mascot on a Christmas sleigh" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/lr-g-thanksgiving-1280.webp" srcset="img/lr-g-thanksgiving-1280.webp 1280w, img/lr-g-thanksgiving-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Lucky Rush mascot for Thanksgiving" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/lr-g-halloween-1-1280.webp" srcset="img/lr-g-halloween-1-1280.webp 1280w, img/lr-g-halloween-1-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Lucky Rush mascot as a Halloween witch" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/lr-g-halloween-2-1280.webp" srcset="img/lr-g-halloween-2-1280.webp 1280w, img/lr-g-halloween-2-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Lucky Rush mascot as a Halloween vampire" loading="lazy" decoding="async"></figure>
+</div>
+  <a class="case-next" href="#tao-sweeps"><strong>Next project</strong><span>Tao Sweeps</span></a>
+</article>
+<article class="case" data-slug="tao-sweeps" data-name="Tao Sweeps" aria-labelledby="t-tao-sweeps" hidden>
+  <h2 class="case-title" id="t-tao-sweeps" tabindex="-1">Tao Sweeps</h2>
+  <figure class="case-hero shot"><img src="img/tao-hero-1280.webp" srcset="img/tao-hero-1280.webp 1280w, img/tao-hero-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Tao Sweeps tiger mascot surfing a golden wave" loading="lazy" decoding="async"></figure>
+  <dl class="case-meta">
+    <div class="meta-wide"><dt>Deliverables</dt><dd>Visual Identity, Logo Design, Mascot Design, Website Design, Front-end Development</dd></div>
+    <div><dt>Website</dt><dd><a href="https://www.taosweeps.com/">taosweeps.com</a></dd></div>
+    <div><dt>Year</dt><dd>2025</dd></div>
+  </dl>
+  <section class="rail">
+    <h3 class="rail-title">About</h3>
+    <div class="rail-body"><p><a href="https://www.taosweeps.com/">TaoSweeps</a> is a US-based social casino platform offering sweepstakes-style games focused on entertainment, accessibility, and user trust. The brand operates in a highly regulated and competitive market, where clear communication, strong visual identity, and consistent user experience are essential.</p></div>
+  </section>
+  <section class="rail">
+    <h3 class="rail-title">Project Goals</h3>
+    <div class="rail-body"><ul><li>Build a bold and trustworthy brand identity tailored to the US social casino market.</li><li>Create a cohesive visual system that supports frequent marketing communications.</li><li>Design an engaging and scalable digital experience that supports user acquisition and retention.</li></ul></div>
+  </section>
+  <section class="scope" aria-labelledby="s-tao-sweeps">
+    <h3 class="scope-title" id="s-tao-sweeps">Project Scope</h3>
+    <ol class="steps">
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">1</span>Logo</h4>
+        <div class="rail-body">
+          <div class="text"><p class="sub">Logo Design</p><p>Based on the selected direction, we designed a distinctive logo that reflects the brand’s energetic and playful character while maintaining a sense of trust and clarity. The final mark was created to be flexible and easily recognizable across digital products, marketing materials, and large-scale promotional assets.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/tao-logo-1280.webp" srcset="img/tao-logo-1280.webp 1280w, img/tao-logo-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1350" alt="Tao Sweeps logo" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">2</span>Mascot</h4>
+        <div class="rail-body">
+          <div class="text"><p>We designed a custom brand mascot to support storytelling and brand recognition across marketing and in-product experiences. The character adds personality to the platform, strengthens emotional connection with users, and plays a key role in ongoing communications and promotions.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/tao-mascot-1-1280.webp" srcset="img/tao-mascot-1-1280.webp 1280w, img/tao-mascot-1-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1350" alt="Tao Sweeps tiger mascot with a prize wheel and a lucky seven" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/tao-mascot-2-1280.webp" srcset="img/tao-mascot-2-1280.webp 1280w, img/tao-mascot-2-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 29vw" width="2400" height="1350" alt="Tao Sweeps tiger mascot with gifts and coins" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/tao-mascot-3-1280.webp" srcset="img/tao-mascot-3-1280.webp 1280w, img/tao-mascot-3-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 29vw" width="2400" height="1350" alt="Tao Sweeps tiger and lion characters with coins" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">3</span>Social Marketing Templates</h4>
+        <div class="rail-body">
+          <div class="text"><p>To support high-frequency marketing activity, we developed a set of streamlined templates for:</p><ul><li>Social media posts</li><li>Website and promotional banners</li><li>Press and advertising materials</li><li>Campaign-specific visuals</li></ul><p>These templates allow the internal team to quickly produce consistent and on-brand communications across all channels.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/tao-social-1280.webp" srcset="img/tao-social-1280.webp 1280w, img/tao-social-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1350" alt="Tao Sweeps tournament cards" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">4</span>Web Design</h4>
+        <div class="rail-body">
+          <div class="text"><p>We designed a website UI that translates the TaoSweeps visual identity into a clear and engaging digital experience. The design focuses on bold visuals, clear content hierarchy, and intuitive navigation tailored to a broad US audience.</p><p><a href="https://www.taosweeps.com/">taosweeps.com</a></p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="banners/tao-website-1280.webp" srcset="banners/tao-website-1280.webp 1280w, banners/tao-website-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1350" alt="Tao Sweeps website screens with the tiger mascot" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">5</span>Front-end Development</h4>
+        <div class="rail-body">
+          <div class="text"><p>The website was developed with a focus on performance, scalability, and smooth interactions.</p><p>Our approach included:</p><ul><li>Front-end development using <strong>React.js</strong></li><li>Implementation of smooth animations and transitions</li><li>Performance optimization and responsive layouts</li><li>Cross-browser and cross-device compatibility</li></ul></div>
+        </div>
+      </li>
+    </ol>
+  </section>
+  <section class="rail results">
+    <h3 class="rail-title">Results</h3>
+    <div class="rail-body"><p>The project resulted in a cohesive and recognizable brand for TaoSweeps, supported by consistent visual communication across marketing channels and a dynamic website experience. The new brand system and digital presence provide a strong foundation for growth, user engagement, and long-term marketing scalability in the social casino market.</p></div>
+  </section>
+<div class="shots gallery">
+  <figure class="shot span-2"><img src="img/tao-g-poses-1280.webp" srcset="img/tao-g-poses-1280.webp 1280w, img/tao-g-poses-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Tao Sweeps tiger mascot in eight poses" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/tao-g-trio-1280.webp" srcset="img/tao-g-trio-1280.webp 1280w, img/tao-g-trio-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Tao Sweeps tiger mascot with a wheel, VIP card and start button" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/tao-g-inapp-1280.webp" srcset="img/tao-g-inapp-1280.webp 1280w, img/tao-g-inapp-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Tao Sweeps in-app offers with the tiger mascot" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/tao-g-promo-1280.webp" srcset="img/tao-g-promo-1280.webp 1280w, img/tao-g-promo-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Tao Sweeps new player offer and Fish Showdown posts" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/tao-g-holidays-1280.webp" srcset="img/tao-g-holidays-1280.webp 1280w, img/tao-g-holidays-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Tao Sweeps Valentine’s Day and St. Patrick’s Day posts" loading="lazy" decoding="async"></figure>
+  <figure class="shot span-2"><img src="img/tao-g-squares-1280.webp" srcset="img/tao-g-squares-1280.webp 1280w, img/tao-g-squares-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Tao Sweeps promotional posts" loading="lazy" decoding="async"></figure>
+</div>
+  <a class="case-next" href="#winarcade"><strong>Next project</strong><span>WinArcade</span></a>
+</article>
+<article class="case" data-slug="winarcade" data-name="WinArcade" aria-labelledby="t-winarcade" hidden>
+  <h2 class="case-title" id="t-winarcade" tabindex="-1">WinArcade</h2>
+  <figure class="case-hero shot"><img src="img/wa-hero-1280.webp" srcset="img/wa-hero-1280.webp 1280w, img/wa-hero-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="WinArcade cat mascot close-up with pixel eyes" loading="lazy" decoding="async"></figure>
+  <dl class="case-meta">
+    <div class="meta-wide"><dt>Deliverables</dt><dd>Visual Identity, Logo Design, Mascot Design, Website Design, Front-end Development</dd></div>
+    <div><dt>Website</dt><dd><a href="https://winarcade.io/">winarcade.io</a></dd></div>
+    <div><dt>Year</dt><dd>2026</dd></div>
+  </dl>
+  <section class="rail">
+    <h3 class="rail-title">About</h3>
+    <div class="rail-body"><p><a href="https://winarcade.io/">WinArcade</a> is a skill-based gaming platform where players compete in arcade-style games for real rewards. Unlike traditional casino products, WinArcade is built around player skill, competition, and performance, creating a gaming experience where results depend on how well you play.</p><p>The brand needed to feel energetic and entertaining while remaining clear, credible, and accessible to a broad adult audience.</p></div>
+  </section>
+  <section class="rail">
+    <h3 class="rail-title">Project Goals</h3>
+    <div class="rail-body"><ul><li>Build a bold and recognizable identity around the idea of <strong>skill-based competition</strong>.</li><li>Clearly differentiate WinArcade from traditional casino and chance-based gaming products.</li><li>Create a flexible visual system that works across product, marketing, and acquisition campaigns.</li><li>Design a scalable digital experience capable of supporting multiple games, competitions, leaderboards, and future platform features.</li></ul></div>
+  </section>
+  <section class="scope" aria-labelledby="s-winarcade">
+    <h3 class="scope-title" id="s-winarcade">Project Scope</h3>
+    <ol class="steps">
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">1</span>Logo</h4>
+        <div class="rail-body">
+          <div class="text"><ul><li>Logo Design</li><li>Visual Identity</li><li>Color and Typography System</li><li>Graphic Language</li></ul><p>We developed a distinctive visual identity built around competition, energy, and the idea of turning gaming skill into real value.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/wa-logo-1280.webp" srcset="img/wa-logo-1280.webp 1280w, img/wa-logo-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1350" alt="WinArcade logo" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">2</span>Mascot</h4>
+        <div class="rail-body">
+          <div class="text"><p>We designed a custom brand mascot to support storytelling and brand recognition across marketing and in-product experiences. The character adds personality to the platform, strengthens emotional connection with users, and plays a key role in ongoing communications and promotions.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/wa-mascot-1280.webp" srcset="img/wa-mascot-1280.webp 1280w, img/wa-mascot-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1350" alt="WinArcade cat mascot flying past arcade blocks" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">3</span>Social Marketing Templates</h4>
+        <div class="rail-body">
+          <div class="text"><p>To support high-frequency marketing activity, we developed a set of streamlined templates for:</p><ul><li>Social media posts</li><li>Website and promotional banners</li><li>Press and advertising materials</li><li>Campaign-specific visuals</li></ul><p>These templates allow the internal team to quickly produce consistent and on-brand communications across all channels.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/wa-social-1280.webp" srcset="img/wa-social-1280.webp 1280w, img/wa-social-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1350" alt="WinArcade launch posts" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">4</span>Web Design</h4>
+        <div class="rail-body">
+          <div class="text"><p>We designed a website UI that translates the WinArcade visual identity into a clear and engaging digital experience. The design focuses on bold visuals, clear content hierarchy, and intuitive navigation tailored to a broad US audience.</p><p><a href="https://winarcade.io/">winarcade.io</a></p></div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">5</span>Front-end Development</h4>
+        <div class="rail-body">
+          <div class="text"><p>The website was developed with a focus on performance, scalability, and smooth interactions.</p><p>Our approach included:</p><ul><li>Front-end development using <strong>React.js</strong></li><li>Implementation of smooth animations and transitions</li><li>Performance optimization and responsive layouts</li><li>Cross-browser and cross-device compatibility</li></ul></div>
+        </div>
+      </li>
+    </ol>
+  </section>
+  <section class="rail results">
+    <h3 class="rail-title">Results</h3>
+    <div class="rail-body"><p>The project resulted in a complete visual and digital foundation for WinArcade, positioning the platform as a distinctive <strong>skill-based gaming brand rather than a traditional casino product</strong>.</p></div>
+  </section>
+<div class="shots gallery">
+  <figure class="shot"><img src="img/wa-g-features-1280.webp" srcset="img/wa-g-features-1280.webp 1280w, img/wa-g-features-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="WinArcade game modes: three-minute matches, solo or PvP, beat the target" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/wa-g-duo-1280.webp" srcset="img/wa-g-duo-1280.webp 1280w, img/wa-g-duo-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="WinArcade cat mascot in two scenes" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/wa-g-coin-1280.webp" srcset="img/wa-g-coin-1280.webp 1280w, img/wa-g-coin-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="WinArcade cat mascot with a coin and arcade blocks" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/wa-g-bonus-1280.webp" srcset="img/wa-g-bonus-1280.webp 1280w, img/wa-g-bonus-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="WinArcade bonus card and first purchase banner" loading="lazy" decoding="async"></figure>
+</div>
+  <a class="case-next" href="#fortuna-rush"><strong>Next project</strong><span>Fortuna Rush</span></a>
+</article>
+<article class="case" data-slug="fortuna-rush" data-name="Fortuna Rush" aria-labelledby="t-fortuna-rush" hidden>
+  <h2 class="case-title" id="t-fortuna-rush" tabindex="-1">Fortuna Rush</h2>
+<div class="shots gallery gallery--first">
+  <figure class="shot span-2"><img src="img/fr-01-1280.webp" srcset="img/fr-01-1280.webp 1280w, img/fr-01-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Fortuna Rush logo with the Samoyed and Poodle mascots" loading="lazy" decoding="async"></figure>
+  <figure class="shot span-2"><img src="img/fr-02-1280.webp" srcset="img/fr-02-1280.webp 1280w, img/fr-02-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Fortuna Rush mobile website screens" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/fr-03-1280.webp" srcset="img/fr-03-1280.webp 1280w, img/fr-03-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Fortuna Rush 3D icons" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/fr-04-1280.webp" srcset="img/fr-04-1280.webp 1280w, img/fr-04-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Fortuna Rush mascots with a 777 slot" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/fr-05-1280.webp" srcset="img/fr-05-1280.webp 1280w, img/fr-05-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Fortuna Rush in-app banners" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/fr-06-1280.webp" srcset="img/fr-06-1280.webp 1280w, img/fr-06-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Fortuna Rush social media posts" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/fr-07-1280.webp" srcset="img/fr-07-1280.webp 1280w, img/fr-07-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Fortuna Rush Samoyed and Poodle mascots" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/fr-08-1280.webp" srcset="img/fr-08-1280.webp 1280w, img/fr-08-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Fortuna Rush Poodle mascot poses" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/fr-09-1280.webp" srcset="img/fr-09-1280.webp 1280w, img/fr-09-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Fortuna Rush Samoyed mascot poses" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/fr-10-1280.webp" srcset="img/fr-10-1280.webp 1280w, img/fr-10-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Fortuna Rush social media posts" loading="lazy" decoding="async"></figure>
+  <figure class="shot span-2"><img src="img/fr-11-1280.webp" srcset="img/fr-11-1280.webp 1280w, img/fr-11-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Fortuna Rush promotional posts" loading="lazy" decoding="async"></figure>
+</div>
+  <a class="case-next" href="#goatbet"><strong>Next project</strong><span>Goatbet</span></a>
+</article>
+<article class="case" data-slug="goatbet" data-name="Goatbet" aria-labelledby="t-goatbet" hidden>
+  <h2 class="case-title" id="t-goatbet" tabindex="-1">Goatbet</h2>
+<div class="shots gallery gallery--first">
+  <figure class="shot span-2"><img src="img/gb-01-1280.webp" srcset="img/gb-01-1280.webp 1280w, img/gb-01-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Goatbet logo" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/gb-02-1280.webp" srcset="img/gb-02-1280.webp 1280w, img/gb-02-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Goatbet bonus and in-app banners" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/gb-03-1280.webp" srcset="img/gb-03-1280.webp 1280w, img/gb-03-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Goatbet goat mascot poses" loading="lazy" decoding="async"></figure>
+  <figure class="shot span-2"><img src="img/gb-04-1280.webp" srcset="img/gb-04-1280.webp 1280w, img/gb-04-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Goatbet mobile website screens" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/gb-05-1280.webp" srcset="img/gb-05-1280.webp 1280w, img/gb-05-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Goatbet mascot on emerald crystals" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/gb-06-1280.webp" srcset="img/gb-06-1280.webp 1280w, img/gb-06-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Goatbet social media posts" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/gb-07-1280.webp" srcset="img/gb-07-1280.webp 1280w, img/gb-07-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Goatbet post and website banners" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/gb-08-1280.webp" srcset="img/gb-08-1280.webp 1280w, img/gb-08-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Goatbet mascot, Greatest Of All Time" loading="lazy" decoding="async"></figure>
+</div>
+  <a class="case-next" href="#collectify"><strong>Next project</strong><span>Collectify</span></a>
+</article>
+<article class="case" data-slug="collectify" data-name="Collectify" aria-labelledby="t-collectify" hidden>
+  <h2 class="case-title" id="t-collectify" tabindex="-1">Collectify</h2>
+  <figure class="case-hero shot"><img src="img/cf-cover-1280.webp" srcset="img/cf-cover-1280.webp 1280w, img/cf-cover-1920.webp 1920w" sizes="(max-width: 900px) 92vw, 88vw" width="1920" height="1080" alt="Collectify website: Open packs. Win cards. Cash out instantly." loading="lazy" decoding="async"></figure>
+  <dl class="case-meta">
+    <div class="meta-wide"><dt>Deliverables</dt><dd>Branding, Logo Design, Website Design &amp; Development, Pack Design, Social Media Design</dd></div>
+    <div><dt>Website</dt><dd><a href="https://collectify.io/">collectify.io</a></dd></div>
+  </dl>
+  <section class="rail">
+    <h3 class="rail-title">About</h3>
+    <div class="rail-body"><p><a href="https://collectify.io/">Collectify</a> is a digital pack-opening platform for trading card collectors. Players open digital packs, and the cards they pull are real, graded and shipped to their door.</p></div>
+  </section>
+  <section class="scope" aria-labelledby="s-collectify">
+    <h3 class="scope-title" id="s-collectify">Project Scope</h3>
+    <ol class="steps">
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">1</span>Logo</h4>
+        <div class="rail-body">
+          <div class="text"><p>The logo system: the main wordmark in dark, light and mono versions, plus a standalone mark for small sizes.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/cf-logo-1280.webp" srcset="img/cf-logo-1280.webp 1280w, img/cf-logo-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1026" alt="Collectify logo" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">2</span>Website Design &amp; Development</h4>
+        <div class="rail-body">
+          <div class="text"><p>We designed and built the platform: the home page with featured packs, Pokémon and sports pack catalogues, collector levels, the marketplace and a content hub.</p><p><a href="https://collectify.io/">collectify.io</a></p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/cf-web-1-1280.webp" srcset="img/cf-web-1-1280.webp 1280w, img/cf-web-1-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1964" alt="Collectify website pages" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/cf-web-2-1280.webp" srcset="img/cf-web-2-1280.webp 1280w, img/cf-web-2-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 29vw" width="2400" height="1964" alt="Collectify pack catalogue and marketplace" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/cf-web-3-1280.webp" srcset="img/cf-web-3-1280.webp 1280w, img/cf-web-3-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 29vw" width="2400" height="1964" alt="Collectify home page and pack catalogues" loading="lazy" decoding="async"></figure>
+  <figure class="shot span-2"><img src="img/cf-web-4-1280.webp" srcset="img/cf-web-4-1280.webp 1280w, img/cf-web-4-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1964" alt="Collectify collector levels and dashboard" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">3</span>Pack Design</h4>
+        <div class="rail-body">
+          <div class="text"><p>Digital pack designs, each series with its own artwork and names.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/cf-packs-1280.webp" srcset="img/cf-packs-1280.webp 1280w, img/cf-packs-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1064" alt="Collectify digital pack series" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">4</span>Social Media</h4>
+        <div class="rail-body">
+          <div class="text"><p>Product posts that explain the offer in one line: digital pack, real card, shipped to your door.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="banners/collectify-product-1-1280.webp" srcset="banners/collectify-product-1-1280.webp 1280w, banners/collectify-product-1-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1350" alt="Collectify product posts" loading="lazy" decoding="async"></figure>
+  <figure class="shot span-2"><img src="banners/collectify-product-2-1280.webp" srcset="banners/collectify-product-2-1280.webp 1280w, banners/collectify-product-2-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1350" alt="Collectify product posts" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+    </ol>
+  </section>
+  <a class="case-next" href="#gambler-guides"><strong>Next project</strong><span>Gambler Guides</span></a>
+</article>
+<article class="case" data-slug="gambler-guides" data-name="Gambler Guides" aria-labelledby="t-gambler-guides" hidden>
+  <h2 class="case-title" id="t-gambler-guides" tabindex="-1">Gambler Guides</h2>
+  <figure class="case-hero shot"><img src="img/gg-cover-1280.webp" srcset="img/gg-cover-1280.webp 1280w, img/gg-cover-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 88vw" width="1600" height="900" alt="Gambler Guides logo with the robot mascot" loading="lazy" decoding="async"></figure>
+  <dl class="case-meta">
+    <div class="meta-wide"><dt>Deliverables</dt><dd>Branding, Logo Design, Mascot Design, Web Design</dd></div>
+    <div><dt>Website</dt><dd><a href="https://www.figma.com/proto/mADEOZzdV3E4zVMbheW36o/Gambler-Guides-Demo?page-id=7317%3A13682&amp;node-id=7317-13683">Figma prototype</a></dd></div>
+    <div><dt>Year</dt><dd>2026</dd></div>
+  </dl>
+  <section class="rail">
+    <h3 class="rail-title">About</h3>
+    <div class="rail-body"><p><a href="https://www.figma.com/proto/mADEOZzdV3E4zVMbheW36o/Gambler-Guides-Demo?page-id=7317%3A13682&amp;node-id=7317-13683">Gambler Guides</a> is an iGaming review and comparison platform focused on helping users navigate online casinos, sweepstakes platforms, sportsbooks, and skill-based games. The platform emphasizes trust, transparency, and verified information, providing users with clear guidance in a complex and highly regulated market.</p></div>
+  </section>
+  <section class="rail">
+    <h3 class="rail-title">Project Goals</h3>
+    <div class="rail-body"><ul><li>Create a strong and trustworthy visual presence for an iGaming guide platform.</li><li>Improve clarity, structure, and usability across complex content sections.</li><li>Design a scalable website experience that supports content growth and frequent updates.</li></ul></div>
+  </section>
+  <section class="scope" aria-labelledby="s-gambler-guides">
+    <h3 class="scope-title" id="s-gambler-guides">Project Scope</h3>
+    <ol class="steps">
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">1</span>Logo Design</h4>
+        <div class="rail-body">
+          <div class="text"><p>We designed a bold logo for Gambler Guides that reflects the brand’s character and playfulness.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/gg-logo-1280.webp" srcset="img/gg-logo-1280.webp 1280w, img/gg-logo-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="Gambler Guides logo" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">2</span>Mascot Design</h4>
+        <div class="rail-body">
+          <div class="text"><p>We developed a distinctive and engaging robot mascot that brings a tech-driven yet human feel to the brand. The character enhances communication and interaction across marketing and product environments.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/gg-mascot-1280.webp" srcset="img/gg-mascot-1280.webp 1280w, img/gg-mascot-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="Gambler Guides robot mascot with a checklist" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">3</span>Website Design</h4>
+        <div class="rail-body">
+          <div class="text"><p>We designed a visually rich and structured website interface that balances credibility with an engaging, modern aesthetic. The design focuses on clear content hierarchy, intuitive navigation, and strong visual cues to help users easily explore guides, offers, and reviews.</p><p>Special attention was given to:</p><ul><li>High content density without overwhelming the user</li><li>Clear categorization of casinos, sweepstakes, and game types</li><li>Strong visual differentiation between informational and promotional content</li></ul></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/gg-web-1280.webp" srcset="img/gg-web-1280.webp 1280w, img/gg-web-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="Gambler Guides home page" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+    </ol>
+  </section>
+  <section class="rail results">
+    <h3 class="rail-title">Results</h3>
+    <div class="rail-body"><p>The project resulted in a clear, trustworthy, and visually engaging platform that supports Gambler Guides’ mission to provide reliable iGaming information. The new website structure improves content discoverability, strengthens user confidence, and creates a solid foundation for ongoing content expansion and audience growth.</p></div>
+  </section>
+<div class="shots gallery">
+  <figure class="shot"><img src="img/gg-mascot-2-1280.webp" srcset="img/gg-mascot-2-1280.webp 1280w, img/gg-mascot-2-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="900" alt="Gambler Guides mascot with a magnifying glass" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/gg-g-banner-1280.webp" srcset="img/gg-g-banner-1280.webp 1280w, img/gg-g-banner-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="838" alt="Gambler Guides website banner" loading="lazy" decoding="async"></figure>
+  <figure class="shot span-2"><img src="img/gg-g-web4-1280.webp" srcset="img/gg-g-web4-1280.webp 1280w, img/gg-g-web4-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 88vw" width="1600" height="900" alt="Gambler Guides casino category page" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/gg-g-web2-1280.webp" srcset="img/gg-g-web2-1280.webp 1280w, img/gg-g-web2-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="900" alt="Gambler Guides website on a laptop" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/gg-g-web3-1280.webp" srcset="img/gg-g-web3-1280.webp 1280w, img/gg-g-web3-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="1200" alt="Gambler Guides website pages" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/gg-g-tablet-1280.webp" srcset="img/gg-g-tablet-1280.webp 1280w, img/gg-g-tablet-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="900" alt="Gambler Guides website on a tablet" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/gg-g-mobile2-1280.webp" srcset="img/gg-g-mobile2-1280.webp 1280w, img/gg-g-mobile2-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="900" alt="Gambler Guides mobile pages" loading="lazy" decoding="async"></figure>
+  <figure class="shot span-2"><img src="img/gg-g-mobile-1280.webp" srcset="img/gg-g-mobile-1280.webp 1280w, img/gg-g-mobile-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 88vw" width="1600" height="900" alt="Gambler Guides mobile website" loading="lazy" decoding="async"></figure>
+</div>
+  <a class="case-next" href="#lucky-rush"><strong>Next project</strong><span>Lucky Rush</span></a>
+</article>
+<article class="case" data-slug="onlyplay" data-name="Onlyplay" aria-labelledby="t-onlyplay" hidden>
+  <h2 class="case-title" id="t-onlyplay" tabindex="-1">Onlyplay</h2>
+  <figure class="case-hero shot"><img src="img/op-hero-1280.webp" srcset="img/op-hero-1280.webp 1280w, img/op-hero-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Onlyplay had outgrown Onlyplay: the new Onlyplay logo" loading="lazy" decoding="async"></figure>
+  <dl class="case-meta">
+    <div class="meta-wide"><dt>Deliverables</dt><dd>Logo &amp; Visual Identity, Website Design &amp; Development, Stand Design, Motion Graphics, Merchandise, SMM Communications</dd></div>
+    <div><dt>Website</dt><dd><a href="https://onlyplay.net/">onlyplay.net</a></dd></div>
+    <div><dt>Year</dt><dd>2026</dd></div>
+  </dl>
+  <section class="rail">
+    <h3 class="rail-title">About</h3>
+    <div class="rail-body"><p><a href="https://onlyplay.net/">Onlyplay</a> is a premium content supplier for iGaming operators, with 150+ games across Tap Game™, instant win, crash and slots.</p><p>The business had moved forward, and the brand had to follow. We ran the full brand launch: the logo and visual identity, the website, the stand for SBC Summit Lisbon 2026 with its motion graphics, the merchandise and the campaign visuals.</p></div>
+  </section>
+  <section class="rail">
+    <h3 class="rail-title">Project Goals</h3>
+    <div class="rail-body"><ul><li>Bring the brand in line with where the business is now, keeping the target symbol and its meaning.</li><li>Build one visual system for the brand’s next stage that works for game promo and for business communication alike.</li><li>Present the new Onlyplay at SBC Summit Lisbon 2026 through the stand, the merchandise and the campaign visuals.</li></ul></div>
+  </section>
+  <section class="scope" aria-labelledby="s-onlyplay">
+    <h3 class="scope-title" id="s-onlyplay">Project Scope</h3>
+    <ol class="steps">
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">1</span>Logo Design</h4>
+        <div class="rail-body">
+          <div class="text"><p class="sub">Same target, bigger ambition</p><p>The business moved forward, and the brand had to follow. We kept the target symbol and its meaning, and redrew the mark and the wordmark for the company Onlyplay is now.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/op-logo-1280.webp" srcset="img/op-logo-1280.webp 1280w, img/op-logo-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1350" alt="Onlyplay logo before and after the redesign" loading="lazy" decoding="async"></figure>
+  <figure class="shot span-2"><img src="img/op-symbol-1280.webp" srcset="img/op-symbol-1280.webp 1280w, img/op-symbol-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1350" alt="The Onlyplay target symbol and the rounded shapes built from it" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">2</span>Visual Identity</h4>
+        <div class="rail-body">
+          <div class="text"><p class="sub">Creative freedom. Product discipline</p><p>A new visual system for the brand’s next stage: rounded shapes taken from the symbol, lime and coral, and the game heroes up front. One identity covers both sides of Onlyplay, the playful game promo and the business communication.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/op-system-1280.webp" srcset="img/op-system-1280.webp 1280w, img/op-system-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1350" alt="The new Onlyplay visual system with the game heroes" loading="lazy" decoding="async"></figure>
+  <figure class="shot span-2"><img src="img/op-identity-1280.webp" srcset="img/op-identity-1280.webp 1280w, img/op-identity-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1350" alt="Onlyplay identity: a game hero and branded stationery" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">3</span>Website Design &amp; Development</h4>
+        <div class="rail-body">
+          <div class="text"><p>The new Onlyplay, online. Our scope:</p><ul><li>Website UI design</li><li>React / Next.js development</li><li>Game catalogue and game pages</li><li>Responsive desktop and mobile layouts</li><li>Payload CMS for content updates</li><li>Custom visuals and animation</li></ul><p><a href="https://onlyplay.net/">onlyplay.net</a></p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/op-website-1280.webp" srcset="img/op-website-1280.webp 1280w, img/op-website-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1350" alt="The new Onlyplay website on a laptop and a phone" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">4</span>Stand Design</h4>
+        <div class="rail-body">
+          <div class="text"><p class="sub">SBC Summit Lisbon 2026 · Stand B111, Hall 2</p><ul><li>Stand concept and spatial layout</li><li>Visitor flow and zoning</li><li>2D plans and 3D visualisation</li><li>Stand graphics and environmental styling</li><li>Lighting and screen placement</li></ul></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/op-stand-hall-1280.webp" srcset="img/op-stand-hall-1280.webp 1280w, img/op-stand-hall-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1350" alt="Onlyplay stand for SBC Summit Lisbon 2026, 3D visualisation" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/op-stand-3d-1-1280.webp" srcset="img/op-stand-3d-1-1280.webp 1280w, img/op-stand-3d-1-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 29vw" width="2400" height="1350" alt="Onlyplay stand 3D model: lounge and screens" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/op-stand-3d-2-1280.webp" srcset="img/op-stand-3d-2-1280.webp 1280w, img/op-stand-3d-2-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 29vw" width="2400" height="1350" alt="Onlyplay stand 3D model: front view" loading="lazy" decoding="async"></figure>
+  <figure class="shot span-2"><img src="img/op-stand-3d-3-1280.webp" srcset="img/op-stand-3d-3-1280.webp 1280w, img/op-stand-3d-3-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1350" alt="Onlyplay stand 3D model: view from above" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">5</span>Motion Graphics</h4>
+        <div class="rail-body">
+          <div class="text"><p>Motion graphics for the LED screens on the stand.</p><ul class="links"><li><a href="https://drive.google.com/file/d/1m3sCXS3RNsvFXV_H2oXrZA0xTBHIOnp8/view?usp=sharing">Watch the motion video</a></li></ul></div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">6</span>Merchandise</h4>
+        <div class="rail-body">
+          <div class="text"><p class="sub">Merchandise and partner gifts</p><ul><li>Merchandise concept and design</li><li>Branded clothing, totes and accessories</li><li>Product graphics and colour variations</li><li>Artwork prepared for print</li><li>Labels for partner gifts</li></ul><ul class="links"><li><a href="https://www.figma.com/design/n3Cxp9DVOBztH3cnTNac1t/Merch---Stand-design-examples?node-id=1-2&amp;t=PycLDU5EaSeJVMEB-1">View the full merchandise package</a></li></ul></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/op-merch-gallery-1280.webp" srcset="img/op-merch-gallery-1280.webp 1280w, img/op-merch-gallery-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1295" alt="Onlyplay merchandise: luggage cover, pouch, balls and luggage tag" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">7</span>Banner Production</h4>
+        <div class="rail-body">
+          <div class="text"><p class="sub">Social media and campaign visuals</p><ul><li>Campaign banner concepts and layouts</li><li>Multi-size production for key channels</li><li>Square, portrait and Story formats</li><li>Event and brand-launch announcements</li><li>Consistent visuals across placements</li><li>Artwork adapted for each resolution</li></ul></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/op-banners-1280.webp" srcset="img/op-banners-1280.webp 1280w, img/op-banners-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="820" alt="Onlyplay campaign banners for SBC Summit Lisbon 2026" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+    </ol>
+  </section>
+  <section class="rail results">
+    <h3 class="rail-title">Results</h3>
+    <div class="rail-body"><p>The new Onlyplay went public at SBC Summit Lisbon 2026 (29 September – 1 October, Stand B111, Hall 2). The identity carried across the stand, the merchandise, the website and the campaign under one line: “New style. Same quality.”</p><ul class="links"><li><a href="https://drive.google.com/drive/folders/1i3VK-WraLEBYJSlhrDkhaRE7IpNl0LWh?usp=drive_link">View stand photos</a></li></ul>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/op-event-1280.webp" srcset="img/op-event-1280.webp 1280w, img/op-event-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1295" alt="The Onlyplay stand at SBC Summit Lisbon 2026" loading="lazy" decoding="async"></figure>
+</div>
+    </div>
+  </section>
+  <a class="case-next" href="#bgaming"><strong>Next project</strong><span>BGaming</span></a>
+</article>
+<article class="case" data-slug="bgaming" data-name="BGaming" aria-labelledby="t-bgaming" hidden>
+  <h2 class="case-title" id="t-bgaming" tabindex="-1">BGaming</h2>
+  <figure class="case-hero shot"><img src="img/bg-cover-1280.webp" srcset="img/bg-cover-1280.webp 1280w, img/bg-cover-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 88vw" width="1600" height="900" alt="BGaming brand identity" loading="lazy" decoding="async"></figure>
+  <dl class="case-meta">
+    <div class="meta-wide"><dt>Deliverables</dt><dd>Branding, Web Design, Website Development, Exhibitions Branding, Art Direction</dd></div>
+    <div><dt>Website</dt><dd><a href="https://bgaming.com/">bgaming.com</a></dd></div>
+    <div><dt>Year</dt><dd>2023</dd></div>
+  </dl>
+  <section class="rail">
+    <h3 class="rail-title">About</h3>
+    <div class="rail-body"><p><a href="https://bgaming.com/">BGaming</a> is a creative and rapidly expanding iGaming content provider and game publisher. The studio’s portfolio includes 150+ products such as video slots, video poker, lottery and more, featuring top industry mechanics.</p></div>
+  </section>
+  <section class="rail">
+    <h3 class="rail-title">Project Goals</h3>
+    <div class="rail-body"><ul><li>Redefine the brand as fast-growing, innovative, and eye-catching.</li><li>Develop a cohesive visual identity across digital and print media.</li><li>Redesign the website to match the new identity and improve usability.</li></ul></div>
+  </section>
+  <section class="scope" aria-labelledby="s-bgaming">
+    <h3 class="scope-title" id="s-bgaming">Project Scope</h3>
+    <ol class="steps">
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">1</span>Visual Identity Concepts</h4>
+        <div class="rail-body">
+          <div class="text"><p>We developed several visual identity concepts to demonstrate the proposed styles and feel of the new identity.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/bg-concepts-1280.webp" srcset="img/bg-concepts-1280.webp 1280w, img/bg-concepts-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="BGaming visual identity concepts" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">2</span>Visual Identity Design</h4>
+        <div class="rail-body">
+          <div class="text"><ul><li>Logo refresh</li><li>Colors &amp; typography</li><li>Brand applications: business cards, letterhead, folder, envelope, badge and lanyard, notepad, pen, hoodie, T-shirt, tote bag, email signature, presentation template, social media covers, poster</li></ul></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/bg-identity-1280.webp" srcset="img/bg-identity-1280.webp 1280w, img/bg-identity-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="BGaming identity on a billboard" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">3</span>Brand Guidelines</h4>
+        <div class="rail-body">
+          <div class="text"><p>We created a comprehensive brand guidelines document that outlines the essential elements of the brand, including its values, mission, all visual identity elements, and brand applications.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/bg-guidelines-1280.webp" srcset="img/bg-guidelines-1280.webp 1280w, img/bg-guidelines-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="BGaming brand guidelines pages" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">4</span>Social Marketing Templates</h4>
+        <div class="rail-body">
+          <div class="text"><p>We developed streamlined templates for all needed communications across the channels:</p><ul><li>Social media posts</li><li>Website banners</li><li>Press banners</li><li>Personal banners</li><li>Targeted ads (ICE London)</li></ul></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/bg-banners-1280.webp" srcset="img/bg-banners-1280.webp 1280w, img/bg-banners-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="BGaming social and press banners" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">5</span>Web Design</h4>
+        <div class="rail-body">
+          <div class="text"><p>Based on the developed visual identity, we crafted a website UI concept that seamlessly integrates the newly created style.</p><p><a href="https://bgaming.com/">bgaming.com</a></p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/bg-web-1280.webp" srcset="img/bg-web-1280.webp 1280w, img/bg-web-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="BGaming website pages" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">6</span>Website Development</h4>
+        <div class="rail-body">
+          <div class="text"><p>With a focus on seamless integration and outstanding functionality, our team made the website visually appealing and easy to manage.</p><p>Our approach included:</p><ul><li>Style guide setup and a scalable class system</li><li>Complex CMS creation and optimization</li><li>Third-party integrations</li><li>Custom interactions and animations</li><li>Performance optimization</li><li>Ongoing maintenance and support</li></ul></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/bg-dev-1280.webp" srcset="img/bg-dev-1280.webp 1280w, img/bg-dev-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="BGaming website on a desktop screen" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">7</span>Exhibition Stands</h4>
+        <div class="rail-body">
+          <div class="text"><p>We designed 6 exhibition stands for BGaming, each taken from concept and floor plan to the finished stand at the show.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/bg-expo-1280.webp" srcset="img/bg-expo-1280.webp 1280w, img/bg-expo-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="BGaming exhibition stands" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+    </ol>
+  </section>
+  <section class="rail results">
+    <h3 class="rail-title">Results</h3>
+    <div class="rail-body"><p>The project resulted in a successful transformation of BGaming’s brand, with a cohesive and impactful visual identity, consistent and effective brand communication across all media, and an improved website user experience.</p><p class="sub">Branding and website, before and after</p>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/bg-brand-ba-1280.webp" srcset="img/bg-brand-ba-1280.webp 1280w, img/bg-brand-ba-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="BGaming branding, before and after" loading="lazy" decoding="async"></figure>
+  <figure class="shot span-2"><img src="img/bg-web-ba-1280.webp" srcset="img/bg-web-ba-1280.webp 1280w, img/bg-web-ba-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="BGaming website, before and after" loading="lazy" decoding="async"></figure>
+</div>
+    </div>
+  </section>
+<div class="shots gallery">
+  <figure class="shot span-2"><img src="img/bg-g-09-1280.webp" srcset="img/bg-g-09-1280.webp 1280w, img/bg-g-09-1675.webp 1675w" sizes="(max-width: 900px) 92vw, 88vw" width="1675" height="925" alt="BGaming key visual: We create thrilling game experiences" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/bg-g-25-1280.webp" srcset="img/bg-g-25-1280.webp 1280w, img/bg-g-25-1675.webp 1675w" sizes="(max-width: 600px) 92vw, 44vw" width="1675" height="925" alt="BGaming badge and tote bag" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/bg-g-27-1280.webp" srcset="img/bg-g-27-1280.webp 1280w, img/bg-g-27-1675.webp 1675w" sizes="(max-width: 600px) 92vw, 44vw" width="1675" height="925" alt="BGaming business cards" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/bg-g-28-1280.webp" srcset="img/bg-g-28-1280.webp 1280w, img/bg-g-28-1675.webp 1675w" sizes="(max-width: 600px) 92vw, 44vw" width="1675" height="925" alt="BGaming T-shirt and badge" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/bg-g-32-1280.webp" srcset="img/bg-g-32-1280.webp 1280w, img/bg-g-32-1675.webp 1675w" sizes="(max-width: 600px) 92vw, 44vw" width="1675" height="925" alt="BGaming website screens" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/bg-g-37-1280.webp" srcset="img/bg-g-37-1280.webp 1280w, img/bg-g-37-1675.webp 1675w" sizes="(max-width: 600px) 92vw, 44vw" width="1675" height="925" alt="BGaming game page" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/bg-g-39-1280.webp" srcset="img/bg-g-39-1280.webp 1280w, img/bg-g-39-1675.webp 1675w" sizes="(max-width: 600px) 92vw, 44vw" width="1675" height="925" alt="BGaming mobile website" loading="lazy" decoding="async"></figure>
+</div>
+  <a class="case-next" href="#rectangle-games"><strong>Next project</strong><span>Rectangle Games</span></a>
+</article>
+<article class="case" data-slug="rectangle-games" data-name="Rectangle Games" aria-labelledby="t-rectangle-games" hidden>
+  <h2 class="case-title" id="t-rectangle-games" tabindex="-1">Rectangle Games</h2>
+  <figure class="case-hero shot"><img src="img/rg-cover-1280.webp" srcset="img/rg-cover-1280.webp 1280w, img/rg-cover-1676.webp 1676w" sizes="(max-width: 900px) 92vw, 88vw" width="1676" height="811" alt="Rectangle Games banner: Playful by Design. Strong by Nature." loading="lazy" decoding="async"></figure>
+  <dl class="case-meta">
+    <div class="meta-wide"><dt>Deliverables</dt><dd>Branding, Logo Design, Brand Guidelines, Web Design, Website Development, Art Direction</dd></div>
+    <div><dt>Case</dt><dd><a href="https://www.behance.net/gallery/250176209/iGaming-Provider-Logo-Branding-Web-Design">Behance</a></dd></div>
+    <div><dt>Year</dt><dd>2025</dd></div>
+  </dl>
+  <section class="rail">
+    <h3 class="rail-title">About</h3>
+    <div class="rail-body"><p>Rectangle Games is an iGaming content provider focused on creating visually refined and mechanically engaging casino games. The company combines strong artistic direction with carefully balanced game mathematics to deliver products that stand out in a highly competitive market.</p></div>
+  </section>
+  <section class="rail">
+    <h3 class="rail-title">Project Goals</h3>
+    <div class="rail-body"><ul><li>Establish a clear and recognizable brand identity.</li><li>Create a cohesive visual system across digital, print, and event touchpoints.</li><li>Design and develop a modern website that communicates the brand and its products clearly.</li></ul></div>
+  </section>
+  <section class="scope" aria-labelledby="s-rectangle-games">
+    <h3 class="scope-title" id="s-rectangle-games">Project Scope</h3>
+    <ol class="steps">
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">1</span>Logo Design</h4>
+        <div class="rail-body">
+          <div class="text"><p>We designed a distinctive logo that reflects the brand’s character and creative approach. The logo was developed to be flexible and easily recognizable across digital platforms, marketing materials, and large-scale event applications.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/rg-logo-1280.webp" srcset="img/rg-logo-1280.webp 1280w, img/rg-logo-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="Rectangle Games logo" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">2</span>Visual Identity Design</h4>
+        <div class="rail-body">
+          <div class="text"><ul><li>Colors &amp; typography</li><li>Brand applications: business cards, letterhead, folder, envelope, badge and lanyard, notepad, pen, hoodie, T-shirt, tote bag, email signature, presentation template, social media covers, poster</li></ul></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/rg-identity-1280.webp" srcset="img/rg-identity-1280.webp 1280w, img/rg-identity-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="770" alt="Rectangle Games characters with the brand shapes" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">3</span>Brand Guidelines</h4>
+        <div class="rail-body">
+          <div class="text"><p>We created a comprehensive brand guidelines document that outlines the essential elements of the brand, including its values, mission, all visual identity elements, and brand applications.</p><p><a href="https://drive.google.com/file/d/1D_42ntjWmSfkSE2Vpe9jeHRE9e9L6crR/view?usp=sharing">Brand guidelines (PDF)</a></p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/rg-guidelines-1280.webp" srcset="img/rg-guidelines-1280.webp 1280w, img/rg-guidelines-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="Rectangle Games brand guidelines pages" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">4</span>Web Design</h4>
+        <div class="rail-body">
+          <div class="text"><p>Based on the developed visual identity, we crafted a website UI concept that seamlessly integrates the newly created style.</p><p><a href="https://www.figma.com/design/izOJ8bTjb5feqy0goMS4VR/RG_Website-Design-Showcase?node-id=2277-12534">Website design in Figma</a></p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/rg-web-1280.webp" srcset="img/rg-web-1280.webp 1280w, img/rg-web-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="Rectangle Games website pages" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+    </ol>
+  </section>
+  <section class="rail results">
+    <h3 class="rail-title">Results</h3>
+    <div class="rail-body"><p>The project resulted in a cohesive brand transformation for Rectangle Games. The new visual identity and website create a strong, confident presence across all channels, from digital platforms to industry exhibitions. The updated brand system supports the company’s growth and positions it as a modern and credible player in the iGaming market.</p><p class="sub">Website, before and after</p>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/rg-ba-1-1280.webp" srcset="img/rg-ba-1-1280.webp 1280w, img/rg-ba-1-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="Rectangle Games website, before and after" loading="lazy" decoding="async"></figure>
+  <figure class="shot span-2"><img src="img/rg-ba-2-1280.webp" srcset="img/rg-ba-2-1280.webp 1280w, img/rg-ba-2-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="Rectangle Games website, before and after" loading="lazy" decoding="async"></figure>
+</div>
+    </div>
+  </section>
+<div class="shots gallery">
+  <figure class="shot span-2"><img src="img/rg-g-web2-1280.webp" srcset="img/rg-g-web2-1280.webp 1280w, img/rg-g-web2-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 88vw" width="1600" height="900" alt="Rectangle Games game catalogue and game page" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/rg-g-identity2-1280.webp" srcset="img/rg-g-identity2-1280.webp 1280w, img/rg-g-identity2-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="884" alt="Rectangle Games panda character" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/rg-g-tablet-1280.webp" srcset="img/rg-g-tablet-1280.webp 1280w, img/rg-g-tablet-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="900" alt="Rectangle Games website on a tablet" loading="lazy" decoding="async"></figure>
+  <figure class="shot span-2"><img src="img/rg-g-mobile-1280.webp" srcset="img/rg-g-mobile-1280.webp 1280w, img/rg-g-mobile-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 88vw" width="1600" height="900" alt="Rectangle Games mobile website" loading="lazy" decoding="async"></figure>
+</div>
+  <a class="case-next" href="#wicked-games"><strong>Next project</strong><span>Wicked Games</span></a>
+</article>
+<article class="case" data-slug="wicked-games" data-name="Wicked Games" aria-labelledby="t-wicked-games" hidden>
+  <h2 class="case-title" id="t-wicked-games" tabindex="-1">Wicked Games</h2>
+  <figure class="case-hero shot"><img src="img/wg-g-9-1280.webp" srcset="img/wg-g-9-1280.webp 1280w, img/wg-g-9-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1964" alt="Wicked Games website, dark theme" loading="lazy" decoding="async"></figure>
+  <dl class="case-meta">
+    <div class="meta-wide"><dt>Deliverables</dt><dd>Web Design, Website Development</dd></div>
+    <div><dt>Website</dt><dd><a href="https://www.wicked.games/">wicked.games</a></dd></div>
+    <div><dt>Year</dt><dd>2025</dd></div>
+  </dl>
+  <section class="rail">
+    <h3 class="rail-title">About</h3>
+    <div class="rail-body"><p><a href="https://www.wicked.games/">Wicked Games</a> is an iGaming content provider focused on delivering engaging and visually expressive casino games. The company operates in a highly competitive market where clear positioning and strong visual presentation are essential.</p></div>
+  </section>
+  <section class="rail">
+    <h3 class="rail-title">Project Goals</h3>
+    <div class="rail-body"><ul><li>Redesign the existing website to better reflect the brand’s character and product quality.</li><li>Improve visual clarity, structure, and overall user experience.</li><li>Develop a scalable and easy-to-manage website.</li></ul></div>
+  </section>
+  <section class="scope" aria-labelledby="s-wicked-games">
+    <h3 class="scope-title" id="s-wicked-games">Project Scope</h3>
+    <ol class="steps">
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">1</span>Web Design</h4>
+        <div class="rail-body">
+          <div class="text"><ul><li>Redesigned the website interface with a modern and cohesive visual language</li><li>Improved content hierarchy and overall readability</li><li>Designed and documented both light and dark themes</li><li>Set up a structured Figma library</li><li>Implemented design tokens to ensure consistency and scalability</li></ul></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/wg-web-1280.webp" srcset="img/wg-web-1280.webp 1280w, img/wg-web-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1351" alt="Wicked Games website pages" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">2</span>Website Development</h4>
+        <div class="rail-body">
+          <div class="text"><p>With a focus on seamless integration and outstanding functionality, our team made the website visually appealing and easy to manage.</p><p>Our approach included:</p><ul><li>Style guide setup and a scalable class system</li><li>Complex CMS creation and optimization</li><li>Third-party integrations</li><li>Custom interactions and animations</li><li>Performance optimization</li><li>Ongoing maintenance and support</li></ul></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/wg-dev-1280.webp" srcset="img/wg-dev-1280.webp 1280w, img/wg-dev-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 58vw" width="2400" height="1351" alt="Wicked Games website, dark theme pages" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+    </ol>
+  </section>
+  <section class="rail results">
+    <h3 class="rail-title">Results</h3>
+    <div class="rail-body"><p>The updated website provides Wicked Games with a stronger digital presence and a more polished visual representation of the brand. The new structure and design improve usability and support the company’s communication needs as it continues to grow in the iGaming market.</p><p class="sub">Website, before and after</p>
+<div class="shots">
+  <figure class="shot"><img src="img/wg-ba-1280.webp" srcset="img/wg-ba-1280.webp 1280w, img/wg-ba-1600.webp 1600w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 29vw" width="1600" height="1810" alt="Wicked Games website, before and after" loading="lazy" decoding="async"></figure>
+</div>
+    </div>
+  </section>
+<div class="shots gallery">
+  <figure class="shot span-2"><img src="img/wg-g-8-1280.webp" srcset="img/wg-g-8-1280.webp 1280w, img/wg-g-8-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1964" alt="Wicked Games website, light theme" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/wg-g-6-1280.webp" srcset="img/wg-g-6-1280.webp 1280w, img/wg-g-6-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1351" alt="Wicked Games game pages, dark theme" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/wg-g-7-1280.webp" srcset="img/wg-g-7-1280.webp 1280w, img/wg-g-7-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1351" alt="Wicked Games game pages, light theme" loading="lazy" decoding="async"></figure>
+  <figure class="shot span-2"><img src="img/wg-g-wide-1280.webp" srcset="img/wg-g-wide-1280.webp 1280w, img/wg-g-wide-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1088" alt="Wicked Games game pages in both themes" loading="lazy" decoding="async"></figure>
+</div>
+  <a class="case-next" href="#1spin4win"><strong>Next project</strong><span>1Spin4Win</span></a>
+</article>
+<article class="case" data-slug="1spin4win" data-name="1Spin4Win" aria-labelledby="t-1spin4win" hidden>
+  <h2 class="case-title" id="t-1spin4win" tabindex="-1">1Spin4Win</h2>
+  <figure class="case-hero shot"><img src="img/s4-cover-1280.webp" srcset="img/s4-cover-1280.webp 1280w, img/s4-cover-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 88vw" width="1600" height="900" alt="1Spin4Win brand identity" loading="lazy" decoding="async"></figure>
+  <dl class="case-meta">
+    <div class="meta-wide"><dt>Deliverables</dt><dd>Branding, Web Design, Website Development, Exhibitions Branding, Art Direction, Motion Graphics</dd></div>
+    <div><dt>Website</dt><dd><a href="https://www.1spin4win.com/">1spin4win.com</a></dd></div>
+    <div><dt>Year</dt><dd>2023</dd></div>
+  </dl>
+  <section class="rail">
+    <h3 class="rail-title">About</h3>
+    <div class="rail-body"><p><a href="https://www.1spin4win.com/">1spin4win</a> is an innovative online casino games provider launched in 2021, leveraging over 15 years of online gambling expertise. The studio focuses on creating high-quality, engaging games, boasting a portfolio of over 100 classic yet unique online slots.</p></div>
+  </section>
+  <section class="rail">
+    <h3 class="rail-title">Project Goals</h3>
+    <div class="rail-body"><ul><li>Create a new logo and visual identity that capture the studio’s essence while conveying the brand’s confident and ambitious character.</li><li>Ensure a unified brand presence across different mediums.</li><li>Design and develop a website that aligns with the new identity and enhances user engagement.</li></ul></div>
+  </section>
+  <section class="scope" aria-labelledby="s-1spin4win">
+    <h3 class="scope-title" id="s-1spin4win">Project Scope</h3>
+    <ol class="steps">
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">1</span>Logo &amp; Visual Identity Design</h4>
+        <div class="rail-body">
+          <div class="text"><p class="sub">Visual identity concepts</p><p>We developed several visual identity concepts to demonstrate the proposed styles and feel of the new identity.</p><p class="sub">Logo redesign</p><p>We delivered a refined logo that captures the brand’s analytical character and the dynamic energy of slot machine cells.</p><p class="sub">Colors &amp; typography</p><p>We developed a luxurious timeless brand palette, complemented by a modern font that nods to the vintage casino era’s geometry.</p><p class="sub">Brand applications</p><p>Merch, badges and packaging in the new identity.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/s4-guidelines-1280.webp" srcset="img/s4-guidelines-1280.webp 1280w, img/s4-guidelines-1920.webp 1920w" sizes="(max-width: 900px) 92vw, 58vw" width="1920" height="1081" alt="1Spin4Win brand guidelines pages" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">2</span>Communication Templates</h4>
+        <div class="rail-body">
+          <div class="text"><ul><li>Social media</li><li>Press release</li><li>Website news</li></ul></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/s4-banners-1280.webp" srcset="img/s4-banners-1280.webp 1280w, img/s4-banners-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="1Spin4Win social and press templates" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">3</span>Web Design</h4>
+        <div class="rail-body">
+          <div class="text"><p>Building on the developed visual identity, we created a website UI concept that seamlessly incorporates the new style.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/s4-web-1280.webp" srcset="img/s4-web-1280.webp 1280w, img/s4-web-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="1Spin4Win home page" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">4</span>Website Development</h4>
+        <div class="rail-body">
+          <div class="text"><p>Our team focused on ensuring both visual appeal and functionality, resulting in a user-friendly and easily manageable website.</p><p>Our approach included:</p><ul><li>Style guide setup and a scalable class system</li><li>Complex CMS creation and optimization</li><li>Third-party integrations</li><li>Custom interactions and animations</li><li>Performance optimization</li><li>Ongoing maintenance and support</li></ul></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/s4-dev-1280.webp" srcset="img/s4-dev-1280.webp 1280w, img/s4-dev-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="1Spin4Win website pages" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">5</span>Motion Graphics</h4>
+        <div class="rail-body">
+          <div class="text"><p>Release trailers for new slots: logo reveal, a title card with RTP, max multiplier and volatility, then gameplay, features and big wins.</p></div>
+<div class="shots">
+  <figure class="shot span-2 video-shot"><video src="video/cash-n-fruits.mp4" poster="video/cash-n-fruits-poster.webp" width="1280" height="720" muted loop playsinline preload="none" data-autoplay aria-label="Cash’n Fruits 40: game release trailer for 1Spin4Win"></video><button class="video-sound" type="button" aria-pressed="false" aria-label="Sound on"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></figure>
+  <figure class="shot span-2 video-shot"><video src="video/classic-chilli-fortune.mp4" poster="video/classic-chilli-fortune-poster.webp" width="1280" height="720" muted loop playsinline preload="none" data-autoplay aria-label="Classic Chilli Fortune: game release trailer for 1Spin4Win"></video><button class="video-sound" type="button" aria-pressed="false" aria-label="Sound on"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></figure>
+</div>
+        </div>
+      </li>
+    </ol>
+  </section>
+  <section class="rail results">
+    <h3 class="rail-title">Results</h3>
+    <div class="rail-body"><p>We created a unified brand identity and website that reflect the studio’s confident, ambitious character while ensuring consistency and stronger user engagement across all platforms.</p>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/s4-thumb-1280.webp" srcset="img/s4-thumb-1280.webp 1280w, img/s4-thumb-2054.webp 2054w" sizes="(max-width: 900px) 92vw, 58vw" width="2054" height="1540" alt="1Spin4Win website pages" loading="lazy" decoding="async"></figure>
+</div>
+    </div>
+  </section>
+  <a class="case-next" href="#encore"><strong>Next project</strong><span>Encore Games</span></a>
+</article>
+<article class="case" data-slug="encore" data-name="Encore Games" aria-labelledby="t-encore" hidden>
+  <h2 class="case-title" id="t-encore" tabindex="-1">Encore Games</h2>
+  <figure class="case-hero shot"><img src="img/en-cover-1280.webp" srcset="img/en-cover-1280.webp 1280w, img/en-cover-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 88vw" width="1600" height="900" alt="Encore Games brand identity" loading="lazy" decoding="async"></figure>
+  <dl class="case-meta">
+    <div class="meta-wide"><dt>Deliverables</dt><dd>Visual Identity, Website Design, Website Development</dd></div>
+    <div><dt>Website</dt><dd><a href="https://www.figma.com/proto/Ej7UKfTWzxM7BZgWjbsMbJ/Encore-Website?page-id=0%3A1&amp;node-id=1-68">Figma prototype</a></dd></div>
+    <div><dt>Year</dt><dd>2021</dd></div>
+  </dl>
+  <section class="rail">
+    <h3 class="rail-title">About</h3>
+    <div class="rail-body"><p>Encore Game is the world’s first AAA blockchain multiplayer shooter with DeFi and NFTs. Encore delivers an alternative reality to players via high-fidelity graphics and a world where they can own skins, artefacts, and other in-game assets as NFTs.</p></div>
+  </section>
+  <section class="rail">
+    <h3 class="rail-title">Project Goals</h3>
+    <div class="rail-body"><ul><li>Create a dynamic logo that reflects Encore Game’s rebrand.</li><li>Design a modern, crypto-inspired visual identity and website that highlight Encore Game’s gaming focus, ensuring a memorable brand presence.</li></ul></div>
+  </section>
+  <section class="scope" aria-labelledby="s-encore">
+    <h3 class="scope-title" id="s-encore">Project Scope</h3>
+    <ol class="steps">
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">1</span>Logo &amp; Visual Identity Design</h4>
+        <div class="rail-body">
+          <div class="text"><p class="sub">Logo design</p><p>We created a logo that captures Encore Game’s epic, dynamic nature, blending traditional shooter vibes with a modern, energetic feel.</p><p class="sub">Colors &amp; typography</p><p>We established a brand color palette that enhances Encore Game’s modern atmosphere and typography that captures the game’s energetic spirit.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/en-logo-1280.webp" srcset="img/en-logo-1280.webp 1280w, img/en-logo-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="Encore Games logo" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">2</span>Logo Guidelines</h4>
+        <div class="rail-body">
+          <div class="text"><p>We created comprehensive logo guidelines for Encore Game to ensure consistent use of the logo, colors, and fonts across all branding materials.</p><p><a href="https://drive.google.com/file/d/16BgF7tQoAf6_ufjuCy0KILkFHNcIAm-5/view?usp=sharing">Logo guide (PDF)</a></p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/en-guidelines-1280.webp" srcset="img/en-guidelines-1280.webp 1280w, img/en-guidelines-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="Encore Games logo guidelines pages" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">3</span>Web Design &amp; Development</h4>
+        <div class="rail-body">
+          <div class="text"><p>We designed and built the website in the new identity.</p><p><a href="https://www.figma.com/proto/Ej7UKfTWzxM7BZgWjbsMbJ/Encore-Website?page-id=0%3A1&amp;node-id=1-68">Website design in Figma</a></p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/en-web-1280.webp" srcset="img/en-web-1280.webp 1280w, img/en-web-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="Encore Games website" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+    </ol>
+  </section>
+  <section class="rail results">
+    <h3 class="rail-title">Results</h3>
+    <div class="rail-body"><p>We created a modern visual identity, reflecting both shooter game spirit and metaverse trend, developed logo guidelines, assets for social media and visually stunning website design.</p></div>
+  </section>
+<div class="shots gallery">
+  <figure class="shot"><img src="img/en-banner-1280.webp" srcset="img/en-banner-1280.webp 1280w, img/en-banner-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="900" alt="Encore Games poster" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/en-banner-2-1280.webp" srcset="img/en-banner-2-1280.webp 1280w, img/en-banner-2-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="900" alt="Encore Games banner" loading="lazy" decoding="async"></figure>
+</div>
+  <a class="case-next" href="#metarun"><strong>Next project</strong><span>Metarun</span></a>
+</article>
+<article class="case" data-slug="metarun" data-name="Metarun" aria-labelledby="t-metarun" hidden>
+  <h2 class="case-title" id="t-metarun" tabindex="-1">Metarun</h2>
+  <figure class="case-hero shot"><img src="img/mr-cover-1280.webp" srcset="img/mr-cover-1280.webp 1280w, img/mr-cover-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 88vw" width="1600" height="900" alt="Metarun brand identity" loading="lazy" decoding="async"></figure>
+  <dl class="case-meta">
+    <div class="meta-wide"><dt>Deliverables</dt><dd>Visual Identity, Website Design, Website Development</dd></div>
+    <div><dt>Case</dt><dd><a href="https://www.figma.com/proto/YWLzrc2sNaVi7bMIadcWSH/Final-Behance-Cases?page-id=81%3A2873&amp;node-id=81-2874">Case in Figma</a></dd></div>
+    <div><dt>Year</dt><dd>2022</dd></div>
+  </dl>
+  <section class="rail">
+    <h3 class="rail-title">About</h3>
+    <div class="rail-body"><p>Metarun is the first blockchain-based P2E/P2W endless mobile runner game with NFT assets, featuring a cross-chain marketplace and comprehensive crypto Play-to-Earn mechanics.</p></div>
+  </section>
+  <section class="rail">
+    <h3 class="rail-title">Project Goals</h3>
+    <div class="rail-body"><ul><li>Create a dynamic logo that reflects Metarun’s rebrand.</li><li>Design a modern, crypto-inspired visual identity and website that highlight Metarun’s gaming focus, ensuring a memorable brand presence.</li></ul></div>
+  </section>
+  <section class="scope" aria-labelledby="s-metarun">
+    <h3 class="scope-title" id="s-metarun">Project Scope</h3>
+    <ol class="steps">
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">1</span>Logo</h4>
+        <div class="rail-body">
+          <div class="text"><p>We created a simple yet powerful logo that captures the essence of a competitive running game in a techno-magic setting.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/mr-logo-1280.webp" srcset="img/mr-logo-1280.webp 1280w, img/mr-logo-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="Metarun logo" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">2</span>Visual Identity Design</h4>
+        <div class="rail-body">
+          <div class="text"><p class="sub">Colors &amp; typography</p><p>We developed a vibrant color palette for a striking, techno-magical atmosphere, paired with modern typography that conveys speed and movement.</p><p class="sub">Brand assets</p><p>We suggested engaging assets for social media, eye-catching posters, and stylish hoodie design, helping to shape the brand.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/mr-identity-1280.webp" srcset="img/mr-identity-1280.webp 1280w, img/mr-identity-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="Metarun social media posts" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+      <li class="rail step">
+        <h4 class="rail-title"><span class="num" aria-hidden="true">3</span>Web Design &amp; Development</h4>
+        <div class="rail-body">
+          <div class="text"><p>We developed a website that embodies Metarun’s dynamic and competitive spirit. All the elements reflect Metarun’s unique blend of fun, modernity, and crypto-inspired excitement.</p></div>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/mr-web-1280.webp" srcset="img/mr-web-1280.webp 1280w, img/mr-web-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="Metarun website" loading="lazy" decoding="async"></figure>
+</div>
+        </div>
+      </li>
+    </ol>
+  </section>
+  <section class="rail results">
+    <h3 class="rail-title">Results</h3>
+    <div class="rail-body"><p>Our team crafted a unique logo and a cohesive visual identity that embodies the passionate style of the crypto-world. We swiftly developed a website from scratch, enabling a successful game launch with a dynamic online presence that truly stands out.</p>
+<div class="shots">
+  <figure class="shot span-2"><img src="img/mr-color-1280.webp" srcset="img/mr-color-1280.webp 1280w, img/mr-color-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="Metarun colour palette" loading="lazy" decoding="async"></figure>
+</div>
+    </div>
+  </section>
+<div class="shots gallery">
+  <figure class="shot span-2"><img src="img/mr-g-1-1280.webp" srcset="img/mr-g-1-1280.webp 1280w, img/mr-g-1-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 88vw" width="1600" height="900" alt="Metarun key visual: blockchain-based endless runner game with NFT assets" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/mr-g-2-1280.webp" srcset="img/mr-g-2-1280.webp 1280w, img/mr-g-2-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="900" alt="Metarun: Why Metarun?" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/mr-g-5-1280.webp" srcset="img/mr-g-5-1280.webp 1280w, img/mr-g-5-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="900" alt="Metarun hoodie" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/mr-g-4-1280.webp" srcset="img/mr-g-4-1280.webp 1280w, img/mr-g-4-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="900" alt="Metarun billboard" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/mr-g-7-1280.webp" srcset="img/mr-g-7-1280.webp 1280w, img/mr-g-7-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="900" alt="Metarun mobile screens" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/mr-g-3-1280.webp" srcset="img/mr-g-3-1280.webp 1280w, img/mr-g-3-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="1716" alt="Metarun posters" loading="lazy" decoding="async"></figure>
+  <figure class="shot"><img src="img/mr-g-8-1280.webp" srcset="img/mr-g-8-1280.webp 1280w, img/mr-g-8-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="900" alt="Metarun on a phone" loading="lazy" decoding="async"></figure>
+</div>
+  <a class="case-next" href="#onlyplay"><strong>Next project</strong><span>Onlyplay</span></a>
+</article>
+</div>
+
+<script>
+/* Two views (for operators / for providers) and project views that open over the page at their own #link */
+(function () {
+  const groups = {"operators": ["lucky-rush", "tao-sweeps", "winarcade", "fortuna-rush", "goatbet", "collectify", "gambler-guides"], "providers": ["onlyplay", "bgaming", "rectangle-games", "wicked-games", "1spin4win", "encore", "metarun"]};
+  const groupOf = {};
+  Object.keys(groups).forEach(g => groups[g].forEach(s => { groupOf[s] = g; }));
+  const root = document.documentElement;
+  const layer = document.getElementById('case-layer');
+  const cases = new Map(Array.from(layer.querySelectorAll('.case')).map(a => [a.dataset.slug, a]));
+  const pageParts = [document.querySelector('.site-header'), document.querySelector('main'), document.querySelector('.site-footer')].filter(Boolean);
+  const switchLinks = Array.from(document.querySelectorAll('[data-view-link]'));
+  const baseTitle = document.title;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let current = null;
+  let deepLinked = false;
+  let view = 'operators';
+
+  const hashSlug = () => {
+    try { return decodeURIComponent(location.hash.slice(1)); } catch (_) { return ''; }
+  };
+
+  const setView = (v) => {
+    view = v;
+    root.setAttribute('data-view', v);
+    switchLinks.forEach(a => a.setAttribute('aria-current', a.dataset.viewLink === v ? 'true' : 'false'));
+  };
+
+  const show = (slug, animate) => {
+    const art = cases.get(slug);
+    cases.forEach((a, s) => { a.hidden = s !== slug; });
+    layer.setAttribute('aria-labelledby', 't-' + slug);
+    if (!current) {
+      layer.hidden = false;
+      root.classList.add('case-open');
+      pageParts.forEach(el => { el.inert = true; });
+      if (animate && !reduceMotion.matches) {
+        layer.classList.add('is-entering');
+        requestAnimationFrame(() => requestAnimationFrame(() => layer.classList.remove('is-entering')));
+      }
+    }
+    layer.scrollTop = 0;
+    current = slug;
+    document.title = art.dataset.name + ' — Palianka';
+    art.querySelector('.case-title').focus({ preventScroll: true });
+  };
+
+  const hide = () => {
+    if (!current) return;
+    const slug = current;
+    current = null;
+    layer.hidden = true;
+    layer.classList.remove('is-entering');
+    root.classList.remove('case-open');
+    pageParts.forEach(el => { el.inert = false; });
+    document.title = baseTitle;
+    if (deepLinked) {
+      deepLinked = false;
+      document.getElementById('projects').scrollIntoView({ block: 'start', behavior: 'auto' });
+    }
+    const card = document.querySelector('[data-case="' + slug + '"]');
+    if (card) card.focus({ preventScroll: true });
+  };
+
+  const route = (animate) => {
+    const h = hashSlug();
+    if (cases.has(h)) { setView(groupOf[h]); show(h, animate); return; }
+    if (h === 'operators' || h === 'providers') setView(h);
+    hide();
+  };
+
+  const close = () => {
+    history.replaceState(null, '', location.pathname + location.search + '#' + view);
+    hide();
+  };
+
+  window.addEventListener('hashchange', () => route(true));
+  layer.querySelector('[data-close]').addEventListener('click', close);
+  layer.querySelectorAll('[data-step]').forEach(btn => btn.addEventListener('click', () => {
+    const list = groups[groupOf[current]];
+    const i = list.indexOf(current);
+    location.hash = list[(i + Number(btn.dataset.step) + list.length) % list.length];
+  }));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && current) { e.preventDefault(); close(); }
+  });
+
+  /* Section links scroll without replacing #operators / #providers in the address */
+  document.querySelectorAll('a[data-scroll]').forEach(a => a.addEventListener('click', (e) => {
+    const target = document.getElementById(a.getAttribute('href').slice(1));
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ block: 'start', behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+  }));
+
+  /* Logo: stay on this page and go back to the top */
+  document.querySelectorAll('[data-to-top]').forEach(a => a.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+  }));
+
+  /* Switching For operators / For providers brings the page back to the top */
+  switchLinks.forEach(a => a.addEventListener('click', () => {
+    if (window.scrollY > 0) window.scrollTo({ top: 0, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+  }));
+
+  const first = hashSlug();
+  if (cases.has(first)) { deepLinked = true; route(false); }
+  else setView(first === 'providers' ? 'providers' : 'operators');
+})();
+</script>
+<script>
+(function () {
+  const header = document.querySelector('.site-header');
+  const onScroll = () => header.classList.toggle('is-stuck', window.scrollY > 4);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  const footer = document.querySelector('.site-footer');
+  if (footer && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    footer.classList.add('is-waiting');
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some(e => e.isIntersecting)) { footer.classList.remove('is-waiting'); io.disconnect(); }
+    }, { threshold: 0.3 });
+    io.observe(footer);
+  }
+
+  /* the mushroom sways and shimmers only while the footer is on screen */
+  if (footer) {
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        entries.forEach(e => footer.classList.toggle('is-live', e.isIntersecting));
+      }).observe(footer);
+    } else {
+      footer.classList.add('is-live');
+    }
+  }
+
+  document.querySelectorAll('a[href^="http"]').forEach(a => {
+    if (!a.getAttribute('target')) { a.target = '_blank'; a.rel = 'noopener'; }
+  });
+})();
+</script>
+<script>
+(function () {
+  var vids = [].slice.call(document.querySelectorAll('video[data-autoplay]'));
+  if (!vids.length) return;
+  var still = false;
+  try { still = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+  function play(v) {
+    if (v.preload === 'none') v.preload = 'auto';
+    var p = v.play();
+    if (p && p.catch) p.catch(function () {});
+  }
+  /* videos on the page itself (not inside a case) stay paused while a case is open on top of it */
+  var root = document.documentElement;
+  var layer = document.getElementById('case-layer');
+  function onPage(v) { return !(layer && layer.contains(v)); }
+  function behindCase(v) { return onPage(v) && root.classList.contains('case-open'); }
+  var io = null;
+  if (!still && 'IntersectionObserver' in window) {
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting && !behindCase(e.target)) play(e.target); else e.target.pause(); });
+    }, { threshold: 0.35 });
+    vids.forEach(function (v) { io.observe(v); });
+  }
+  if ('MutationObserver' in window) {
+    var wasOpen = root.classList.contains('case-open');
+    new MutationObserver(function () {
+      var open = root.classList.contains('case-open');
+      if (open === wasOpen) return;
+      wasOpen = open;
+      vids.forEach(function (v) {
+        if (!onPage(v)) return;
+        if (open) v.pause();
+        else if (io) { io.unobserve(v); io.observe(v); }
+      });
+    }).observe(root, { attributes: true, attributeFilter: ['class'] });
+  }
+  function setBtn(b, on) {
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    b.setAttribute('aria-label', on ? 'Mute' : 'Sound on');
+  }
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest ? ev.target.closest('.video-sound') : null;
+    if (!b) return;
+    var v = b.parentNode.querySelector('video');
+    if (!v) return;
+    var turnOn = v.muted;
+    vids.forEach(function (o) {
+      if (o !== v && !o.muted) {
+        o.muted = true;
+        var ob = o.parentNode.querySelector('.video-sound');
+        if (ob) setBtn(ob, false);
+      }
+    });
+    v.muted = !turnOn;
+    if (turnOn) play(v);
+    setBtn(b, turnOn);
+  });
+})();
+</script>
+</body>
+</html>
