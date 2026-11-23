@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Unbounded:wght@800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Unbounded:wght@800&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #060B1F;
@@ -1208,6 +1208,173 @@
 
   .case-next:hover::after { transform: translateX(6px); background-color: rgba(255, 255, 255, 0.26); }
 
+  /* ---------- Fotando: the Figma Behance case, module by module ---------- */
+  /* 1 --u = 1px of the 1675px-wide Figma frame, so every module keeps the Figma proportions */
+
+  .bh {
+    --u: calc((100vw - 2 * var(--pad)) / 1675);
+    container-type: inline-size;
+    margin-top: clamp(28px, 3.3vw, 56px);
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: #FFFFFF;
+    color: #040404;
+    font-family: "Albert Sans", "Outfit", system-ui, sans-serif;
+    font-weight: 400;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4), 0 28px 60px -34px rgba(0, 0, 0, 0.9);
+  }
+
+  @supports (width: 1cqw) {
+    .bh { --u: calc(100cqw / 1675); }
+  }
+
+  .bh h3,
+  .bh h4 { font-family: inherit; letter-spacing: 0; color: inherit; }
+
+  .bh-img { position: relative; margin: 0; }
+  .bh-img img { display: block; width: 100%; height: auto; }
+
+  .bh-hero-bar {
+    position: absolute;
+    top: calc(var(--u) * 56);
+    left: calc(var(--u) * 64);
+    right: calc(var(--u) * 64);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: calc(var(--u) * 24);
+    line-height: 1;
+    font-weight: 600;
+    color: #FFFFFF;
+    white-space: nowrap;
+  }
+
+  .bh-hero-meta { display: flex; align-items: center; gap: calc(var(--u) * 20); }
+  .bh-hero-meta i { width: calc(var(--u) * 10); height: calc(var(--u) * 10); background: #8B4DF8; }
+
+  .bh-text {
+    padding: max(32px, calc(var(--u) * 120)) max(20px, calc(var(--u) * 164));
+    background: #FFFFFF;
+  }
+
+  .bh-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: max(1px, calc(var(--u) * 1.5));
+    margin: 0 0 max(18px, calc(var(--u) * 32));
+    padding: 0;
+    list-style: none;
+  }
+
+  .bh-tags li {
+    padding: max(6px, calc(var(--u) * 12)) max(12px, calc(var(--u) * 24));
+    box-shadow: 0 0 0 max(1px, calc(var(--u) * 1.5)) #040404;
+    font-size: max(11px, calc(var(--u) * 15));
+    line-height: 1.5334;
+    font-weight: 600;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .bh-text p {
+    max-width: max(calc(var(--u) * 1000), 34em);
+    margin: 0;
+    font-size: max(15px, calc(var(--u) * 20));
+    line-height: 1.4;
+    font-weight: 500;
+  }
+
+  .bh-text p + p { margin-top: max(10px, calc(var(--u) * 16)); }
+
+  .bh-credits {
+    display: flex;
+    gap: calc(var(--u) * 16);
+    padding: calc(var(--u) * 80) calc(var(--u) * 164);
+    background: #FFFFFF;
+  }
+
+  /* Figma trims "Credits" to its cap height: pull the line box up so the capitals start at the same top */
+  .bh-credits h3 {
+    flex: 0 0 calc(var(--u) * 432);
+    margin: calc(var(--u) * -6.6) 0 0;
+    font-size: calc(var(--u) * 44);
+    line-height: 1;
+    font-weight: 700;
+  }
+
+  .bh-credits-cols { display: flex; gap: calc(var(--u) * 32); }
+  .bh-credits-col { flex: 0 0 calc(var(--u) * 278.33); }
+
+  .bh-credits h4 {
+    margin: 0 0 calc(var(--u) * 28);
+    font-size: max(17px, calc(var(--u) * 28));
+    line-height: 1;
+    font-weight: 700;
+  }
+
+  .bh-credits dl { display: grid; gap: calc(var(--u) * 28); margin: 0; }
+
+  .bh-credits dt {
+    margin-bottom: calc(var(--u) * 10);
+    font-size: max(14px, calc(var(--u) * 22));
+    line-height: 1;
+    font-weight: 600;
+  }
+
+  .bh-credits dd {
+    margin: 0;
+    font-size: max(13px, calc(var(--u) * 18));
+    line-height: 1.3334;
+    font-weight: 400;
+  }
+
+  .bh-credits dd + dd { margin-top: calc(var(--u) * 4); }
+
+  .bh-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: max(8px, calc(var(--u) * 12));
+    padding: max(28px, calc(var(--u) * 80)) max(20px, calc(var(--u) * 164));
+    background: #FFFFFF;
+    font-size: max(15px, calc(var(--u) * 24));
+    line-height: 1;
+    font-weight: 600;
+  }
+
+  .bh-links a { color: inherit; text-decoration: none; transition: color 200ms ease; }
+  .bh-links a:hover { color: #8B4DF8; }
+  .bh-links a:focus-visible { outline-color: #8B4DF8; }
+  .bh-links i { width: max(6px, calc(var(--u) * 10)); height: max(6px, calc(var(--u) * 10)); background: #8B4DF8; }
+
+  .bh-sign { padding: 0 0 max(32px, calc(var(--u) * 90)); background: #FFFFFF; }
+  .bh-sign img { display: block; width: max(120px, calc(var(--u) * 211)); height: auto; margin: 0 auto; }
+
+  /* Figma's forced line break only holds while the text keeps the Figma proportions */
+  @container (max-width: 1256px) {
+    .bh-br { display: none; }
+  }
+
+  /* Phones: the links row stays on one line */
+  @container (max-width: 480px) {
+    .bh-links { gap: 6px; padding-left: 16px; padding-right: 16px; font-size: 13px; }
+    .bh-links i { width: 5px; height: 5px; }
+  }
+
+  /* Phones and small tablets: the credits stack, everything else keeps the Figma layout */
+  @container (max-width: 760px) {
+    .bh-credits { flex-direction: column; gap: 24px; padding: 40px 20px; }
+    .bh-credits h3 { flex: none; margin: 0; font-size: 28px; }
+    .bh-credits-cols { flex-wrap: wrap; gap: 24px 32px; }
+    .bh-credits-col { flex: 1 1 150px; }
+    .bh-credits h4 { margin-bottom: 14px; font-size: 18px; }
+    .bh-credits dl { gap: 16px; }
+    .bh-credits dt { margin-bottom: 6px; font-size: 15px; }
+    .bh-credits dd { font-size: 14px; line-height: 20px; }
+    .bh-credits dd + dd { margin-top: 2px; }
+  }
+
 
   /* ---------- Responsive ---------- */
 
@@ -1312,7 +1479,7 @@
     .site-footer.is-waiting .footer-glow { opacity: 1; transform: none; }
   }
 </style>
-<script>(function(){var h="";try{h=decodeURIComponent(location.hash.slice(1));}catch(e){}if(["other", "metarun", "encore", "maramora"].indexOf(h)>-1)document.documentElement.setAttribute("data-view","other");})();</script>
+<script>(function(){var h="";try{h=decodeURIComponent(location.hash.slice(1));}catch(e){}if(["other", "fotando", "vitali-alekseenok", "maramora", "encore", "metarun"].indexOf(h)>-1)document.documentElement.setAttribute("data-view","other");})();</script>
 </head>
 <body>
 
@@ -1345,53 +1512,6 @@
     <h2 class="section-title" id="projects-title"><span data-for="igaming">We already know the industry</span><span data-for="other">Examples</span></h2>
     <ul class="project-grid" data-for="igaming">
     <li class="project-card project-card--lg">
-      <a href="#lucky-rush" data-case="lucky-rush" aria-label="Lucky Rush: open the case">
-        <span class="thumb"><img src="img/cover-lucky-rush-1280.webp" srcset="img/cover-lucky-rush-1280.webp 1280w, img/cover-lucky-rush-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Lucky Rush logo" loading="lazy" decoding="async"></span>
-      </a>
-      <a class="card-name card-site" href="https://luckyrush.io/" target="_blank" rel="noopener">Lucky Rush<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (luckyrush.io, opens the live site)</span></a>
-      <span class="card-meta">Branding, Brand Mascot Design, Web Design, Front-end Development, Social Marketing Design, Motion Design, Email Templates Design &amp; Setup</span>
-    </li>
-    <li class="project-card project-card--lg">
-      <a href="#tao-sweeps" data-case="tao-sweeps">
-        <span class="thumb"><img src="img/cover-tao-sweeps-1280.webp" srcset="img/cover-tao-sweeps-1280.webp 1280w, img/cover-tao-sweeps-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Tao Sweeps logo" loading="lazy" decoding="async"></span>
-        <span class="card-name">Tao Sweeps</span>
-        <span class="card-meta">Visual Identity, Logo Design, Mascot Design, Website Design, Front-end Development</span>
-      </a>
-    </li>
-    <li class="project-card">
-      <a href="#winarcade" data-case="winarcade" aria-label="WinArcade: open the case">
-        <span class="thumb"><img src="img/cover-winarcade-1280.webp" srcset="img/cover-winarcade-1280.webp 1280w, img/cover-winarcade-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="WinArcade logo" loading="lazy" decoding="async"></span>
-      </a>
-      <a class="card-name card-site" href="https://winarcade.io/" target="_blank" rel="noopener">WinArcade<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (winarcade.io, opens the live site)</span></a>
-      <span class="card-meta">Visual Identity, Logo Design, Mascot Design, Website Design, Front-end Development</span>
-    </li>
-    <li class="project-card">
-      <a href="#fortuna-rush" data-case="fortuna-rush">
-        <span class="thumb"><img src="img/cover-fortuna-rush-1280.webp" srcset="img/cover-fortuna-rush-1280.webp 1280w, img/cover-fortuna-rush-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="Fortuna Rush logo with the dog mascots" loading="lazy" decoding="async"></span>
-        <span class="card-name">Fortuna Rush</span>
-      </a>
-    </li>
-    <li class="project-card">
-      <a href="#goatbet" data-case="goatbet">
-        <span class="thumb"><img src="img/cover-goatbet-1280.webp" srcset="img/cover-goatbet-1280.webp 1280w, img/cover-goatbet-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="Goatbet logo" loading="lazy" decoding="async"></span>
-        <span class="card-name">Goatbet</span>
-      </a>
-    </li>
-    <li class="project-card project-card--lg">
-      <a href="#collectify" data-case="collectify">
-        <span class="thumb"><img src="img/cover-collectify-1280.webp" srcset="img/cover-collectify-1280.webp 1280w, img/cover-collectify-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Collectify logo with an illustrated character" loading="lazy" decoding="async"></span>
-        <span class="card-name">Collectify</span>
-        <span class="card-meta">Branding, Logo Design, Website Design &amp; Development, Pack Design, Social Media Design</span>
-      </a>
-    </li>
-    <li class="project-card project-card--lg">
-      <a href="#gambler-guides" data-case="gambler-guides">
-        <span class="thumb"><img src="img/cover-gambler-guides-1280.webp" srcset="img/cover-gambler-guides-1280.webp 1280w, img/cover-gambler-guides-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Gambler Guides logo" loading="lazy" decoding="async"></span>
-        <span class="card-name">Gambler Guides</span>
-        <span class="card-meta">Branding, Logo Design, Mascot Design, Web Design</span>
-      </a>
-    </li>
-    <li class="project-card project-card--lg">
       <a href="#onlyplay" data-case="onlyplay" aria-label="Onlyplay: open the case">
         <span class="thumb"><img src="img/cover-onlyplay-1280.webp" srcset="img/cover-onlyplay-1280.webp 1280w, img/cover-onlyplay-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Onlyplay logo" loading="lazy" decoding="async"></span>
       </a>
@@ -1399,19 +1519,61 @@
       <span class="card-meta">Logo &amp; Visual Identity, Website Design &amp; Development, Stand Design, Motion Graphics, Merchandise, SMM Communications</span>
     </li>
     <li class="project-card project-card--lg">
-      <a href="#bgaming" data-case="bgaming" aria-label="BGaming: open the case">
-        <span class="thumb"><img src="img/thumb-bgaming-1280.webp" srcset="img/thumb-bgaming-1280.webp 1280w, img/thumb-bgaming-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="BGaming brand identity" loading="lazy" decoding="async"></span>
+      <a href="#lucky-rush" data-case="lucky-rush" aria-label="Lucky Rush: open the case">
+        <span class="thumb"><img src="img/cover-lucky-rush-1280.webp" srcset="img/cover-lucky-rush-1280.webp 1280w, img/cover-lucky-rush-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Lucky Rush logo" loading="lazy" decoding="async"></span>
       </a>
-      <a class="card-name card-site" href="https://bgaming.com/" target="_blank" rel="noopener">BGaming<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (bgaming.com, opens the live site)</span></a>
-      <span class="card-meta">Branding, Web Design, Website Development, Exhibition Stands, Art Direction</span>
+      <a class="card-name card-site" href="https://luckyrush.io/" target="_blank" rel="noopener">Lucky Rush<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (luckyrush.io, opens the live site)</span></a>
+      <span class="card-meta">Branding, Brand Mascot Design, Web Design, Front-end Development, Social Marketing Design, Motion Design, Email Templates Design &amp; Setup</span>
     </li>
-    <li class="project-card">
+    <li class="project-card project-card--lg">
+      <a href="#winarcade" data-case="winarcade" aria-label="WinArcade: open the case">
+        <span class="thumb"><img src="img/cover-winarcade-1280.webp" srcset="img/cover-winarcade-1280.webp 1280w, img/cover-winarcade-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="WinArcade logo" loading="lazy" decoding="async"></span>
+      </a>
+      <a class="card-name card-site" href="https://winarcade.io/" target="_blank" rel="noopener">WinArcade<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (winarcade.io, opens the live site)</span></a>
+      <span class="card-meta">Visual Identity, Logo Design, Mascot Design, Website Design, Front-end Development</span>
+    </li>
+    <li class="project-card project-card--lg">
       <a href="#rectangle-games" data-case="rectangle-games" aria-label="Rectangle Games: open the case">
-        <span class="thumb"><img src="img/cover-rectangle-games-1280.webp" srcset="img/cover-rectangle-games-1280.webp 1280w, img/cover-rectangle-games-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="Rectangle Games logo" loading="lazy" decoding="async"></span>
+        <span class="thumb"><img src="img/cover-rectangle-games-1280.webp" srcset="img/cover-rectangle-games-1280.webp 1280w, img/cover-rectangle-games-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Rectangle Games logo" loading="lazy" decoding="async"></span>
       </a>
       <span class="card-name">Rectangle Games</span>
       <span class="card-meta">Branding, Logo Design, Brand Guidelines, Web Design, Website Development</span>
       <a class="card-chip" href="https://www.behance.net/gallery/250176209/iGaming-Provider-Logo-Branding-Web-Design" target="_blank" rel="noopener">Behance case<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (opens Behance)</span></a>
+    </li>
+    <li class="project-card">
+      <a href="#tao-sweeps" data-case="tao-sweeps">
+        <span class="thumb"><img src="img/cover-tao-sweeps-1280.webp" srcset="img/cover-tao-sweeps-1280.webp 1280w, img/cover-tao-sweeps-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="Tao Sweeps logo" loading="lazy" decoding="async"></span>
+        <span class="card-name">Tao Sweeps</span>
+        <span class="card-meta">Visual Identity, Logo Design, Mascot Design, Website Design, Front-end Development</span>
+      </a>
+    </li>
+    <li class="project-card">
+      <a href="#fortuna-rush" data-case="fortuna-rush">
+        <span class="thumb"><img src="img/cover-fortuna-rush-1280.webp" srcset="img/cover-fortuna-rush-1280.webp 1280w, img/cover-fortuna-rush-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="Fortuna Rush logo with the dog mascots" loading="lazy" decoding="async"></span>
+        <span class="card-name">Fortuna Rush</span>
+        <span class="card-meta">Branding, Visual Identity</span>
+      </a>
+    </li>
+    <li class="project-card">
+      <a href="#goatbet" data-case="goatbet">
+        <span class="thumb"><img src="img/cover-goatbet-1280.webp" srcset="img/cover-goatbet-1280.webp 1280w, img/cover-goatbet-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="Goatbet logo" loading="lazy" decoding="async"></span>
+        <span class="card-name">Goatbet</span>
+        <span class="card-meta">Branding, Visual Identity</span>
+      </a>
+    </li>
+    <li class="project-card">
+      <a href="#collectify" data-case="collectify">
+        <span class="thumb"><img src="img/cover-collectify-1280.webp" srcset="img/cover-collectify-1280.webp 1280w, img/cover-collectify-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="Collectify logo with an illustrated character" loading="lazy" decoding="async"></span>
+        <span class="card-name">Collectify</span>
+        <span class="card-meta">Branding, Logo Design, Website Design &amp; Development, Pack Design, Social Media Design</span>
+      </a>
+    </li>
+    <li class="project-card">
+      <a href="#gambler-guides" data-case="gambler-guides">
+        <span class="thumb"><img src="img/cover-gambler-guides-1280.webp" srcset="img/cover-gambler-guides-1280.webp 1280w, img/cover-gambler-guides-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="Gambler Guides logo" loading="lazy" decoding="async"></span>
+        <span class="card-name">Gambler Guides</span>
+        <span class="card-meta">Branding, Logo Design, Mascot Design, Web Design</span>
+      </a>
     </li>
     <li class="project-card">
       <a href="#wicked-games" data-case="wicked-games" aria-label="Wicked Games: open the case">
@@ -1420,33 +1582,33 @@
       <a class="card-name card-site" href="https://www.wicked.games/" target="_blank" rel="noopener">Wicked Games<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (wicked.games, opens the live site)</span></a>
       <span class="card-meta">Web Design, Website Development</span>
     </li>
-    <li class="project-card">
-      <a href="#1spin4win" data-case="1spin4win" aria-label="1Spin4Win: open the case">
-        <span class="thumb"><img src="img/thumb-1spin4win-1280.webp" srcset="img/thumb-1spin4win-1280.webp 1280w, img/thumb-1spin4win-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 28vw" width="2400" height="1350" alt="1Spin4Win brand identity" loading="lazy" decoding="async"></span>
-      </a>
-      <a class="card-name card-site" href="https://www.1spin4win.com/" target="_blank" rel="noopener">1Spin4Win<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (1spin4win.com, opens the live site)</span></a>
-      <span class="card-meta">Branding, Web Design, Website Development, Art Direction, Motion Graphics</span>
-    </li>
     </ul>
     <ul class="project-grid" data-for="other">
+    <li class="project-card project-card--lg">
+      <a href="#fotando" data-case="fotando" aria-label="Fotando: open the case">
+        <span class="thumb"><img src="img/cover-fotando-1280.webp" srcset="img/cover-fotando-1280.webp 1280w, img/cover-fotando-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Fotando logo" loading="lazy" decoding="async"></span>
+      </a>
+      <a class="card-name card-site" href="https://www.fotando.global/" target="_blank" rel="noopener">Fotando<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (fotando.global, opens the live site)</span></a>
+      <span class="card-meta">Branding, Visual Identity, Web Design, Website Development</span>
+    </li>
     <li class="project-card project-card--lg project-card--static">
       <span class="thumb"><img src="img/cover-collectem-1280.webp" srcset="img/cover-collectem-1280.webp 1280w, img/cover-collectem-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Collect’em logo" loading="lazy" decoding="async"></span>
       <span class="card-name">Collect’em</span>
+      <span class="card-meta">Branding, Visual Identity</span>
     </li>
     <li class="project-card project-card--lg">
-      <a href="#metarun" data-case="metarun">
-        <span class="thumb"><img src="img/cover-metarun-1280.webp" srcset="img/cover-metarun-1280.webp 1280w, img/cover-metarun-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Metarun logo" loading="lazy" decoding="async"></span>
-        <span class="card-name">Metarun</span>
-        <span class="card-meta">Visual Identity, Website Design, Website Development</span>
+      <a href="#vitali-alekseenok" data-case="vitali-alekseenok">
+        <span class="thumb"><img src="img/cover-vitali-alekseenok-1280.webp" srcset="img/cover-vitali-alekseenok-1280.webp 1280w, img/cover-vitali-alekseenok-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Vitali Alekseenok website on a laptop" loading="lazy" decoding="async"></span>
+        <span class="card-name">Vitali Alekseenok</span>
+        <span class="card-meta">Branding, Visual Identity, Website Design, Website Development</span>
       </a>
     </li>
-    <li class="project-card project-card--lg project-card--static">
-      <span class="thumb"><img src="img/cover-vitali-alekseenok-1280.webp" srcset="img/cover-vitali-alekseenok-1280.webp 1280w, img/cover-vitali-alekseenok-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Vitali Alekseenok website on a laptop" loading="lazy" decoding="async"></span>
-      <span class="card-name">Vitali Alekseenok</span>
-    </li>
-    <li class="project-card project-card--lg project-card--static">
-      <span class="thumb"><img src="img/cover-fotando-1280.webp" srcset="img/cover-fotando-1280.webp 1280w, img/cover-fotando-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Fotando logo" loading="lazy" decoding="async"></span>
-      <span class="card-name">Fotando</span>
+    <li class="project-card project-card--lg">
+      <a href="#maramora" data-case="maramora">
+        <span class="thumb"><img src="img/cover-maramora-1280.webp" srcset="img/cover-maramora-1280.webp 1280w, img/cover-maramora-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Maramora poster: Transform stress into creativity" loading="lazy" decoding="async"></span>
+        <span class="card-name">Maramora</span>
+        <span class="card-meta">Visual Identity, App Design, Logo Design</span>
+      </a>
     </li>
     <li class="project-card project-card--lg">
       <a href="#encore" data-case="encore">
@@ -1456,10 +1618,10 @@
       </a>
     </li>
     <li class="project-card project-card--lg">
-      <a href="#maramora" data-case="maramora">
-        <span class="thumb"><img src="img/cover-maramora-1280.webp" srcset="img/cover-maramora-1280.webp 1280w, img/cover-maramora-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Maramora poster: Transform stress into creativity" loading="lazy" decoding="async"></span>
-        <span class="card-name">Maramora</span>
-        <span class="card-meta">Visual Identity, App Design, Logo Design</span>
+      <a href="#metarun" data-case="metarun">
+        <span class="thumb"><img src="img/cover-metarun-1280.webp" srcset="img/cover-metarun-1280.webp 1280w, img/cover-metarun-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Metarun logo" loading="lazy" decoding="async"></span>
+        <span class="card-name">Metarun</span>
+        <span class="card-meta">Visual Identity, Website Design, Website Development</span>
       </a>
     </li>
     </ul>
@@ -1762,7 +1924,7 @@
   <figure class="shot"><img src="img/lr-g-halloween-1-1280.webp" srcset="img/lr-g-halloween-1-1280.webp 1280w, img/lr-g-halloween-1-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Lucky Rush mascot as a Halloween witch" loading="lazy" decoding="async"></figure>
   <figure class="shot"><img src="img/lr-g-halloween-2-1280.webp" srcset="img/lr-g-halloween-2-1280.webp 1280w, img/lr-g-halloween-2-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Lucky Rush mascot as a Halloween vampire" loading="lazy" decoding="async"></figure>
 </div>
-  <a class="case-next" href="#tao-sweeps"><strong>Next project</strong><span>Tao Sweeps</span></a>
+  <a class="case-next" href="#winarcade"><strong>Next project</strong><span>WinArcade</span></a>
 </article>
 <article class="case" data-slug="tao-sweeps" data-name="Tao Sweeps" aria-labelledby="t-tao-sweeps" hidden>
   <h2 class="case-title" id="t-tao-sweeps" tabindex="-1">Tao Sweeps</h2>
@@ -1841,7 +2003,7 @@
   <figure class="shot"><img src="img/tao-g-holidays-1280.webp" srcset="img/tao-g-holidays-1280.webp 1280w, img/tao-g-holidays-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="Tao Sweeps Valentine’s Day and St. Patrick’s Day posts" loading="lazy" decoding="async"></figure>
   <figure class="shot span-2"><img src="img/tao-g-squares-1280.webp" srcset="img/tao-g-squares-1280.webp 1280w, img/tao-g-squares-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1350" alt="Tao Sweeps promotional posts" loading="lazy" decoding="async"></figure>
 </div>
-  <a class="case-next" href="#winarcade"><strong>Next project</strong><span>WinArcade</span></a>
+  <a class="case-next" href="#fortuna-rush"><strong>Next project</strong><span>Fortuna Rush</span></a>
 </article>
 <article class="case" data-slug="winarcade" data-name="WinArcade" aria-labelledby="t-winarcade" hidden>
   <h2 class="case-title" id="t-winarcade" tabindex="-1">WinArcade</h2>
@@ -1913,7 +2075,7 @@
   <figure class="shot"><img src="img/wa-g-coin-1280.webp" srcset="img/wa-g-coin-1280.webp 1280w, img/wa-g-coin-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="WinArcade cat mascot with a coin and arcade blocks" loading="lazy" decoding="async"></figure>
   <figure class="shot"><img src="img/wa-g-bonus-1280.webp" srcset="img/wa-g-bonus-1280.webp 1280w, img/wa-g-bonus-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1350" alt="WinArcade bonus card and first purchase banner" loading="lazy" decoding="async"></figure>
 </div>
-  <a class="case-next" href="#fortuna-rush"><strong>Next project</strong><span>Fortuna Rush</span></a>
+  <a class="case-next" href="#rectangle-games"><strong>Next project</strong><span>Rectangle Games</span></a>
 </article>
 <article class="case" data-slug="fortuna-rush" data-name="Fortuna Rush" aria-labelledby="t-fortuna-rush" hidden>
   <h2 class="case-title" id="t-fortuna-rush" tabindex="-1">Fortuna Rush</h2>
@@ -2066,7 +2228,7 @@
   <figure class="shot"><img src="img/gg-g-mobile2-1280.webp" srcset="img/gg-g-mobile2-1280.webp 1280w, img/gg-g-mobile2-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="900" alt="Gambler Guides mobile pages" loading="lazy" decoding="async"></figure>
   <figure class="shot span-2"><img src="img/gg-g-mobile-1280.webp" srcset="img/gg-g-mobile-1280.webp 1280w, img/gg-g-mobile-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 88vw" width="1600" height="900" alt="Gambler Guides mobile website" loading="lazy" decoding="async"></figure>
 </div>
-  <a class="case-next" href="#onlyplay"><strong>Next project</strong><span>Onlyplay</span></a>
+  <a class="case-next" href="#wicked-games"><strong>Next project</strong><span>Wicked Games</span></a>
 </article>
 <article class="case" data-slug="onlyplay" data-name="Onlyplay" aria-labelledby="t-onlyplay" hidden>
   <h2 class="case-title" id="t-onlyplay" tabindex="-1">Onlyplay</h2>
@@ -2162,111 +2324,7 @@
 </div>
     </div>
   </section>
-  <a class="case-next" href="#bgaming"><strong>Next project</strong><span>BGaming</span></a>
-</article>
-<article class="case" data-slug="bgaming" data-name="BGaming" aria-labelledby="t-bgaming" hidden>
-  <h2 class="case-title" id="t-bgaming" tabindex="-1">BGaming</h2>
-  <figure class="case-hero shot"><img src="img/bg-cover-1280.webp" srcset="img/bg-cover-1280.webp 1280w, img/bg-cover-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 88vw" width="1600" height="900" alt="BGaming brand identity" loading="lazy" decoding="async"></figure>
-  <dl class="case-meta">
-    <div class="meta-wide"><dt>Deliverables</dt><dd>Branding, Web Design, Website Development, Exhibitions Branding, Art Direction</dd></div>
-    <div><dt>Website</dt><dd><a href="https://bgaming.com/">bgaming.com</a></dd></div>
-    <div><dt>Year</dt><dd>2023</dd></div>
-  </dl>
-  <section class="rail">
-    <h3 class="rail-title">About</h3>
-    <div class="rail-body"><p><a href="https://bgaming.com/">BGaming</a> is a creative and rapidly expanding iGaming content provider and game publisher. The studio’s portfolio includes 150+ products such as video slots, video poker, lottery and more, featuring top industry mechanics.</p></div>
-  </section>
-  <section class="rail">
-    <h3 class="rail-title">Project Goals</h3>
-    <div class="rail-body"><ul><li>Redefine the brand as fast-growing, innovative, and eye-catching.</li><li>Develop a cohesive visual identity across digital and print media.</li><li>Redesign the website to match the new identity and improve usability.</li></ul></div>
-  </section>
-  <section class="scope" aria-labelledby="s-bgaming">
-    <h3 class="scope-title" id="s-bgaming">Project Scope</h3>
-    <ol class="steps">
-      <li class="rail step">
-        <h4 class="rail-title"><span class="num" aria-hidden="true">1</span>Visual Identity Concepts</h4>
-        <div class="rail-body">
-          <div class="text"><p>We developed several visual identity concepts to demonstrate the proposed styles and feel of the new identity.</p></div>
-<div class="shots">
-  <figure class="shot span-2"><img src="img/bg-concepts-1280.webp" srcset="img/bg-concepts-1280.webp 1280w, img/bg-concepts-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="BGaming visual identity concepts" loading="lazy" decoding="async"></figure>
-</div>
-        </div>
-      </li>
-      <li class="rail step">
-        <h4 class="rail-title"><span class="num" aria-hidden="true">2</span>Visual Identity Design</h4>
-        <div class="rail-body">
-          <div class="text"><ul><li>Logo refresh</li><li>Colors &amp; typography</li><li>Brand applications: business cards, letterhead, folder, envelope, badge and lanyard, notepad, pen, hoodie, T-shirt, tote bag, email signature, presentation template, social media covers, poster</li></ul></div>
-<div class="shots">
-  <figure class="shot span-2"><img src="img/bg-identity-1280.webp" srcset="img/bg-identity-1280.webp 1280w, img/bg-identity-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="BGaming identity on a billboard" loading="lazy" decoding="async"></figure>
-</div>
-        </div>
-      </li>
-      <li class="rail step">
-        <h4 class="rail-title"><span class="num" aria-hidden="true">3</span>Brand Guidelines</h4>
-        <div class="rail-body">
-          <div class="text"><p>We created a comprehensive brand guidelines document that outlines the essential elements of the brand, including its values, mission, all visual identity elements, and brand applications.</p></div>
-<div class="shots">
-  <figure class="shot span-2"><img src="img/bg-guidelines-1280.webp" srcset="img/bg-guidelines-1280.webp 1280w, img/bg-guidelines-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="BGaming brand guidelines pages" loading="lazy" decoding="async"></figure>
-</div>
-        </div>
-      </li>
-      <li class="rail step">
-        <h4 class="rail-title"><span class="num" aria-hidden="true">4</span>Social Marketing Templates</h4>
-        <div class="rail-body">
-          <div class="text"><p>We developed streamlined templates for all needed communications across the channels:</p><ul><li>Social media posts</li><li>Website banners</li><li>Press banners</li><li>Personal banners</li><li>Targeted ads (ICE London)</li></ul></div>
-<div class="shots">
-  <figure class="shot span-2"><img src="img/bg-banners-1280.webp" srcset="img/bg-banners-1280.webp 1280w, img/bg-banners-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="BGaming social and press banners" loading="lazy" decoding="async"></figure>
-</div>
-        </div>
-      </li>
-      <li class="rail step">
-        <h4 class="rail-title"><span class="num" aria-hidden="true">5</span>Web Design</h4>
-        <div class="rail-body">
-          <div class="text"><p>Based on the developed visual identity, we crafted a website UI concept that seamlessly integrates the newly created style.</p><p><a href="https://bgaming.com/">bgaming.com</a></p></div>
-<div class="shots">
-  <figure class="shot span-2"><img src="img/bg-web-1280.webp" srcset="img/bg-web-1280.webp 1280w, img/bg-web-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="BGaming website pages" loading="lazy" decoding="async"></figure>
-</div>
-        </div>
-      </li>
-      <li class="rail step">
-        <h4 class="rail-title"><span class="num" aria-hidden="true">6</span>Website Development</h4>
-        <div class="rail-body">
-          <div class="text"><p>With a focus on seamless integration and outstanding functionality, our team made the website visually appealing and easy to manage.</p><p>Our approach included:</p><ul><li>Style guide setup and a scalable class system</li><li>Complex CMS creation and optimization</li><li>Third-party integrations</li><li>Custom interactions and animations</li><li>Performance optimization</li><li>Ongoing maintenance and support</li></ul></div>
-<div class="shots">
-  <figure class="shot span-2"><img src="img/bg-dev-1280.webp" srcset="img/bg-dev-1280.webp 1280w, img/bg-dev-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="BGaming website on a desktop screen" loading="lazy" decoding="async"></figure>
-</div>
-        </div>
-      </li>
-      <li class="rail step">
-        <h4 class="rail-title"><span class="num" aria-hidden="true">7</span>Exhibition Stands</h4>
-        <div class="rail-body">
-          <div class="text"><p>We designed 6 exhibition stands for BGaming, each taken from concept and floor plan to the finished stand at the show.</p></div>
-<div class="shots">
-  <figure class="shot span-2"><img src="img/bg-expo-1280.webp" srcset="img/bg-expo-1280.webp 1280w, img/bg-expo-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="BGaming exhibition stands" loading="lazy" decoding="async"></figure>
-</div>
-        </div>
-      </li>
-    </ol>
-  </section>
-  <section class="rail results">
-    <h3 class="rail-title">Results</h3>
-    <div class="rail-body"><p>The project resulted in a successful transformation of BGaming’s brand, with a cohesive and impactful visual identity, consistent and effective brand communication across all media, and an improved website user experience.</p><p class="sub">Branding and website, before and after</p>
-<div class="shots">
-  <figure class="shot span-2"><img src="img/bg-brand-ba-1280.webp" srcset="img/bg-brand-ba-1280.webp 1280w, img/bg-brand-ba-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="BGaming branding, before and after" loading="lazy" decoding="async"></figure>
-  <figure class="shot span-2"><img src="img/bg-web-ba-1280.webp" srcset="img/bg-web-ba-1280.webp 1280w, img/bg-web-ba-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="BGaming website, before and after" loading="lazy" decoding="async"></figure>
-</div>
-    </div>
-  </section>
-<div class="shots gallery">
-  <figure class="shot span-2"><img src="img/bg-g-09-1280.webp" srcset="img/bg-g-09-1280.webp 1280w, img/bg-g-09-1675.webp 1675w" sizes="(max-width: 900px) 92vw, 88vw" width="1675" height="925" alt="BGaming key visual: We create thrilling game experiences" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="img/bg-g-25-1280.webp" srcset="img/bg-g-25-1280.webp 1280w, img/bg-g-25-1675.webp 1675w" sizes="(max-width: 600px) 92vw, 44vw" width="1675" height="925" alt="BGaming badge and tote bag" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="img/bg-g-27-1280.webp" srcset="img/bg-g-27-1280.webp 1280w, img/bg-g-27-1675.webp 1675w" sizes="(max-width: 600px) 92vw, 44vw" width="1675" height="925" alt="BGaming business cards" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="img/bg-g-28-1280.webp" srcset="img/bg-g-28-1280.webp 1280w, img/bg-g-28-1675.webp 1675w" sizes="(max-width: 600px) 92vw, 44vw" width="1675" height="925" alt="BGaming T-shirt and badge" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="img/bg-g-32-1280.webp" srcset="img/bg-g-32-1280.webp 1280w, img/bg-g-32-1675.webp 1675w" sizes="(max-width: 600px) 92vw, 44vw" width="1675" height="925" alt="BGaming website screens" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="img/bg-g-37-1280.webp" srcset="img/bg-g-37-1280.webp 1280w, img/bg-g-37-1675.webp 1675w" sizes="(max-width: 600px) 92vw, 44vw" width="1675" height="925" alt="BGaming game page" loading="lazy" decoding="async"></figure>
-  <figure class="shot"><img src="img/bg-g-39-1280.webp" srcset="img/bg-g-39-1280.webp 1280w, img/bg-g-39-1675.webp 1675w" sizes="(max-width: 600px) 92vw, 44vw" width="1675" height="925" alt="BGaming mobile website" loading="lazy" decoding="async"></figure>
-</div>
-  <a class="case-next" href="#rectangle-games"><strong>Next project</strong><span>Rectangle Games</span></a>
+  <a class="case-next" href="#lucky-rush"><strong>Next project</strong><span>Lucky Rush</span></a>
 </article>
 <article class="case" data-slug="rectangle-games" data-name="Rectangle Games" aria-labelledby="t-rectangle-games" hidden>
   <h2 class="case-title" id="t-rectangle-games" tabindex="-1">Rectangle Games</h2>
@@ -2340,7 +2398,7 @@
   <figure class="shot"><img src="img/rg-g-tablet-1280.webp" srcset="img/rg-g-tablet-1280.webp 1280w, img/rg-g-tablet-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="900" alt="Rectangle Games website on a tablet" loading="lazy" decoding="async"></figure>
   <figure class="shot span-2"><img src="img/rg-g-mobile-1280.webp" srcset="img/rg-g-mobile-1280.webp 1280w, img/rg-g-mobile-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 88vw" width="1600" height="900" alt="Rectangle Games mobile website" loading="lazy" decoding="async"></figure>
 </div>
-  <a class="case-next" href="#wicked-games"><strong>Next project</strong><span>Wicked Games</span></a>
+  <a class="case-next" href="#tao-sweeps"><strong>Next project</strong><span>Tao Sweeps</span></a>
 </article>
 <article class="case" data-slug="wicked-games" data-name="Wicked Games" aria-labelledby="t-wicked-games" hidden>
   <h2 class="case-title" id="t-wicked-games" tabindex="-1">Wicked Games</h2>
@@ -2395,84 +2453,56 @@
   <figure class="shot"><img src="img/wg-g-7-1280.webp" srcset="img/wg-g-7-1280.webp 1280w, img/wg-g-7-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 44vw" width="2400" height="1351" alt="Wicked Games game pages, light theme" loading="lazy" decoding="async"></figure>
   <figure class="shot span-2"><img src="img/wg-g-wide-1280.webp" srcset="img/wg-g-wide-1280.webp 1280w, img/wg-g-wide-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1088" alt="Wicked Games game pages in both themes" loading="lazy" decoding="async"></figure>
 </div>
-  <a class="case-next" href="#1spin4win"><strong>Next project</strong><span>1Spin4Win</span></a>
+  <a class="case-next" href="#onlyplay"><strong>Next project</strong><span>Onlyplay</span></a>
 </article>
-<article class="case" data-slug="1spin4win" data-name="1Spin4Win" aria-labelledby="t-1spin4win" hidden>
-  <h2 class="case-title" id="t-1spin4win" tabindex="-1">1Spin4Win</h2>
-  <figure class="case-hero shot"><img src="img/s4-cover-1280.webp" srcset="img/s4-cover-1280.webp 1280w, img/s4-cover-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 88vw" width="1600" height="900" alt="1Spin4Win brand identity" loading="lazy" decoding="async"></figure>
+<article class="case" data-slug="fotando" data-name="Fotando" aria-labelledby="t-fotando" hidden>
+  <h2 class="case-title" id="t-fotando" tabindex="-1">Fotando</h2>
   <dl class="case-meta">
-    <div class="meta-wide"><dt>Deliverables</dt><dd>Branding, Web Design, Website Development, Exhibitions Branding, Art Direction, Motion Graphics</dd></div>
-    <div><dt>Website</dt><dd><a href="https://www.1spin4win.com/">1spin4win.com</a></dd></div>
-    <div><dt>Year</dt><dd>2023</dd></div>
+    <div class="meta-wide"><dt>Website</dt><dd><a href="https://www.fotando.global/" target="_blank" rel="noopener">fotando.global</a></dd></div>
   </dl>
-  <section class="rail">
-    <h3 class="rail-title">About</h3>
-    <div class="rail-body"><p><a href="https://www.1spin4win.com/">1spin4win</a> is an innovative online casino games provider launched in 2021, leveraging over 15 years of online gambling expertise. The studio focuses on creating high-quality, engaging games, boasting a portfolio of over 100 classic yet unique online slots.</p></div>
-  </section>
-  <section class="rail">
-    <h3 class="rail-title">Project Goals</h3>
-    <div class="rail-body"><ul><li>Create a new logo and visual identity that capture the studio’s essence while conveying the brand’s confident and ambitious character.</li><li>Ensure a unified brand presence across different mediums.</li><li>Design and develop a website that aligns with the new identity and enhances user engagement.</li></ul></div>
-  </section>
-  <section class="scope" aria-labelledby="s-1spin4win">
-    <h3 class="scope-title" id="s-1spin4win">Project Scope</h3>
-    <ol class="steps">
-      <li class="rail step">
-        <h4 class="rail-title"><span class="num" aria-hidden="true">1</span>Logo &amp; Visual Identity Design</h4>
-        <div class="rail-body">
-          <div class="text"><p class="sub">Visual identity concepts</p><p>We developed several visual identity concepts to demonstrate the proposed styles and feel of the new identity.</p><p class="sub">Logo redesign</p><p>We delivered a refined logo that captures the brand’s analytical character and the dynamic energy of slot machine cells.</p><p class="sub">Colors &amp; typography</p><p>We developed a luxurious timeless brand palette, complemented by a modern font that nods to the vintage casino era’s geometry.</p><p class="sub">Brand applications</p><p>Merch, badges and packaging in the new identity.</p></div>
-<div class="shots">
-  <figure class="shot span-2"><img src="img/s4-guidelines-1280.webp" srcset="img/s4-guidelines-1280.webp 1280w, img/s4-guidelines-1920.webp 1920w" sizes="(max-width: 900px) 92vw, 58vw" width="1920" height="1081" alt="1Spin4Win brand guidelines pages" loading="lazy" decoding="async"></figure>
-</div>
-        </div>
-      </li>
-      <li class="rail step">
-        <h4 class="rail-title"><span class="num" aria-hidden="true">2</span>Communication Templates</h4>
-        <div class="rail-body">
-          <div class="text"><ul><li>Social media</li><li>Press release</li><li>Website news</li></ul></div>
-<div class="shots">
-  <figure class="shot span-2"><img src="img/s4-banners-1280.webp" srcset="img/s4-banners-1280.webp 1280w, img/s4-banners-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="1Spin4Win social and press templates" loading="lazy" decoding="async"></figure>
-</div>
-        </div>
-      </li>
-      <li class="rail step">
-        <h4 class="rail-title"><span class="num" aria-hidden="true">3</span>Web Design</h4>
-        <div class="rail-body">
-          <div class="text"><p>Building on the developed visual identity, we created a website UI concept that seamlessly incorporates the new style.</p></div>
-<div class="shots">
-  <figure class="shot span-2"><img src="img/s4-web-1280.webp" srcset="img/s4-web-1280.webp 1280w, img/s4-web-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="1Spin4Win home page" loading="lazy" decoding="async"></figure>
-</div>
-        </div>
-      </li>
-      <li class="rail step">
-        <h4 class="rail-title"><span class="num" aria-hidden="true">4</span>Website Development</h4>
-        <div class="rail-body">
-          <div class="text"><p>Our team focused on ensuring both visual appeal and functionality, resulting in a user-friendly and easily manageable website.</p><p>Our approach included:</p><ul><li>Style guide setup and a scalable class system</li><li>Complex CMS creation and optimization</li><li>Third-party integrations</li><li>Custom interactions and animations</li><li>Performance optimization</li><li>Ongoing maintenance and support</li></ul></div>
-<div class="shots">
-  <figure class="shot span-2"><img src="img/s4-dev-1280.webp" srcset="img/s4-dev-1280.webp 1280w, img/s4-dev-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 58vw" width="1600" height="900" alt="1Spin4Win website pages" loading="lazy" decoding="async"></figure>
-</div>
-        </div>
-      </li>
-      <li class="rail step">
-        <h4 class="rail-title"><span class="num" aria-hidden="true">5</span>Motion Graphics</h4>
-        <div class="rail-body">
-          <div class="text"><p>Release trailers for new slots: logo reveal, a title card with RTP, max multiplier and volatility, then gameplay, features and big wins.</p></div>
-<div class="shots">
-  <figure class="shot span-2 video-shot"><video src="video/cash-n-fruits.mp4" poster="video/cash-n-fruits-poster.webp" width="1280" height="720" muted loop playsinline preload="none" data-autoplay aria-label="Cash’n Fruits 40: game release trailer for 1Spin4Win"></video><button class="video-sound" type="button" aria-pressed="false" aria-label="Sound on"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></figure>
-  <figure class="shot span-2 video-shot"><video src="video/classic-chilli-fortune.mp4" poster="video/classic-chilli-fortune-poster.webp" width="1280" height="720" muted loop playsinline preload="none" data-autoplay aria-label="Classic Chilli Fortune: game release trailer for 1Spin4Win"></video><button class="video-sound" type="button" aria-pressed="false" aria-label="Sound on"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></figure>
-</div>
-        </div>
-      </li>
-    </ol>
-  </section>
-  <section class="rail results">
-    <h3 class="rail-title">Results</h3>
-    <div class="rail-body"><p>We created a unified brand identity and website that reflect the studio’s confident, ambitious character while ensuring consistency and stronger user engagement across all platforms.</p>
-<div class="shots">
-  <figure class="shot span-2"><img src="img/s4-thumb-1280.webp" srcset="img/s4-thumb-1280.webp 1280w, img/s4-thumb-2054.webp 2054w" sizes="(max-width: 900px) 92vw, 58vw" width="2054" height="1540" alt="1Spin4Win website pages" loading="lazy" decoding="async"></figure>
-</div>
-    </div>
-  </section>
-  <a class="case-next" href="#lucky-rush"><strong>Next project</strong><span>Lucky Rush</span></a>
+  <div class="bh">
+    <figure class="bh-img bh-hero" style="background:#191324"><img src="img/fo-hero-1280.webp" srcset="img/fo-hero-1280.webp 1280w, img/fo-hero-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1433" alt="Fotando website on a laptop: Scale your startup with a result-driven tech partner" loading="lazy" decoding="async"><figcaption class="bh-hero-bar"><span>palianka.</span><span class="bh-hero-meta"><span>Operations consulting</span><i aria-hidden="true"></i><span>2025</span></span></figcaption></figure>
+    <section class="bh-text" aria-label="Project"><ul class="bh-tags"><li>Branding</li><li>Visual identity</li><li>Web design</li><li>Website development</li></ul><p>FOTANDO Global is a product studio that helps business owners find the one constraint holding their company back and remove it in short sprints. As part of the project, a modern and memorable logo was created, along with a distinctive brand identity, detailed brand guidelines, and a redesigned website.</p></section>
+    <figure class="bh-img" style="background:#7a44da"><img src="img/fo-logo-1280.webp" srcset="img/fo-logo-1280.webp 1280w, img/fo-logo-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando logo on the purple brand grid" loading="lazy" decoding="async"></figure>
+    <section class="bh-text" aria-label="Logo refresh"><ul class="bh-tags"><li>Logo refresh</li></ul><p>The FOTANDO logo is&nbsp;modern and minimalist. Its concept is&nbsp;built around the ideas of&nbsp;transformation, structure, and a&nbsp;systematic approach. The grid transforms into volumetric elements, forming dynamic signature graphics. A&nbsp;key principle of&nbsp;FOTANDO visual identity is&nbsp;scaling, which serves as&nbsp;a&nbsp;metaphor <br class="bh-br">for dynamism, growth, and adaptability.</p></section>
+    <figure class="bh-img" style="background:#b6b6b6"><img src="img/fo-scaling-1280.webp" srcset="img/fo-scaling-1280.webp 1280w, img/fo-scaling-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1319" alt="Fotando logo scaling on the grid" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#181019"><img src="img/fo-banner-1280.webp" srcset="img/fo-banner-1280.webp 1280w, img/fo-banner-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando event screen on stage: How to build a startup without quitting your job? by Vladimir Ovsyannikov" loading="lazy" decoding="async"></figure>
+    <section class="bh-text" aria-label="Visual identity"><ul class="bh-tags"><li>Visual identity</li></ul><p>The primary FOTANDO brand colors are purple, black, and white. Purple is open, energetic, and active, creating a striking contrast with deep black, while subtle white accents keep the palette balanced.</p><p>The Albert Sans typeface is&nbsp;versatile and functional. As&nbsp;a&nbsp;geometric grotesque, its forms are based on&nbsp;simple geometric shapes such as&nbsp;circles and squares. Its modern, clean appearance complements FOTANDO’s minimalistic aesthetic and performs well both on&nbsp;screens and in&nbsp;print.</p></section>
+    <figure class="bh-img" style="background:#5c3a98"><img src="img/fo-colors-1280.webp" srcset="img/fo-colors-1280.webp 1280w, img/fo-colors-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando color palette: purple #8B4DF8, black #000000 and white #FFFFFF" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#7443c8"><img src="img/fo-typography-1280.webp" srcset="img/fo-typography-1280.webp 1280w, img/fo-typography-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Albert Sans typeface: Bold for headlines, Regular for body text" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#f2eff8"><img src="img/fo-icons-1280.webp" srcset="img/fo-icons-1280.webp 1280w, img/fo-icons-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando icons" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#7b44da"><img src="img/fo-icons-pattern-1280.webp" srcset="img/fo-icons-pattern-1280.webp 1280w, img/fo-icons-pattern-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando icons on the brand grid" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#08060b"><img src="img/fo-process-1280.webp" srcset="img/fo-process-1280.webp 1280w, img/fo-process-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando process cards, from wireframes to the project execution plan" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#777181"><img src="img/fo-linkedin-1280.webp" srcset="img/fo-linkedin-1280.webp 1280w, img/fo-linkedin-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando Global LinkedIn page in the new identity" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#706482"><img src="img/fo-socials-1280.webp" srcset="img/fo-socials-1280.webp 1280w, img/fo-socials-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando social media posts" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#0d0a14"><img src="img/fo-tote-1280.webp" srcset="img/fo-tote-1280.webp 1280w, img/fo-tote-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando tote bag" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#9e84cd"><img src="img/fo-identity-grid-1280.webp" srcset="img/fo-identity-grid-1280.webp 1280w, img/fo-identity-grid-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1433" alt="Fotando identity overview: logo, scaling, visual style and icon style" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#cfccd2"><img src="img/fo-visual-style-1280.webp" srcset="img/fo-visual-style-1280.webp 1280w, img/fo-visual-style-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando badges on lanyards" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#4b346c"><img src="img/fo-business-cards-1280.webp" srcset="img/fo-business-cards-1280.webp 1280w, img/fo-business-cards-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando business cards" loading="lazy" decoding="async"></figure>
+    <section class="bh-text" aria-label="Website design"><ul class="bh-tags"><li>Website design</li></ul><p>Building on&nbsp;the developed visual identity, we&nbsp;designed a&nbsp;visually rich and structured website interface that balances credibility with an&nbsp;engaging, modern aesthetic. The design focuses on&nbsp;clear content hierarchy and intuitive navigation.</p></section>
+    <figure class="bh-img" style="background:#432871"><img src="img/fo-web-1-1280.webp" srcset="img/fo-web-1-1280.webp 1280w, img/fo-web-1-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1433" alt="Fotando website pages: Building great digital products, statistics, team and client reviews" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#0d0c0d"><img src="img/fo-web-2-1280.webp" srcset="img/fo-web-2-1280.webp 1280w, img/fo-web-2-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1433" alt="Fotando website on a tablet: Meet our team" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#3e256a"><img src="img/fo-web-3-1280.webp" srcset="img/fo-web-3-1280.webp 1280w, img/fo-web-3-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando website pages: Meet your future team and FAQ" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#ae9ec0"><img src="img/fo-web-4-1280.webp" srcset="img/fo-web-4-1280.webp 1280w, img/fo-web-4-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1433" alt="Fotando website on a monitor: Founders underestimate the role of project discovery" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img bh-long" style="background:#332055"><img src="img/fo-web-long-1-1280.webp" srcset="img/fo-web-long-1-1280.webp 1280w, img/fo-web-long-1-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="2243" alt="Fotando home page, full length" loading="lazy" decoding="async"><img src="img/fo-web-long-2-1280.webp" srcset="img/fo-web-long-2-1280.webp 1280w, img/fo-web-long-2-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="2243" alt="" loading="lazy" decoding="async"><img src="img/fo-web-long-3-1280.webp" srcset="img/fo-web-long-3-1280.webp 1280w, img/fo-web-long-3-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="2243" alt="" loading="lazy" decoding="async"><img src="img/fo-web-long-4-1280.webp" srcset="img/fo-web-long-4-1280.webp 1280w, img/fo-web-long-4-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="2243" alt="" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#1e152d"><img src="img/fo-web-5-1280.webp" srcset="img/fo-web-5-1280.webp 1280w, img/fo-web-5-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1554" alt="Fotando website pages at an angle" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#cdc8d4"><img src="img/fo-web-6-1280.webp" srcset="img/fo-web-6-1280.webp 1280w, img/fo-web-6-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1290" alt="Fotando website on two phones" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#472c75"><img src="img/fo-tablet-1280.webp" srcset="img/fo-tablet-1280.webp 1280w, img/fo-tablet-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando website sections" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#09080b"><img src="img/fo-web-cards-1280.webp" srcset="img/fo-web-cards-1280.webp 1280w, img/fo-web-cards-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando service cards: Inception, for early-stage and for grown-stage startups" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#5d389f"><img src="img/fo-mobile-1280.webp" srcset="img/fo-mobile-1280.webp 1280w, img/fo-mobile-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando mobile website screens" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#2d1c4b"><img src="img/fo-thanks-1280.webp" srcset="img/fo-thanks-1280.webp 1280w, img/fo-thanks-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Thanks for watching!" loading="lazy" decoding="async"></figure>
+    <section class="bh-credits" aria-labelledby="fo-credits">
+      <h3 id="fo-credits">Credits</h3>
+      <div class="bh-credits-cols">
+        <div class="bh-credits-col"><h4>Branding</h4><dl><div><dt>Creative Director</dt><dd>Yana Perhurovich</dd></div><div><dt>Art Direction &amp; GD</dt><dd>Kate Kalatskaya</dd><dd>Volha Paulava</dd></div></dl></div>
+        <div class="bh-credits-col"><h4>Web design</h4><dl><div><dt>Art Direction</dt><dd>Nick Kuznetsov</dd></div><div><dt>Design</dt><dd>Kira Karaliova</dd></div></dl></div>
+        <div class="bh-credits-col"><h4>Case</h4><dl><div><dt>Motion Design</dt><dd>Denis Pasternak</dd></div><div><dt>Design</dt><dd>Kira Karaliova</dd></div></dl></div>
+      </div>
+    </section>
+    <div class="bh-links"><a href="https://dribbble.com/Palianka">Dribbble</a><i aria-hidden="true"></i><span>Instagram</span><i aria-hidden="true"></i><span>LinkedIn</span><i aria-hidden="true"></i><a href="https://palianka.com/">Website</a></div>
+    <div class="bh-sign"><img src="img/fo-palianka-logo.webp" width="844" height="201" alt="palianka." loading="lazy" decoding="async"></div>
+  </div>
+  <a class="case-next" href="#vitali-alekseenok"><strong>Next project</strong><span>Vitali Alekseenok</span></a>
 </article>
 <article class="case" data-slug="encore" data-name="Encore Games" aria-labelledby="t-encore" hidden>
   <h2 class="case-title" id="t-encore" tabindex="-1">Encore Games</h2>
@@ -2530,7 +2560,7 @@
   <figure class="shot"><img src="img/en-banner-1280.webp" srcset="img/en-banner-1280.webp 1280w, img/en-banner-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="900" alt="Encore Games poster" loading="lazy" decoding="async"></figure>
   <figure class="shot"><img src="img/en-banner-2-1280.webp" srcset="img/en-banner-2-1280.webp 1280w, img/en-banner-2-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="900" alt="Encore Games banner" loading="lazy" decoding="async"></figure>
 </div>
-  <a class="case-next" href="#maramora"><strong>Next project</strong><span>Maramora</span></a>
+  <a class="case-next" href="#metarun"><strong>Next project</strong><span>Metarun</span></a>
 </article>
 <article class="case" data-slug="metarun" data-name="Metarun" aria-labelledby="t-metarun" hidden>
   <h2 class="case-title" id="t-metarun" tabindex="-1">Metarun</h2>
@@ -2597,7 +2627,17 @@
   <figure class="shot"><img src="img/mr-g-3-1280.webp" srcset="img/mr-g-3-1280.webp 1280w, img/mr-g-3-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="1716" alt="Metarun posters" loading="lazy" decoding="async"></figure>
   <figure class="shot"><img src="img/mr-g-8-1280.webp" srcset="img/mr-g-8-1280.webp 1280w, img/mr-g-8-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="900" alt="Metarun on a phone" loading="lazy" decoding="async"></figure>
 </div>
-  <a class="case-next" href="#encore"><strong>Next project</strong><span>Encore Games</span></a>
+  <a class="case-next" href="#fotando"><strong>Next project</strong><span>Fotando</span></a>
+</article>
+<article class="case" data-slug="vitali-alekseenok" data-name="Vitali Alekseenok" aria-labelledby="t-vitali-alekseenok" hidden>
+  <h2 class="case-title" id="t-vitali-alekseenok" tabindex="-1">Vitali Alekseenok</h2>
+  <dl class="case-meta">
+    <div class="meta-wide"><dt>Website</dt><dd><a href="https://www.alekseenok.com/" target="_blank" rel="noopener">alekseenok.com</a></dd></div>
+  </dl>
+  <div class="case-visual">
+    <figure><img src="img/vitali-case-1280.webp" srcset="img/vitali-case-1280.webp 1280w, img/vitali-case-1520.webp 1520w" sizes="(max-width: 900px) 92vw, 88vw" width="1520" height="1120" alt="Vitali Alekseenok visual identity board: VA logo, color palette, website on laptop and phone, tablet schedule, and wordmark" loading="lazy" decoding="async"></figure>
+  </div>
+  <a class="case-next" href="#maramora"><strong>Next project</strong><span>Maramora</span></a>
 </article>
 <article class="case" data-slug="maramora" data-name="Maramora" aria-labelledby="t-maramora" hidden>
   <h2 class="case-title" id="t-maramora" tabindex="-1">Maramora</h2>
@@ -2611,14 +2651,14 @@
     <figure><img src="img/mara-case-4-1280.webp" srcset="img/mara-case-4-1280.webp 1280w, img/mara-case-4-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 88vw" width="1600" height="2561" alt="Maramora visual case, part 4 of 5: practice visuals and mobile app design" loading="lazy" decoding="async"></figure>
     <figure><img src="img/mara-case-5-1280.webp" srcset="img/mara-case-5-1280.webp 1280w, img/mara-case-5-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 88vw" width="1600" height="2561" alt="Maramora visual case, part 5 of 5: app screens" loading="lazy" decoding="async"></figure>
   </div>
-  <a class="case-next" href="#metarun"><strong>Next project</strong><span>Metarun</span></a>
+  <a class="case-next" href="#encore"><strong>Next project</strong><span>Encore Games</span></a>
 </article>
 </div>
 
 <script>
 /* Two views (iGaming cases / other cases) and project views that open over the page at their own #link */
 (function () {
-  const groups = {"igaming": ["lucky-rush", "tao-sweeps", "winarcade", "fortuna-rush", "goatbet", "collectify", "gambler-guides", "onlyplay", "bgaming", "rectangle-games", "wicked-games", "1spin4win"], "other": ["metarun", "encore", "maramora"]};
+  const groups = {"igaming": ["onlyplay", "lucky-rush", "winarcade", "rectangle-games", "tao-sweeps", "fortuna-rush", "goatbet", "collectify", "gambler-guides", "wicked-games"], "other": ["fotando", "vitali-alekseenok", "maramora", "encore", "metarun"]};
   const groupOf = {};
   Object.keys(groups).forEach(g => groups[g].forEach(s => { groupOf[s] = g; }));
   const root = document.documentElement;
