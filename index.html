@@ -1410,23 +1410,20 @@
     </ul>
     <ul class="project-grid" data-for="other">
     <li class="project-card project-card--lg project-card--static">
+      <span class="thumb"><img src="img/cover-fotando-1280.webp" srcset="img/cover-fotando-1280.webp 1280w, img/cover-fotando-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Fotando logo" loading="lazy" decoding="async"></span>
+      <span class="card-name">Fotando</span>
+    </li>
+    <li class="project-card project-card--lg project-card--static">
       <span class="thumb"><img src="img/cover-collectem-1280.webp" srcset="img/cover-collectem-1280.webp 1280w, img/cover-collectem-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Collect’em logo" loading="lazy" decoding="async"></span>
       <span class="card-name">Collect’em</span>
-    </li>
-    <li class="project-card project-card--lg">
-      <a href="#metarun" data-case="metarun">
-        <span class="thumb"><img src="img/cover-metarun-1280.webp" srcset="img/cover-metarun-1280.webp 1280w, img/cover-metarun-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Metarun logo" loading="lazy" decoding="async"></span>
-        <span class="card-name">Metarun</span>
-        <span class="card-meta">Visual Identity, Website Design, Website Development</span>
-      </a>
     </li>
     <li class="project-card project-card--lg project-card--static">
       <span class="thumb"><img src="img/cover-vitali-alekseenok-1280.webp" srcset="img/cover-vitali-alekseenok-1280.webp 1280w, img/cover-vitali-alekseenok-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Vitali Alekseenok website on a laptop" loading="lazy" decoding="async"></span>
       <span class="card-name">Vitali Alekseenok</span>
     </li>
     <li class="project-card project-card--lg project-card--static">
-      <span class="thumb"><img src="img/cover-fotando-1280.webp" srcset="img/cover-fotando-1280.webp 1280w, img/cover-fotando-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Fotando logo" loading="lazy" decoding="async"></span>
-      <span class="card-name">Fotando</span>
+      <span class="thumb"><img src="img/cover-maramora-1280.webp" srcset="img/cover-maramora-1280.webp 1280w, img/cover-maramora-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Maramora poster: Transform stress into creativity" loading="lazy" decoding="async"></span>
+      <span class="card-name">Maramora</span>
     </li>
     <li class="project-card project-card--lg">
       <a href="#encore" data-case="encore">
@@ -1435,9 +1432,12 @@
         <span class="card-meta">Visual Identity, Website Design, Website Development</span>
       </a>
     </li>
-    <li class="project-card project-card--lg project-card--static">
-      <span class="thumb"><img src="img/cover-maramora-1280.webp" srcset="img/cover-maramora-1280.webp 1280w, img/cover-maramora-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Maramora poster: Transform stress into creativity" loading="lazy" decoding="async"></span>
-      <span class="card-name">Maramora</span>
+    <li class="project-card project-card--lg">
+      <a href="#metarun" data-case="metarun">
+        <span class="thumb"><img src="img/cover-metarun-1280.webp" srcset="img/cover-metarun-1280.webp 1280w, img/cover-metarun-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Metarun logo" loading="lazy" decoding="async"></span>
+        <span class="card-name">Metarun</span>
+        <span class="card-meta">Visual Identity, Website Design, Website Development</span>
+      </a>
     </li>
     </ul>
   </section>
@@ -2400,7 +2400,7 @@
 <script>
 /* Two views (iGaming cases / other cases) and project views that open over the page at their own #link */
 (function () {
-  const groups = {"igaming": ["onlyplay", "lucky-rush", "winarcade", "rectangle-games", "tao-sweeps", "fortuna-rush", "goatbet", "collectify", "gambler-guides", "wicked-games"], "other": ["metarun", "encore"]};
+  const groups = {"igaming": ["onlyplay", "lucky-rush", "winarcade", "rectangle-games", "tao-sweeps", "fortuna-rush", "goatbet", "collectify", "gambler-guides", "wicked-games"], "other": ["encore", "metarun"]};
   const groupOf = {};
   Object.keys(groups).forEach(g => groups[g].forEach(s => { groupOf[s] = g; }));
   const root = document.documentElement;
