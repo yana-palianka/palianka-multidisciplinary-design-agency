@@ -13,6 +13,8 @@ Static site, no build step. `index.html` at the root, images in `img/` and `bann
 
 Banners Production (iGaming tab) is seven rows of single banners that loop endlessly: drag, swipe, sideways trackpad scroll or arrow keys. The banners are in `banners/s/` as `<brand>-<kind>-<nn>-<width>.webp`, exported from the Figma files Websites by Palianka, IGaming Case Studies and Palianka Banners. Card covers are `img/cover-<slug>-1280.webp` and `-2400.webp`, exported from the "Обложки clean" page of the IGaming Case Studies Figma file.
 
+The Fotando case (`#fotando`) follows the Figma file "Fotando Behance Case" module by module instead of the usual case template: the visual modules are `img/fo-*` (exported at 2400 px wide, plus 1280), and the text blocks, credits and links are HTML set in Albert Sans, sized to the 1675 px Figma frame.
+
 Run locally:
 
 ```

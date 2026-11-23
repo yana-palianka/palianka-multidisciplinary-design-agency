@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Unbounded:wght@800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Unbounded:wght@800&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #060B1F;
@@ -1269,6 +1269,173 @@
 
   .case-next:hover::after { transform: translateX(6px); background-color: rgba(255, 255, 255, 0.26); }
 
+  /* ---------- Fotando: the Figma Behance case, module by module ---------- */
+  /* 1 --u = 1px of the 1675px-wide Figma frame, so every module keeps the Figma proportions */
+
+  .bh {
+    --u: calc((100vw - 2 * var(--pad)) / 1675);
+    container-type: inline-size;
+    margin-top: clamp(28px, 3.3vw, 56px);
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: #FFFFFF;
+    color: #040404;
+    font-family: "Albert Sans", "Outfit", system-ui, sans-serif;
+    font-weight: 400;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4), 0 28px 60px -34px rgba(0, 0, 0, 0.9);
+  }
+
+  @supports (width: 1cqw) {
+    .bh { --u: calc(100cqw / 1675); }
+  }
+
+  .bh h3,
+  .bh h4 { font-family: inherit; letter-spacing: 0; color: inherit; }
+
+  .bh-img { position: relative; margin: 0; }
+  .bh-img img { display: block; width: 100%; height: auto; }
+
+  .bh-hero-bar {
+    position: absolute;
+    top: calc(var(--u) * 56);
+    left: calc(var(--u) * 64);
+    right: calc(var(--u) * 64);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: calc(var(--u) * 24);
+    line-height: 1;
+    font-weight: 600;
+    color: #FFFFFF;
+    white-space: nowrap;
+  }
+
+  .bh-hero-meta { display: flex; align-items: center; gap: calc(var(--u) * 20); }
+  .bh-hero-meta i { width: calc(var(--u) * 10); height: calc(var(--u) * 10); background: #8B4DF8; }
+
+  .bh-text {
+    padding: max(32px, calc(var(--u) * 120)) max(20px, calc(var(--u) * 164));
+    background: #FFFFFF;
+  }
+
+  .bh-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: max(1px, calc(var(--u) * 1.5));
+    margin: 0 0 max(18px, calc(var(--u) * 32));
+    padding: 0;
+    list-style: none;
+  }
+
+  .bh-tags li {
+    padding: max(6px, calc(var(--u) * 12)) max(12px, calc(var(--u) * 24));
+    box-shadow: 0 0 0 max(1px, calc(var(--u) * 1.5)) #040404;
+    font-size: max(11px, calc(var(--u) * 15));
+    line-height: 1.5334;
+    font-weight: 600;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .bh-text p {
+    max-width: max(calc(var(--u) * 1000), 34em);
+    margin: 0;
+    font-size: max(15px, calc(var(--u) * 20));
+    line-height: 1.4;
+    font-weight: 500;
+  }
+
+  .bh-text p + p { margin-top: max(10px, calc(var(--u) * 16)); }
+
+  .bh-credits {
+    display: flex;
+    gap: calc(var(--u) * 16);
+    padding: calc(var(--u) * 80) calc(var(--u) * 164);
+    background: #FFFFFF;
+  }
+
+  /* Figma trims "Credits" to its cap height: pull the line box up so the capitals start at the same top */
+  .bh-credits h3 {
+    flex: 0 0 calc(var(--u) * 432);
+    margin: calc(var(--u) * -6.6) 0 0;
+    font-size: calc(var(--u) * 44);
+    line-height: 1;
+    font-weight: 700;
+  }
+
+  .bh-credits-cols { display: flex; gap: calc(var(--u) * 32); }
+  .bh-credits-col { flex: 0 0 calc(var(--u) * 278.33); }
+
+  .bh-credits h4 {
+    margin: 0 0 calc(var(--u) * 28);
+    font-size: max(17px, calc(var(--u) * 28));
+    line-height: 1;
+    font-weight: 700;
+  }
+
+  .bh-credits dl { display: grid; gap: calc(var(--u) * 28); margin: 0; }
+
+  .bh-credits dt {
+    margin-bottom: calc(var(--u) * 10);
+    font-size: max(14px, calc(var(--u) * 22));
+    line-height: 1;
+    font-weight: 600;
+  }
+
+  .bh-credits dd {
+    margin: 0;
+    font-size: max(13px, calc(var(--u) * 18));
+    line-height: 1.3334;
+    font-weight: 400;
+  }
+
+  .bh-credits dd + dd { margin-top: calc(var(--u) * 4); }
+
+  .bh-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: max(8px, calc(var(--u) * 12));
+    padding: max(28px, calc(var(--u) * 80)) max(20px, calc(var(--u) * 164));
+    background: #FFFFFF;
+    font-size: max(15px, calc(var(--u) * 24));
+    line-height: 1;
+    font-weight: 600;
+  }
+
+  .bh-links a { color: inherit; text-decoration: none; transition: color 200ms ease; }
+  .bh-links a:hover { color: #8B4DF8; }
+  .bh-links a:focus-visible { outline-color: #8B4DF8; }
+  .bh-links i { width: max(6px, calc(var(--u) * 10)); height: max(6px, calc(var(--u) * 10)); background: #8B4DF8; }
+
+  .bh-sign { padding: 0 0 max(32px, calc(var(--u) * 90)); background: #FFFFFF; }
+  .bh-sign img { display: block; width: max(120px, calc(var(--u) * 211)); height: auto; margin: 0 auto; }
+
+  /* Figma's forced line break only holds while the text keeps the Figma proportions */
+  @container (max-width: 1256px) {
+    .bh-br { display: none; }
+  }
+
+  /* Phones: the links row stays on one line */
+  @container (max-width: 480px) {
+    .bh-links { gap: 6px; padding-left: 16px; padding-right: 16px; font-size: 13px; }
+    .bh-links i { width: 5px; height: 5px; }
+  }
+
+  /* Phones and small tablets: the credits stack, everything else keeps the Figma layout */
+  @container (max-width: 760px) {
+    .bh-credits { flex-direction: column; gap: 24px; padding: 40px 20px; }
+    .bh-credits h3 { flex: none; margin: 0; font-size: 28px; }
+    .bh-credits-cols { flex-wrap: wrap; gap: 24px 32px; }
+    .bh-credits-col { flex: 1 1 150px; }
+    .bh-credits h4 { margin-bottom: 14px; font-size: 18px; }
+    .bh-credits dl { gap: 16px; }
+    .bh-credits dt { margin-bottom: 6px; font-size: 15px; }
+    .bh-credits dd { font-size: 14px; line-height: 20px; }
+    .bh-credits dd + dd { margin-top: 2px; }
+  }
+
 
   /* ---------- Responsive ---------- */
 
@@ -1373,7 +1540,7 @@
     .site-footer.is-waiting .footer-glow { opacity: 1; transform: none; }
   }
 </style>
-<script>(function(){var h="";try{h=decodeURIComponent(location.hash.slice(1));}catch(e){}if(["other", "metarun", "encore"].indexOf(h)>-1)document.documentElement.setAttribute("data-view","other");})();</script>
+<script>(function(){var h="";try{h=decodeURIComponent(location.hash.slice(1));}catch(e){}if(["other", "fotando", "encore", "metarun"].indexOf(h)>-1)document.documentElement.setAttribute("data-view","other");})();</script>
 </head>
 <body>
 
@@ -1476,24 +1643,24 @@
     </li>
     </ul>
     <ul class="project-grid" data-for="other">
+    <li class="project-card project-card--lg">
+      <a href="#fotando" data-case="fotando">
+        <span class="thumb"><img src="img/cover-fotando-1280.webp" srcset="img/cover-fotando-1280.webp 1280w, img/cover-fotando-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Fotando logo" loading="lazy" decoding="async"></span>
+        <span class="card-name">Fotando</span>
+        <span class="card-meta">Branding, Visual Identity, Web Design, Website Development</span>
+      </a>
+    </li>
     <li class="project-card project-card--lg project-card--static">
       <span class="thumb"><img src="img/cover-collectem-1280.webp" srcset="img/cover-collectem-1280.webp 1280w, img/cover-collectem-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Collect’em logo" loading="lazy" decoding="async"></span>
       <span class="card-name">Collect’em</span>
-    </li>
-    <li class="project-card project-card--lg">
-      <a href="#metarun" data-case="metarun">
-        <span class="thumb"><img src="img/cover-metarun-1280.webp" srcset="img/cover-metarun-1280.webp 1280w, img/cover-metarun-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Metarun logo" loading="lazy" decoding="async"></span>
-        <span class="card-name">Metarun</span>
-        <span class="card-meta">Visual Identity, Website Design, Website Development</span>
-      </a>
     </li>
     <li class="project-card project-card--lg project-card--static">
       <span class="thumb"><img src="img/cover-vitali-alekseenok-1280.webp" srcset="img/cover-vitali-alekseenok-1280.webp 1280w, img/cover-vitali-alekseenok-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Vitali Alekseenok website on a laptop" loading="lazy" decoding="async"></span>
       <span class="card-name">Vitali Alekseenok</span>
     </li>
     <li class="project-card project-card--lg project-card--static">
-      <span class="thumb"><img src="img/cover-fotando-1280.webp" srcset="img/cover-fotando-1280.webp 1280w, img/cover-fotando-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Fotando logo" loading="lazy" decoding="async"></span>
-      <span class="card-name">Fotando</span>
+      <span class="thumb"><img src="img/cover-maramora-1280.webp" srcset="img/cover-maramora-1280.webp 1280w, img/cover-maramora-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Maramora poster: Transform stress into creativity" loading="lazy" decoding="async"></span>
+      <span class="card-name">Maramora</span>
     </li>
     <li class="project-card project-card--lg">
       <a href="#encore" data-case="encore">
@@ -1502,9 +1669,12 @@
         <span class="card-meta">Visual Identity, Website Design, Website Development</span>
       </a>
     </li>
-    <li class="project-card project-card--lg project-card--static">
-      <span class="thumb"><img src="img/cover-maramora-1280.webp" srcset="img/cover-maramora-1280.webp 1280w, img/cover-maramora-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Maramora poster: Transform stress into creativity" loading="lazy" decoding="async"></span>
-      <span class="card-name">Maramora</span>
+    <li class="project-card project-card--lg">
+      <a href="#metarun" data-case="metarun">
+        <span class="thumb"><img src="img/cover-metarun-1280.webp" srcset="img/cover-metarun-1280.webp 1280w, img/cover-metarun-2400.webp 2400w" sizes="(max-width: 600px) 92vw, (max-width: 900px) 45vw, 43vw" width="2400" height="1350" alt="Metarun logo" loading="lazy" decoding="async"></span>
+        <span class="card-name">Metarun</span>
+        <span class="card-meta">Visual Identity, Website Design, Website Development</span>
+      </a>
     </li>
     </ul>
   </section>
@@ -2558,6 +2728,52 @@
 </div>
   <a class="case-next" href="#onlyplay"><strong>Next project</strong><span>Onlyplay</span></a>
 </article>
+<article class="case" data-slug="fotando" data-name="Fotando" aria-labelledby="t-fotando" hidden>
+  <h2 class="case-title" id="t-fotando" tabindex="-1">Fotando</h2>
+  <div class="bh">
+    <figure class="bh-img bh-hero" style="background:#191324"><img src="img/fo-hero-1280.webp" srcset="img/fo-hero-1280.webp 1280w, img/fo-hero-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1433" alt="Fotando website on a laptop: Scale your startup with a result-driven tech partner" loading="lazy" decoding="async"><figcaption class="bh-hero-bar"><span>palianka.</span><span class="bh-hero-meta"><span>Operations consulting</span><i aria-hidden="true"></i><span>2025</span></span></figcaption></figure>
+    <section class="bh-text" aria-label="Project"><ul class="bh-tags"><li>Branding</li><li>Visual identity</li><li>Web design</li><li>Website development</li></ul><p>FOTANDO Global is a product studio that helps business owners find the one constraint holding their company back and remove it in short sprints. As part of the project, a modern and memorable logo was created, along with a distinctive brand identity, detailed brand guidelines, and a redesigned website.</p></section>
+    <figure class="bh-img" style="background:#7a44da"><img src="img/fo-logo-1280.webp" srcset="img/fo-logo-1280.webp 1280w, img/fo-logo-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando logo on the purple brand grid" loading="lazy" decoding="async"></figure>
+    <section class="bh-text" aria-label="Logo refresh"><ul class="bh-tags"><li>Logo refresh</li></ul><p>The FOTANDO logo is&nbsp;modern and minimalist. Its concept is&nbsp;built around the ideas of&nbsp;transformation, structure, and a&nbsp;systematic approach. The grid transforms into volumetric elements, forming dynamic signature graphics. A&nbsp;key principle of&nbsp;FOTANDO visual identity is&nbsp;scaling, which serves as&nbsp;a&nbsp;metaphor <br class="bh-br">for dynamism, growth, and adaptability.</p></section>
+    <figure class="bh-img" style="background:#b6b6b6"><img src="img/fo-scaling-1280.webp" srcset="img/fo-scaling-1280.webp 1280w, img/fo-scaling-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1319" alt="Fotando logo scaling on the grid" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#181019"><img src="img/fo-banner-1280.webp" srcset="img/fo-banner-1280.webp 1280w, img/fo-banner-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando event screen on stage: How to build a startup without quitting your job? by Vladimir Ovsyannikov" loading="lazy" decoding="async"></figure>
+    <section class="bh-text" aria-label="Visual identity"><ul class="bh-tags"><li>Visual identity</li></ul><p>The primary FOTANDO brand colors are purple, black, and white. Purple is open, energetic, and active, creating a striking contrast with deep black, while subtle white accents keep the palette balanced.</p><p>The Albert Sans typeface is&nbsp;versatile and functional. As&nbsp;a&nbsp;geometric grotesque, its forms are based on&nbsp;simple geometric shapes such as&nbsp;circles and squares. Its modern, clean appearance complements FOTANDO’s minimalistic aesthetic and performs well both on&nbsp;screens and in&nbsp;print.</p></section>
+    <figure class="bh-img" style="background:#5c3a98"><img src="img/fo-colors-1280.webp" srcset="img/fo-colors-1280.webp 1280w, img/fo-colors-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando color palette: purple #8B4DF8, black #000000 and white #FFFFFF" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#7443c8"><img src="img/fo-typography-1280.webp" srcset="img/fo-typography-1280.webp 1280w, img/fo-typography-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Albert Sans typeface: Bold for headlines, Regular for body text" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#f2eff8"><img src="img/fo-icons-1280.webp" srcset="img/fo-icons-1280.webp 1280w, img/fo-icons-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando icons" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#7b44da"><img src="img/fo-icons-pattern-1280.webp" srcset="img/fo-icons-pattern-1280.webp 1280w, img/fo-icons-pattern-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando icons on the brand grid" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#08060b"><img src="img/fo-process-1280.webp" srcset="img/fo-process-1280.webp 1280w, img/fo-process-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando process cards, from wireframes to the project execution plan" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#777181"><img src="img/fo-linkedin-1280.webp" srcset="img/fo-linkedin-1280.webp 1280w, img/fo-linkedin-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando Global LinkedIn page in the new identity" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#706482"><img src="img/fo-socials-1280.webp" srcset="img/fo-socials-1280.webp 1280w, img/fo-socials-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando social media posts" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#0d0a14"><img src="img/fo-tote-1280.webp" srcset="img/fo-tote-1280.webp 1280w, img/fo-tote-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando tote bag" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#9e84cd"><img src="img/fo-identity-grid-1280.webp" srcset="img/fo-identity-grid-1280.webp 1280w, img/fo-identity-grid-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1433" alt="Fotando identity overview: logo, scaling, visual style and icon style" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#cfccd2"><img src="img/fo-visual-style-1280.webp" srcset="img/fo-visual-style-1280.webp 1280w, img/fo-visual-style-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando badges on lanyards" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#4b346c"><img src="img/fo-business-cards-1280.webp" srcset="img/fo-business-cards-1280.webp 1280w, img/fo-business-cards-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando business cards" loading="lazy" decoding="async"></figure>
+    <section class="bh-text" aria-label="Website design"><ul class="bh-tags"><li>Website design</li></ul><p>Building on&nbsp;the developed visual identity, we&nbsp;designed a&nbsp;visually rich and structured website interface that balances credibility with an&nbsp;engaging, modern aesthetic. The design focuses on&nbsp;clear content hierarchy and intuitive navigation.</p></section>
+    <figure class="bh-img" style="background:#432871"><img src="img/fo-web-1-1280.webp" srcset="img/fo-web-1-1280.webp 1280w, img/fo-web-1-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1433" alt="Fotando website pages: Building great digital products, statistics, team and client reviews" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#0d0c0d"><img src="img/fo-web-2-1280.webp" srcset="img/fo-web-2-1280.webp 1280w, img/fo-web-2-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1433" alt="Fotando website on a tablet: Meet our team" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#3e256a"><img src="img/fo-web-3-1280.webp" srcset="img/fo-web-3-1280.webp 1280w, img/fo-web-3-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando website pages: Meet your future team and FAQ" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#ae9ec0"><img src="img/fo-web-4-1280.webp" srcset="img/fo-web-4-1280.webp 1280w, img/fo-web-4-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1433" alt="Fotando website on a monitor: Founders underestimate the role of project discovery" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img bh-long" style="background:#332055"><img src="img/fo-web-long-1-1280.webp" srcset="img/fo-web-long-1-1280.webp 1280w, img/fo-web-long-1-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="2243" alt="Fotando home page, full length" loading="lazy" decoding="async"><img src="img/fo-web-long-2-1280.webp" srcset="img/fo-web-long-2-1280.webp 1280w, img/fo-web-long-2-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="2243" alt="" loading="lazy" decoding="async"><img src="img/fo-web-long-3-1280.webp" srcset="img/fo-web-long-3-1280.webp 1280w, img/fo-web-long-3-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="2243" alt="" loading="lazy" decoding="async"><img src="img/fo-web-long-4-1280.webp" srcset="img/fo-web-long-4-1280.webp 1280w, img/fo-web-long-4-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="2243" alt="" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#1e152d"><img src="img/fo-web-5-1280.webp" srcset="img/fo-web-5-1280.webp 1280w, img/fo-web-5-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1554" alt="Fotando website pages at an angle" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#cdc8d4"><img src="img/fo-web-6-1280.webp" srcset="img/fo-web-6-1280.webp 1280w, img/fo-web-6-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1290" alt="Fotando website on two phones" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#472c75"><img src="img/fo-tablet-1280.webp" srcset="img/fo-tablet-1280.webp 1280w, img/fo-tablet-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando website sections" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#09080b"><img src="img/fo-web-cards-1280.webp" srcset="img/fo-web-cards-1280.webp 1280w, img/fo-web-cards-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando service cards: Inception, for early-stage and for grown-stage startups" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#5d389f"><img src="img/fo-mobile-1280.webp" srcset="img/fo-mobile-1280.webp 1280w, img/fo-mobile-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Fotando mobile website screens" loading="lazy" decoding="async"></figure>
+    <figure class="bh-img" style="background:#2d1c4b"><img src="img/fo-thanks-1280.webp" srcset="img/fo-thanks-1280.webp 1280w, img/fo-thanks-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1326" alt="Thanks for watching!" loading="lazy" decoding="async"></figure>
+    <section class="bh-credits" aria-labelledby="fo-credits">
+      <h3 id="fo-credits">Credits</h3>
+      <div class="bh-credits-cols">
+        <div class="bh-credits-col"><h4>Branding</h4><dl><div><dt>Creative Director</dt><dd>Yana Perhurovich</dd></div><div><dt>Art Direction &amp; GD</dt><dd>Kate Kalatskaya</dd><dd>Volha Paulava</dd></div></dl></div>
+        <div class="bh-credits-col"><h4>Web design</h4><dl><div><dt>Art Direction</dt><dd>Nick Kuznetsov</dd></div><div><dt>Design</dt><dd>Kira Karaliova</dd></div></dl></div>
+        <div class="bh-credits-col"><h4>Case</h4><dl><div><dt>Motion Design</dt><dd>Denis Pasternak</dd></div><div><dt>Design</dt><dd>Kira Karaliova</dd></div></dl></div>
+      </div>
+    </section>
+    <div class="bh-links"><a href="https://dribbble.com/Palianka">Dribbble</a><i aria-hidden="true"></i><span>Instagram</span><i aria-hidden="true"></i><span>LinkedIn</span><i aria-hidden="true"></i><a href="https://palianka.com/">Website</a></div>
+    <div class="bh-sign"><img src="img/fo-palianka-logo.webp" width="844" height="201" alt="palianka." loading="lazy" decoding="async"></div>
+  </div>
+  <a class="case-next" href="#encore"><strong>Next project</strong><span>Encore Games</span></a>
+</article>
 <article class="case" data-slug="encore" data-name="Encore Games" aria-labelledby="t-encore" hidden>
   <h2 class="case-title" id="t-encore" tabindex="-1">Encore Games</h2>
   <figure class="case-hero shot"><img src="img/en-cover-1280.webp" srcset="img/en-cover-1280.webp 1280w, img/en-cover-1600.webp 1600w" sizes="(max-width: 900px) 92vw, 88vw" width="1600" height="900" alt="Encore Games brand identity" loading="lazy" decoding="async"></figure>
@@ -2681,14 +2897,14 @@
   <figure class="shot"><img src="img/mr-g-3-1280.webp" srcset="img/mr-g-3-1280.webp 1280w, img/mr-g-3-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="1716" alt="Metarun posters" loading="lazy" decoding="async"></figure>
   <figure class="shot"><img src="img/mr-g-8-1280.webp" srcset="img/mr-g-8-1280.webp 1280w, img/mr-g-8-1600.webp 1600w" sizes="(max-width: 600px) 92vw, 44vw" width="1600" height="900" alt="Metarun on a phone" loading="lazy" decoding="async"></figure>
 </div>
-  <a class="case-next" href="#encore"><strong>Next project</strong><span>Encore Games</span></a>
+  <a class="case-next" href="#fotando"><strong>Next project</strong><span>Fotando</span></a>
 </article>
 </div>
 
 <script>
 /* Two views (iGaming cases / other cases) and project views that open over the page at their own #link */
 (function () {
-  const groups = {"igaming": ["onlyplay", "lucky-rush", "winarcade", "rectangle-games", "tao-sweeps", "fortuna-rush", "goatbet", "collectify", "gambler-guides", "wicked-games"], "other": ["metarun", "encore"]};
+  const groups = {"igaming": ["onlyplay", "lucky-rush", "winarcade", "rectangle-games", "tao-sweeps", "fortuna-rush", "goatbet", "collectify", "gambler-guides", "wicked-games"], "other": ["fotando", "encore", "metarun"]};
   const groupOf = {};
   Object.keys(groups).forEach(g => groups[g].forEach(s => { groupOf[s] = g; }));
   const root = document.documentElement;
