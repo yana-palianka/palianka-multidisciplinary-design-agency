@@ -997,6 +997,9 @@
   .site-footer.is-waiting .footer-mushroom { transform: translateY(22%) scale(0.86); opacity: 0; }
   .site-footer.is-waiting .footer-glow { opacity: 0; transform: translateY(12%); }
 
+  /* the phone mushroom is a PNG of the same drawing: the vector blurred on iPhone */
+  .footer-mushroom .mushroom-raster { display: none; }
+
   /* ---------- Buttons shared by the project view ---------- */
 
   .case-pager { display: flex; gap: 10px; }
@@ -1586,6 +1589,17 @@
     .case-bar .case-talk { height: 44px; padding: 0 18px; font-size: 14px; }
     .case-next { --next-btn: 44px; --next-pad: 20px; }
     .footer-mushroom { right: 14px; height: 230px; }
+    .footer-mushroom svg { display: none; }
+    .footer-mushroom .mushroom-raster {
+      display: block;
+      height: 100%;
+      width: auto;
+      max-width: none;
+      transform-origin: 58% 98%;
+      animation: mushroom-sway 3.8s ease-in-out -1.9s infinite alternate;
+      animation-play-state: paused;
+    }
+    .site-footer.is-live .footer-mushroom .mushroom-raster { animation-play-state: running; }
     .site-footer { min-height: 520px; }
   }
 
@@ -1595,7 +1609,8 @@
   @media (max-width: 480px) {
     .case-bar .back-btn { width: 44px; padding: 0; justify-content: center; }
     .case-bar .back-btn .back-ico-arrow { display: none; }
-    .case-bar .back-btn .back-ico-grid { display: block; }
+    .case-bar .back-btn .back-ico-grid { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+    .case-bar .back-btn { overflow: hidden; }
     .case-bar .back-btn span {
       position: absolute;
       width: 1px;
@@ -1621,7 +1636,7 @@
     .case-next, .case-next::after, .footer-mushroom, .footer-glow, .site-header,
     .talk-btn, .talk-btn::before, .talk-btn__fill { transition: none; }
     .talk-btn:hover, .talk-btn:focus-visible { transform: none; }
-    .talk-btn::before, .footer-mushroom svg, .mush-shimmer { animation: none; }
+    .talk-btn::before, .footer-mushroom svg, .footer-mushroom .mushroom-raster, .mush-shimmer { animation: none; }
     .project-card:hover, .case-next:hover { transform: none; }
     .project-card:hover .thumb img { transform: none; }
     .site-footer.is-waiting .footer-mushroom { transform: none; opacity: 1; }
@@ -1665,8 +1680,8 @@
 <body>
 
 <header class="site-header">
-  <a class="brand" href="#top" data-to-top aria-label="Palianka, back to top">
-    <img src="logo.svg" alt="palianka." width="601" height="154">
+  <a class="brand" href="#igaming" aria-label="Palianka, back to Cases">
+    <img src="img/palianka-logo-2x.webp" alt="palianka." width="601" height="154">
   </a>
   <nav class="page-switch" aria-label="Pages">
     <span class="switch-thumb" aria-hidden="true"></span>
@@ -2437,7 +2452,7 @@
   <div class="footer-glow" aria-hidden="true"></div>
   <div class="footer-veil" aria-hidden="true"></div>
   <div class="footer-inner">
-    <a class="brand" href="https://palianka.com/" aria-label="Palianka — palianka.com"><img src="logo.svg" alt="palianka." width="601" height="154" loading="lazy" decoding="async"></a>
+    <a class="brand" href="https://palianka.com/" aria-label="Palianka — palianka.com"><img src="img/palianka-logo-2x.webp" alt="palianka." width="601" height="154" loading="lazy" decoding="async"></a>
     <a class="talk-btn talk-btn--lg" href="https://calendly.com/yana-palianka/30min" target="_blank" rel="noopener"><span class="talk-btn__fill" aria-hidden="true"></span>Let’s talk<span class="sr-only"> (book a 30-minute call on Calendly, opens in a new tab)</span></a>
     <ul class="footer-links">
       <li><a href="mailto:contact@palianka.com">contact@palianka.com</a></li>
@@ -2503,6 +2518,7 @@
 </radialGradient>
 </defs>
 </svg>
+  <img class="mushroom-raster" src="img/mushroom-footer-690.webp" alt="" width="528" height="690" loading="lazy" decoding="async">
   </div>
 </footer>
 
@@ -2510,7 +2526,7 @@
   <div class="case-bar">
     <button class="back-btn" type="button" data-close>
       <svg class="back-ico-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <svg class="back-ico-grid" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4.5" y="4.5" width="6" height="6" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="13.5" y="4.5" width="6" height="6" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="4.5" y="13.5" width="6" height="6" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="13.5" y="13.5" width="6" height="6" rx="1.6" stroke="currentColor" stroke-width="1.6"/></svg>
+      <img class="back-ico-grid" src="img/mushroom-square-320.webp" alt="" width="320" height="320" decoding="async">
       <span>All projects</span>
     </button>
     <a class="talk-btn case-talk" href="https://calendly.com/yana-palianka/30min" target="_blank" rel="noopener"><span class="talk-btn__fill" aria-hidden="true"></span>Let’s talk<span class="sr-only"> (book a 30-minute call on Calendly, opens in a new tab)</span></a>
@@ -3570,11 +3586,26 @@
     target.scrollIntoView({ block: 'start', behavior: reduceMotion.matches ? 'auto' : 'smooth' });
   }));
 
-  /* Logo: stay on this page and go back to the top */
-  document.querySelectorAll('[data-to-top]').forEach(a => a.addEventListener('click', (e) => {
+  /* Logo: always back to the first Cases tab (iGaming cases), at the very top */
+  const brand = document.querySelector('.site-header .brand');
+  if (brand) brand.addEventListener('click', async (e) => {
     e.preventDefault();
-    window.scrollTo({ top: 0, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
-  }));
+    if (hashSlug() === 'igaming') {
+      window.scrollTo({ top: 0, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+      return;
+    }
+    /* scroll up first and only then swap the tab, so the layout never changes mid-scroll */
+    await new Promise((done) => {
+      const finish = () => { window.removeEventListener('scroll', check); clearTimeout(timer); done(); };
+      const check = () => { if (window.scrollY <= 0) finish(); };
+      const timer = setTimeout(finish, 3000);
+      window.addEventListener('scroll', check, { passive: true });
+      window.scrollTo({ top: 0, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+      check();
+    });
+    history.pushState(null, '', location.pathname + location.search + '#igaming');
+    route(true);
+  });
 
   /* Switching iGaming cases / Other cases brings the page back to the top */
   switchLinks.forEach(a => a.addEventListener('click', () => {
