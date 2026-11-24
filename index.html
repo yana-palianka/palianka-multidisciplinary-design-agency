@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Palianka — Multidisciplinary design agency</title>
 <meta name="description" content="Palianka is a multidisciplinary design agency: branding, websites, product design, motion and front-end development for iGaming and any other kind of product.">
-<meta name="theme-color" content="#060B1F">
+<meta name="theme-color" content="#000000">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,9 +13,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #060B1F;
-    --bg-2: #0A1230;
-    --bg-glow: rgba(46, 72, 190, 0.32);
+    --bg: #000000;
+    --bg-2: #000000;
+    --bg-glow: rgba(0, 0, 0, 0);
     --white: #FFFFFF;
     --text: rgba(236, 240, 255, 0.9);
     --dim: rgba(214, 222, 255, 0.62);
@@ -57,7 +57,7 @@
     font-size: var(--fs-body);
     line-height: 1.6;
     background:
-      radial-gradient(70% 55% at 50% -8%, var(--bg-glow) 0%, rgba(6, 11, 31, 0) 70%) no-repeat,
+      radial-gradient(70% 55% at 50% -8%, var(--bg-glow) 0%, rgba(0, 0, 0, 0) 70%) no-repeat,
       linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 900px) no-repeat,
       var(--bg);
     overflow-x: clip;
@@ -102,7 +102,7 @@
   }
 
   .site-header.is-stuck {
-    background: rgba(6, 11, 31, 0.72);
+    background: rgba(0, 0, 0, 0.72);
     border-bottom-color: var(--line);
     -webkit-backdrop-filter: blur(18px) saturate(150%);
     backdrop-filter: blur(18px) saturate(150%);
@@ -387,7 +387,7 @@
     transform: translateY(-4px);
     border-color: var(--line-strong);
     background: var(--glass-hover);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.11), inset 0 -1px 0 rgba(0, 0, 0, 0.35), 0 1px 0 rgba(0, 0, 0, 0.45), 0 40px 80px -40px rgba(70, 100, 255, 0.45);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.11), inset 0 -1px 0 rgba(0, 0, 0, 0.35), 0 1px 0 rgba(0, 0, 0, 0.45), 0 40px 80px -40px rgba(255, 255, 255, 0.06);
   }
 
   .project-card--static:hover {
@@ -432,7 +432,7 @@
     aspect-ratio: 16 / 9;
     overflow: hidden;
     border-radius: var(--radius-sm);
-    background: #0B1230;
+    background: #0C0C0C;
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
   }
 
@@ -562,8 +562,6 @@
 
   .bn-row::-webkit-scrollbar { display: none; }
   .bn-row--wide { --bn-h: clamp(230px, 42vh, 440px); }
-  .bn-item--wide { --bn-h: clamp(230px, 42vh, 440px); }
-  .bn-row--mixed .bn-track { align-items: center; }
 
   .bn-row.is-live {
     padding: 0;
@@ -592,7 +590,7 @@
     width: auto;
     height: var(--bn-h);
     border-radius: var(--radius-sm);
-    background: #0B1230;
+    background: #0C0C0C;
     pointer-events: none;
     -webkit-user-drag: none;
   }
@@ -611,8 +609,6 @@
     .bn-row--story { --bn-h: min(110vw, 78vh); }
     .bn-row--wide { --bn-h: min(51vw, 60vh); }
     .bn-row--screen { --bn-h: min(122vw, 78vh); }
-    .bn-item--story { --bn-h: min(110vw, 78vh); }
-    .bn-item--wide { --bn-h: min(51vw, 60vh); }
   }
 
 
@@ -632,6 +628,19 @@
   }
 
   .motion-label .muted { margin-left: 0.3em; font-weight: 400; color: var(--grey); }
+
+  .motion-label .motion-drive {
+    margin-left: 0.5em;
+    font-weight: 400;
+    color: var(--dim);
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, 0.3);
+    text-underline-offset: 0.22em;
+    white-space: nowrap;
+    transition: color 200ms ease, text-decoration-color 200ms ease;
+  }
+
+  .motion-label .motion-drive:hover { color: var(--white); text-decoration-color: currentColor; }
 
   /* One row, every video the same height: each card grows in proportion to its video's width-to-height ratio */
   .motion-row {
@@ -660,7 +669,7 @@
     position: relative;
     overflow: hidden;
     border-radius: var(--radius-sm);
-    background: #0B1230;
+    background: #0C0C0C;
   }
 
   @media (max-width: 640px) {
@@ -892,7 +901,7 @@
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(180deg, var(--bg) 0%, rgba(6, 11, 31, 0.5) 28%, rgba(6, 11, 31, 0) 58%);
+    background: linear-gradient(180deg, var(--bg) 0%, rgba(0, 0, 0, 0.5) 28%, rgba(0, 0, 0, 0) 58%);
   }
 
   .footer-inner {
@@ -915,7 +924,7 @@
     font-size: var(--fs-small);
     font-weight: 400;
     color: rgba(236, 240, 255, 0.78);
-    text-shadow: 0 1px 12px rgba(6, 11, 31, 0.6);
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
   }
 
   .footer-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
@@ -1042,7 +1051,7 @@
     overflow-y: auto;
     overscroll-behavior: contain;
     background:
-      radial-gradient(70% 45% at 50% -6%, var(--bg-glow) 0%, rgba(6, 11, 31, 0) 70%) no-repeat,
+      radial-gradient(70% 45% at 50% -6%, var(--bg-glow) 0%, rgba(0, 0, 0, 0) 70%) no-repeat,
       var(--bg);
     transition: opacity 300ms ease, transform 300ms var(--ease);
   }
@@ -1060,7 +1069,7 @@
     gap: 16px;
     height: clamp(68px, 5.4vw, 88px);
     padding: 0 var(--pad);
-    background: rgba(6, 11, 31, 0.72);
+    background: rgba(0, 0, 0, 0.72);
     border-bottom: 1px solid var(--line);
     -webkit-backdrop-filter: blur(18px) saturate(150%);
     backdrop-filter: blur(18px) saturate(150%);
@@ -1090,7 +1099,7 @@
     margin: 0;
     overflow: hidden;
     border-radius: var(--radius);
-    background: #0B1230;
+    background: #0C0C0C;
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4), 0 28px 60px -34px rgba(0, 0, 0, 0.9);
   }
 
@@ -1237,7 +1246,7 @@
     padding: 0;
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 999px;
-    background: rgba(6, 11, 31, 0.6);
+    background: rgba(0, 0, 0, 0.6);
     color: #fff;
     cursor: pointer;
     -webkit-backdrop-filter: blur(8px);
@@ -1245,7 +1254,7 @@
     transition: background-color 180ms ease;
   }
 
-  .video-sound:hover { background: rgba(6, 11, 31, 0.85); }
+  .video-sound:hover { background: rgba(0, 0, 0, 0.85); }
   .video-sound:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
   .video-sound svg { width: 18px; height: 18px; }
   .video-sound .i-on, .video-sound[aria-pressed="true"] .i-off { display: none; }
@@ -1633,7 +1642,7 @@
     border-radius: 50%;
     background: var(--white);
     color: #0B1236;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.35), 0 16px 34px -12px rgba(6, 11, 31, 0.7);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.35), 0 16px 34px -12px rgba(0, 0, 0, 0.7);
     cursor: pointer;
     opacity: 0;
     visibility: hidden;
@@ -2113,7 +2122,7 @@
     <div class="bn-list">
       <div class="bn-group">
         <h3 class="bn-label">Daily Banners <span class="muted">Lucky Rush</span></h3>
-        <div class="bn-row bn-row--post bn-row--mixed" role="group" aria-roledescription="carousel" aria-label="Lucky Rush banners: 58. Drag, swipe or use the arrow keys to scroll." tabindex="0">
+        <div class="bn-row bn-row--post" role="group" aria-roledescription="carousel" aria-label="Lucky Rush daily banners: 28. Drag, swipe or use the arrow keys to scroll." tabindex="0">
           <div class="bn-track">
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-daily-21-600.webp" srcset="banners/s/lr-daily-21-600.webp 600w, banners/s/lr-daily-21-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Lucky Rush social post: 3 Games to Try This Week" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-daily-24-600.webp" srcset="banners/s/lr-daily-24-600.webp 600w, banners/s/lr-daily-24-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Lucky Rush social post: What’s Hot in the Rush Room" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
@@ -2143,28 +2152,49 @@
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-daily-04-600.webp" srcset="banners/s/lr-daily-04-600.webp 600w, banners/s/lr-daily-04-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Lucky Rush social post: Are You a Top Fan?" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-daily-13-600.webp" srcset="banners/s/lr-daily-13-600.webp 600w, banners/s/lr-daily-13-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Lucky Rush social post: Welcome" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-daily-31-600.webp" srcset="banners/s/lr-daily-31-600.webp 600w, banners/s/lr-daily-31-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Lucky Rush social post: Game Spotlight of the Week" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
-            <figure class="bn-item bn-item--story"><span class="ring bn-ring"><img src="banners/s/lr-stories-03-600.webp" srcset="banners/s/lr-stories-03-600.webp 600w, banners/s/lr-stories-03-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: Tournament Live Now" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
-            <figure class="bn-item bn-item--story"><span class="ring bn-ring"><img src="banners/s/lr-stories-01-600.webp" srcset="banners/s/lr-stories-01-600.webp 600w, banners/s/lr-stories-01-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: Next Week Highlights" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
-            <figure class="bn-item bn-item--story"><span class="ring bn-ring"><img src="banners/s/lr-stories-08-600.webp" srcset="banners/s/lr-stories-08-600.webp 600w, banners/s/lr-stories-08-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: Welcome Offer" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
-            <figure class="bn-item bn-item--story"><span class="ring bn-ring"><img src="banners/s/lr-stories-10-600.webp" srcset="banners/s/lr-stories-10-600.webp 600w, banners/s/lr-stories-10-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: Jackpot Winner" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
-            <figure class="bn-item bn-item--story"><span class="ring bn-ring"><img src="banners/s/lr-stories-02-600.webp" srcset="banners/s/lr-stories-02-600.webp 600w, banners/s/lr-stories-02-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: Today’s Tournaments" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
-            <figure class="bn-item bn-item--story"><span class="ring bn-ring"><img src="banners/s/lr-stories-06-600.webp" srcset="banners/s/lr-stories-06-600.webp 600w, banners/s/lr-stories-06-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: Today’s Featured Package" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
-            <figure class="bn-item bn-item--story"><span class="ring bn-ring"><img src="banners/s/lr-stories-09-600.webp" srcset="banners/s/lr-stories-09-600.webp 600w, banners/s/lr-stories-09-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: Top Winners of the Month" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
-            <figure class="bn-item bn-item--story"><span class="ring bn-ring"><img src="banners/s/lr-stories-04-600.webp" srcset="banners/s/lr-stories-04-600.webp 600w, banners/s/lr-stories-04-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: What Players Say" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
-            <figure class="bn-item bn-item--story"><span class="ring bn-ring"><img src="banners/s/lr-stories-05-600.webp" srcset="banners/s/lr-stories-05-600.webp 600w, banners/s/lr-stories-05-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: 33 SC on first purchase" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
-            <figure class="bn-item bn-item--story"><span class="ring bn-ring"><img src="banners/s/lr-stories-11-600.webp" srcset="banners/s/lr-stories-11-600.webp 600w, banners/s/lr-stories-11-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: What Makes LuckyRush Casino" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
-            <figure class="bn-item bn-item--story"><span class="ring bn-ring"><img src="banners/s/lr-stories-12-600.webp" srcset="banners/s/lr-stories-12-600.webp 600w, banners/s/lr-stories-12-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: Follow LuckyRush’s Social Media" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
-            <figure class="bn-item bn-item--story"><span class="ring bn-ring"><img src="banners/s/lr-stories-13-600.webp" srcset="banners/s/lr-stories-13-600.webp 600w, banners/s/lr-stories-13-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: Play. Spin. Win! The Halloween Way" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
-            <figure class="bn-item bn-item--wide"><span class="ring bn-ring"><img src="banners/s/lr-inapp-01-800.webp" srcset="banners/s/lr-inapp-01-800.webp 800w, banners/s/lr-inapp-01-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Lucky Rush in-app promo card: Referral Awards" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
-            <figure class="bn-item bn-item--wide"><span class="ring bn-ring"><img src="banners/s/lr-inapp-04-800.webp" srcset="banners/s/lr-inapp-04-800.webp 800w, banners/s/lr-inapp-04-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Lucky Rush in-app promo card: Lucky Hour Flash Sale" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
-            <figure class="bn-item bn-item--wide"><span class="ring bn-ring"><img src="banners/s/lr-inapp-08-800.webp" srcset="banners/s/lr-inapp-08-800.webp 800w, banners/s/lr-inapp-08-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Lucky Rush in-app promo card: Lucky Package of the Day" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
-            <figure class="bn-item bn-item--wide"><span class="ring bn-ring"><img src="banners/s/lr-inapp-06-800.webp" srcset="banners/s/lr-inapp-06-800.webp 800w, banners/s/lr-inapp-06-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Lucky Rush in-app promo card: VIP Program" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
-            <figure class="bn-item bn-item--wide"><span class="ring bn-ring"><img src="banners/s/lr-inapp-02-800.webp" srcset="banners/s/lr-inapp-02-800.webp 800w, banners/s/lr-inapp-02-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Lucky Rush in-app promo card: Login Rewards" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
-            <figure class="bn-item bn-item--wide"><span class="ring bn-ring"><img src="banners/s/lr-inapp-07-800.webp" srcset="banners/s/lr-inapp-07-800.webp 800w, banners/s/lr-inapp-07-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Lucky Rush in-app promo card: Starter Packages" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
-            <figure class="bn-item bn-item--wide"><span class="ring bn-ring"><img src="banners/s/lr-inapp-09-800.webp" srcset="banners/s/lr-inapp-09-800.webp 800w, banners/s/lr-inapp-09-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Lucky Rush in-app promo card: Weekly Rewards" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
-            <figure class="bn-item bn-item--wide"><span class="ring bn-ring"><img src="banners/s/lr-inapp-05-800.webp" srcset="banners/s/lr-inapp-05-800.webp 800w, banners/s/lr-inapp-05-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Lucky Rush in-app promo card: Rakeback Rewards" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
-            <figure class="bn-item bn-item--wide"><span class="ring bn-ring"><img src="banners/s/lr-inapp-03-800.webp" srcset="banners/s/lr-inapp-03-800.webp 800w, banners/s/lr-inapp-03-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Lucky Rush in-app promo card: Lucky Hour Super Sale" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
-            <figure class="bn-item bn-item--wide"><span class="ring bn-ring"><img src="banners/s/lr-inapp-10-800.webp" srcset="banners/s/lr-inapp-10-800.webp 800w, banners/s/lr-inapp-10-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Lucky Rush in-app promo card: Monthly Rewards" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
+          </div>
+        </div>
+      </div>
+      <div class="bn-group">
+        <h3 class="bn-label">Stories <span class="muted">Lucky Rush</span></h3>
+        <div class="bn-row bn-row--story" role="group" aria-roledescription="carousel" aria-label="Lucky Rush stories: 12. Drag, swipe or use the arrow keys to scroll." tabindex="0">
+          <div class="bn-track">
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-stories-03-600.webp" srcset="banners/s/lr-stories-03-600.webp 600w, banners/s/lr-stories-03-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: Tournament Live Now" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-stories-01-600.webp" srcset="banners/s/lr-stories-01-600.webp 600w, banners/s/lr-stories-01-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: Next Week Highlights" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-stories-08-600.webp" srcset="banners/s/lr-stories-08-600.webp 600w, banners/s/lr-stories-08-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: Welcome Offer" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-stories-10-600.webp" srcset="banners/s/lr-stories-10-600.webp 600w, banners/s/lr-stories-10-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: Jackpot Winner" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-stories-02-600.webp" srcset="banners/s/lr-stories-02-600.webp 600w, banners/s/lr-stories-02-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: Today’s Tournaments" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-stories-06-600.webp" srcset="banners/s/lr-stories-06-600.webp 600w, banners/s/lr-stories-06-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: Today’s Featured Package" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-stories-09-600.webp" srcset="banners/s/lr-stories-09-600.webp 600w, banners/s/lr-stories-09-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: Top Winners of the Month" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-stories-04-600.webp" srcset="banners/s/lr-stories-04-600.webp 600w, banners/s/lr-stories-04-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: What Players Say" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-stories-05-600.webp" srcset="banners/s/lr-stories-05-600.webp 600w, banners/s/lr-stories-05-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: 33 SC on first purchase" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-stories-11-600.webp" srcset="banners/s/lr-stories-11-600.webp 600w, banners/s/lr-stories-11-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: What Makes LuckyRush Casino" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-stories-12-600.webp" srcset="banners/s/lr-stories-12-600.webp 600w, banners/s/lr-stories-12-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: Follow LuckyRush’s Social Media" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-stories-13-600.webp" srcset="banners/s/lr-stories-13-600.webp 600w, banners/s/lr-stories-13-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Lucky Rush story: Play. Spin. Win! The Halloween Way" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
+          </div>
+        </div>
+      </div>
+      <div class="bn-group">
+        <h3 class="bn-label">In-App Promo Cards <span class="muted">Lucky Rush</span></h3>
+        <div class="bn-row bn-row--wide" role="group" aria-roledescription="carousel" aria-label="Lucky Rush in-app promo cards: 10. Drag, swipe or use the arrow keys to scroll." tabindex="0">
+          <div class="bn-track">
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-inapp-01-800.webp" srcset="banners/s/lr-inapp-01-800.webp 800w, banners/s/lr-inapp-01-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Lucky Rush in-app promo card: Referral Awards" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-inapp-04-800.webp" srcset="banners/s/lr-inapp-04-800.webp 800w, banners/s/lr-inapp-04-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Lucky Rush in-app promo card: Lucky Hour Flash Sale" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-inapp-08-800.webp" srcset="banners/s/lr-inapp-08-800.webp 800w, banners/s/lr-inapp-08-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Lucky Rush in-app promo card: Lucky Package of the Day" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-inapp-06-800.webp" srcset="banners/s/lr-inapp-06-800.webp 800w, banners/s/lr-inapp-06-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Lucky Rush in-app promo card: VIP Program" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-inapp-02-800.webp" srcset="banners/s/lr-inapp-02-800.webp 800w, banners/s/lr-inapp-02-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Lucky Rush in-app promo card: Login Rewards" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-inapp-07-800.webp" srcset="banners/s/lr-inapp-07-800.webp 800w, banners/s/lr-inapp-07-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Lucky Rush in-app promo card: Starter Packages" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-inapp-09-800.webp" srcset="banners/s/lr-inapp-09-800.webp 800w, banners/s/lr-inapp-09-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Lucky Rush in-app promo card: Weekly Rewards" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-inapp-05-800.webp" srcset="banners/s/lr-inapp-05-800.webp 800w, banners/s/lr-inapp-05-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Lucky Rush in-app promo card: Rakeback Rewards" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-inapp-03-800.webp" srcset="banners/s/lr-inapp-03-800.webp 800w, banners/s/lr-inapp-03-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Lucky Rush in-app promo card: Lucky Hour Super Sale" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-inapp-10-800.webp" srcset="banners/s/lr-inapp-10-800.webp 800w, banners/s/lr-inapp-10-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Lucky Rush in-app promo card: Monthly Rewards" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
+          </div>
+        </div>
+      </div>
+      <div class="bn-group">
+        <h3 class="bn-label">Event Themed Posts <span class="muted">Lucky Rush</span></h3>
+        <div class="bn-row bn-row--post" role="group" aria-roledescription="carousel" aria-label="Lucky Rush event themed posts: 8. Drag, swipe or use the arrow keys to scroll." tabindex="0">
+          <div class="bn-track">
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-event-01-600.webp" srcset="banners/s/lr-event-01-600.webp 600w, banners/s/lr-event-01-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Lucky Rush social post: Happy New Year" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-event-02-600.webp" srcset="banners/s/lr-event-02-600.webp 600w, banners/s/lr-event-02-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Lucky Rush social post: Merry Christmas" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/lr-event-03-600.webp" srcset="banners/s/lr-event-03-600.webp 600w, banners/s/lr-event-03-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Lucky Rush social post: Merry Christmas" loading="lazy" decoding="async" draggable="false"></span><figcaption>Lucky Rush</figcaption></figure>
@@ -2178,7 +2208,7 @@
       </div>
       <div class="bn-group">
         <h3 class="bn-label">Daily Banners <span class="muted">Tao Sweeps</span></h3>
-        <div class="bn-row bn-row--post bn-row--mixed" role="group" aria-roledescription="carousel" aria-label="Tao Sweeps banners: 42. Drag, swipe or use the arrow keys to scroll." tabindex="0">
+        <div class="bn-row bn-row--post" role="group" aria-roledescription="carousel" aria-label="Tao Sweeps daily banners: 31. Drag, swipe or use the arrow keys to scroll." tabindex="0">
           <div class="bn-track">
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/tao-daily-01-600.webp" srcset="banners/s/tao-daily-01-600.webp 600w, banners/s/tao-daily-01-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Tao Sweeps social post: Reel of the Week" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/tao-daily-10-600.webp" srcset="banners/s/tao-daily-10-600.webp 600w, banners/s/tao-daily-10-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Tao Sweeps social post: Slot Showdown" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
@@ -2211,14 +2241,35 @@
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/tao-daily-32-600.webp" srcset="banners/s/tao-daily-32-600.webp 600w, banners/s/tao-daily-32-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Tao Sweeps social post: Fish Tables Spotlight" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/tao-daily-34-600.webp" srcset="banners/s/tao-daily-34-600.webp 600w, banners/s/tao-daily-34-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Tao Sweeps social post: Spin Battle and Aqua Battle tournaments" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/tao-daily-x-05-600.webp" srcset="banners/s/tao-daily-x-05-600.webp 600w, banners/s/tao-daily-x-05-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Tao Sweeps social post: Become Our Affiliate Today" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
-            <figure class="bn-item bn-item--story"><span class="ring bn-ring"><img src="banners/s/tao-stories-01-600.webp" srcset="banners/s/tao-stories-01-600.webp 600w, banners/s/tao-stories-01-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Tao Sweeps story: America’s Most Trusted Social Casino" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
-            <figure class="bn-item bn-item--wide"><span class="ring bn-ring"><img src="banners/s/tao-inapp-01-800.webp" srcset="banners/s/tao-inapp-01-800.webp 800w, banners/s/tao-inapp-01-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Tao Sweeps in-app promo card: Referral Rewards" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
-            <figure class="bn-item bn-item--wide"><span class="ring bn-ring"><img src="banners/s/tao-inapp-04-800.webp" srcset="banners/s/tao-inapp-04-800.webp 800w, banners/s/tao-inapp-04-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Tao Sweeps in-app promo card: Starter Packages" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
-            <figure class="bn-item bn-item--wide"><span class="ring bn-ring"><img src="banners/s/tao-inapp-03-800.webp" srcset="banners/s/tao-inapp-03-800.webp 800w, banners/s/tao-inapp-03-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Tao Sweeps in-app promo card: Rakeback Rewards" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
-            <figure class="bn-item bn-item--wide"><span class="ring bn-ring"><img src="banners/s/tao-inapp-05-800.webp" srcset="banners/s/tao-inapp-05-800.webp 800w, banners/s/tao-inapp-05-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Tao Sweeps in-app promo card: Lucky Package of the Day" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
-            <figure class="bn-item bn-item--wide"><span class="ring bn-ring"><img src="banners/s/tao-inapp-02-800.webp" srcset="banners/s/tao-inapp-02-800.webp 800w, banners/s/tao-inapp-02-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Tao Sweeps in-app promo card: Login Rewards" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
-            <figure class="bn-item bn-item--wide"><span class="ring bn-ring"><img src="banners/s/tao-inapp-06-800.webp" srcset="banners/s/tao-inapp-06-800.webp 800w, banners/s/tao-inapp-06-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Tao Sweeps in-app promo card: Weekly Rewards" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
-            <figure class="bn-item bn-item--wide"><span class="ring bn-ring"><img src="banners/s/tao-inapp-07-800.webp" srcset="banners/s/tao-inapp-07-800.webp 800w, banners/s/tao-inapp-07-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Tao Sweeps in-app promo card: Monthly Rewards" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
+          </div>
+        </div>
+      </div>
+      <div class="bn-group">
+        <h3 class="bn-label">Stories <span class="muted">Tao Sweeps</span></h3>
+        <div class="bn-row bn-row--story" role="group" aria-roledescription="carousel" aria-label="Tao Sweeps stories: 1. Drag, swipe or use the arrow keys to scroll." tabindex="0">
+          <div class="bn-track">
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/tao-stories-01-600.webp" srcset="banners/s/tao-stories-01-600.webp 600w, banners/s/tao-stories-01-1080.webp 1080w" sizes="(max-width: 640px) 62vw, 370px" width="1080" height="1920" alt="Tao Sweeps story: America’s Most Trusted Social Casino" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
+          </div>
+        </div>
+      </div>
+      <div class="bn-group">
+        <h3 class="bn-label">In-App Promo Cards <span class="muted">Tao Sweeps</span></h3>
+        <div class="bn-row bn-row--wide" role="group" aria-roledescription="carousel" aria-label="Tao Sweeps in-app promo cards: 7. Drag, swipe or use the arrow keys to scroll." tabindex="0">
+          <div class="bn-track">
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/tao-inapp-01-800.webp" srcset="banners/s/tao-inapp-01-800.webp 800w, banners/s/tao-inapp-01-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Tao Sweeps in-app promo card: Referral Rewards" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/tao-inapp-04-800.webp" srcset="banners/s/tao-inapp-04-800.webp 800w, banners/s/tao-inapp-04-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Tao Sweeps in-app promo card: Starter Packages" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/tao-inapp-03-800.webp" srcset="banners/s/tao-inapp-03-800.webp 800w, banners/s/tao-inapp-03-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Tao Sweeps in-app promo card: Rakeback Rewards" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/tao-inapp-05-800.webp" srcset="banners/s/tao-inapp-05-800.webp 800w, banners/s/tao-inapp-05-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Tao Sweeps in-app promo card: Lucky Package of the Day" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/tao-inapp-02-800.webp" srcset="banners/s/tao-inapp-02-800.webp 800w, banners/s/tao-inapp-02-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Tao Sweeps in-app promo card: Login Rewards" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/tao-inapp-06-800.webp" srcset="banners/s/tao-inapp-06-800.webp 800w, banners/s/tao-inapp-06-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Tao Sweeps in-app promo card: Weekly Rewards" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/tao-inapp-07-800.webp" srcset="banners/s/tao-inapp-07-800.webp 800w, banners/s/tao-inapp-07-1330.webp 1330w" sizes="(max-width: 640px) 86vw, 760px" width="1330" height="795" alt="Tao Sweeps in-app promo card: Monthly Rewards" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
+          </div>
+        </div>
+      </div>
+      <div class="bn-group">
+        <h3 class="bn-label">Event Themed Posts <span class="muted">Tao Sweeps</span></h3>
+        <div class="bn-row bn-row--post" role="group" aria-roledescription="carousel" aria-label="Tao Sweeps event themed posts: 3. Drag, swipe or use the arrow keys to scroll." tabindex="0">
+          <div class="bn-track">
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/tao-event-lr12-600.webp" srcset="banners/s/tao-event-lr12-600.webp 600w, banners/s/tao-event-lr12-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Tao Sweeps social post: Happy St. Patrick Day" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/tao-daily-11-600.webp" srcset="banners/s/tao-daily-11-600.webp 600w, banners/s/tao-daily-11-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Tao Sweeps social post: Happy Mother’s Day" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/tao-event-03-600.webp" srcset="banners/s/tao-event-03-600.webp 600w, banners/s/tao-event-03-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Tao Sweeps social post: Valentine’s Day artwork" loading="lazy" decoding="async" draggable="false"></span><figcaption>Tao Sweeps</figcaption></figure>
@@ -2227,7 +2278,7 @@
       </div>
       <div class="bn-group">
         <h3 class="bn-label">Daily Banners <span class="muted">Fortuna Rush</span></h3>
-        <div class="bn-row bn-row--post bn-row--mixed" role="group" aria-roledescription="carousel" aria-label="Fortuna Rush banners: 21. Drag, swipe or use the arrow keys to scroll." tabindex="0">
+        <div class="bn-row bn-row--post" role="group" aria-roledescription="carousel" aria-label="Fortuna Rush daily banners: 20. Drag, swipe or use the arrow keys to scroll." tabindex="0">
           <div class="bn-track">
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/fr-daily-01-600.webp" srcset="banners/s/fr-daily-01-600.webp 600w, banners/s/fr-daily-01-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Fortuna Rush social post: Welcome Offer" loading="lazy" decoding="async" draggable="false"></span><figcaption>Fortuna Rush</figcaption></figure>
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/fr-daily-19-600.webp" srcset="banners/s/fr-daily-19-600.webp 600w, banners/s/fr-daily-19-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Fortuna Rush social post: Fortune Pick of the Week" loading="lazy" decoding="async" draggable="false"></span><figcaption>Fortuna Rush</figcaption></figure>
@@ -2249,13 +2300,20 @@
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/fr-daily-14-600.webp" srcset="banners/s/fr-daily-14-600.webp 600w, banners/s/fr-daily-14-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Fortuna Rush social post: Beach or Mountains?" loading="lazy" decoding="async" draggable="false"></span><figcaption>Fortuna Rush</figcaption></figure>
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/fr-daily-07-600.webp" srcset="banners/s/fr-daily-07-600.webp 600w, banners/s/fr-daily-07-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Fortuna Rush social post: How to Play in 3 Steps" loading="lazy" decoding="async" draggable="false"></span><figcaption>Fortuna Rush</figcaption></figure>
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/fr-daily-13-600.webp" srcset="banners/s/fr-daily-13-600.webp 600w, banners/s/fr-daily-13-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Fortuna Rush social post: Honor the Heroes" loading="lazy" decoding="async" draggable="false"></span><figcaption>Fortuna Rush</figcaption></figure>
+          </div>
+        </div>
+      </div>
+      <div class="bn-group">
+        <h3 class="bn-label">Event Themed Posts <span class="muted">Fortuna Rush</span></h3>
+        <div class="bn-row bn-row--post" role="group" aria-roledescription="carousel" aria-label="Fortuna Rush event themed posts: 1. Drag, swipe or use the arrow keys to scroll." tabindex="0">
+          <div class="bn-track">
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/fr-daily-08-600.webp" srcset="banners/s/fr-daily-08-600.webp 600w, banners/s/fr-daily-08-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Fortuna Rush social post: Happy Mother’s Day" loading="lazy" decoding="async" draggable="false"></span><figcaption>Fortuna Rush</figcaption></figure>
           </div>
         </div>
       </div>
       <div class="bn-group">
         <h3 class="bn-label">Daily Banners <span class="muted">GoatBet</span></h3>
-        <div class="bn-row bn-row--post bn-row--mixed" role="group" aria-roledescription="carousel" aria-label="GoatBet banners: 19. Drag, swipe or use the arrow keys to scroll." tabindex="0">
+        <div class="bn-row bn-row--post" role="group" aria-roledescription="carousel" aria-label="GoatBet daily banners: 19. Drag, swipe or use the arrow keys to scroll." tabindex="0">
           <div class="bn-track">
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/gb-daily-01-600.webp" srcset="banners/s/gb-daily-01-600.webp 600w, banners/s/gb-daily-01-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="GoatBet social post: Greatest of All. Play Free." loading="lazy" decoding="async" draggable="false"></span><figcaption>GoatBet</figcaption></figure>
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/gb-daily-16-600.webp" srcset="banners/s/gb-daily-16-600.webp 600w, banners/s/gb-daily-16-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="GoatBet social post: Game of the Week" loading="lazy" decoding="async" draggable="false"></span><figcaption>GoatBet</figcaption></figure>
@@ -2280,8 +2338,8 @@
         </div>
       </div>
       <div class="bn-group">
-        <h3 class="bn-label">Daily Banners <span class="muted">WinArcade</span></h3>
-        <div class="bn-row bn-row--post bn-row--mixed" role="group" aria-roledescription="carousel" aria-label="WinArcade banners: 10. Drag, swipe or use the arrow keys to scroll." tabindex="0">
+        <h3 class="bn-label">Launch Campaign <span class="muted">WinArcade</span></h3>
+        <div class="bn-row bn-row--post" role="group" aria-roledescription="carousel" aria-label="WinArcade launch campaign posts: 10. Drag, swipe or use the arrow keys to scroll." tabindex="0">
           <div class="bn-track">
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/wa-launch-01-600.webp" srcset="banners/s/wa-launch-01-600.webp 600w, banners/s/wa-launch-01-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="WinArcade social post: Coming August" loading="lazy" decoding="async" draggable="false"></span><figcaption>WinArcade</figcaption></figure>
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/wa-launch-02-600.webp" srcset="banners/s/wa-launch-02-600.webp 600w, banners/s/wa-launch-02-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="WinArcade social post: Play Mega. Win Cash." loading="lazy" decoding="async" draggable="false"></span><figcaption>WinArcade</figcaption></figure>
@@ -2297,8 +2355,8 @@
         </div>
       </div>
       <div class="bn-group">
-        <h3 class="bn-label">Daily Banners <span class="muted">Collectify</span></h3>
-        <div class="bn-row bn-row--post bn-row--mixed" role="group" aria-roledescription="carousel" aria-label="Collectify banners: 14. Drag, swipe or use the arrow keys to scroll." tabindex="0">
+        <h3 class="bn-label">Product Posts <span class="muted">Collectify</span></h3>
+        <div class="bn-row bn-row--post" role="group" aria-roledescription="carousel" aria-label="Collectify product posts: 14. Drag, swipe or use the arrow keys to scroll." tabindex="0">
           <div class="bn-track">
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cf-product-01-600.webp" srcset="banners/s/cf-product-01-600.webp 600w, banners/s/cf-product-01-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectify social post: Digital pack. Real card." loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectify</figcaption></figure>
             <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cf-product-11-600.webp" srcset="banners/s/cf-product-11-600.webp 600w, banners/s/cf-product-11-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectify social post: Skip the bulk. Get the hit." loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectify</figcaption></figure>
@@ -2349,7 +2407,7 @@
     <h2 class="section-title" id="mp-title">Motion</h2>
     <div class="motion-list">
       <div class="motion-group">
-        <h3 class="motion-label">Lucky Rush <span class="muted">Video ads</span></h3>
+        <h3 class="motion-label">Lucky Rush <span class="muted">Video ads</span> <a class="motion-drive" href="https://drive.google.com/drive/folders/1DCZb0P5HvSqu1GtyxofxJwQDib9ZcLaa?usp=sharing" target="_blank" rel="noopener">More videos on Google Drive</a></h3>
         <div class="motion-row">
           <figure class="shot is-portrait ring"><div class="motion-frame"><video src="video/lr-ad-ugc.mp4" poster="video/lr-ad-ugc-poster.webp" width="720" height="1280" muted loop playsinline preload="none" data-autoplay aria-label="Lucky Rush video ad: the mascot and Ocean King gameplay"></video><button class="video-sound" type="button" aria-pressed="false" aria-label="Sound on"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div></figure>
           <figure class="shot is-portrait ring"><div class="motion-frame"><video src="video/lr-ad-promo.mp4" poster="video/lr-ad-promo-poster.webp" width="720" height="1280" muted loop playsinline preload="none" data-autoplay aria-label="Lucky Rush promo video: gold coins, instant prize redemption and three easy steps"></video><button class="video-sound" type="button" aria-pressed="false" aria-label="Sound on"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div></figure>
@@ -2357,14 +2415,14 @@
         </div>
       </div>
       <div class="motion-group motion-group--trailers">
-        <h3 class="motion-label">1Spin4Win <span class="muted">Game release trailers</span></h3>
+        <h3 class="motion-label">1Spin4Win <span class="muted">Game release trailers</span> <a class="motion-drive" href="https://drive.google.com/drive/folders/1DCZb0P5HvSqu1GtyxofxJwQDib9ZcLaa?usp=sharing" target="_blank" rel="noopener">More videos on Google Drive</a></h3>
         <div class="motion-row">
           <figure class="shot is-landscape ring"><div class="motion-frame"><video src="video/cash-n-fruits.mp4" poster="video/cash-n-fruits-poster.webp" width="1280" height="720" muted loop playsinline preload="none" data-autoplay aria-label="Cash’n Fruits 40: game release trailer for 1Spin4Win"></video><button class="video-sound" type="button" aria-pressed="false" aria-label="Sound on"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div></figure>
           <figure class="shot is-landscape ring"><div class="motion-frame"><video src="video/classic-chilli-fortune.mp4" poster="video/classic-chilli-fortune-poster.webp" width="1280" height="720" muted loop playsinline preload="none" data-autoplay aria-label="Classic Chilli Fortune: game release trailer for 1Spin4Win"></video><button class="video-sound" type="button" aria-pressed="false" aria-label="Sound on"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div></figure>
         </div>
       </div>
       <div class="motion-group">
-        <h3 class="motion-label">Rectangle Games <span class="muted">Motion</span></h3>
+        <h3 class="motion-label">Rectangle Games <span class="muted">Motion</span> <a class="motion-drive" href="https://drive.google.com/drive/folders/1DCZb0P5HvSqu1GtyxofxJwQDib9ZcLaa?usp=sharing" target="_blank" rel="noopener">More videos on Google Drive</a></h3>
         <div class="motion-row motion-row--quad">
           <figure class="shot ring"><div class="motion-frame motion-frame--wide"><iframe src="https://player.vimeo.com/video/1201715813?background=1&amp;dnt=1" title="Rectangle Games motion clip 1" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></figure>
           <figure class="shot ring"><div class="motion-frame motion-frame--wide"><iframe src="https://player.vimeo.com/video/1201715827?background=1&amp;dnt=1" title="Rectangle Games motion clip 2" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></figure>
