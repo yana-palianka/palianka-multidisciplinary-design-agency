@@ -600,6 +600,57 @@
   /* Banners Production inside a case: the same looping rows, with that brand's banners only */
   .case-banners { margin-top: clamp(64px, 7vw, 140px); }
 
+  /* B2C / B2B switch on the Banners page: text tabs with a gradient underline, like the Cases tabs */
+  .bn-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(24px, 3vw, 44px);
+    margin: 0 0 clamp(28px, 3vw, 44px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .bn-tab {
+    -webkit-appearance: none;
+    appearance: none;
+    position: relative;
+    margin: 0;
+    padding: 0 0 14px;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    font: inherit;
+    font-size: clamp(16px, 1.3vw, 20px);
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--dim);
+    cursor: pointer;
+    transition: color 260ms ease;
+  }
+
+  .bn-tab:hover { color: var(--white); }
+
+  .bn-tab:focus-visible { outline: 2px solid var(--white); outline-offset: 4px; border-radius: 2px; }
+
+  .bn-tab::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: var(--grad-brand);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 360ms cubic-bezier(0.3, 0.75, 0.2, 1);
+  }
+
+  .bn-tab[aria-pressed="true"] { color: var(--white); }
+  .bn-tab[aria-pressed="true"]::after { transform: scaleX(1); }
+
+  /* Only the panel of the open tab is shown */
+  #banners-page[data-bview="b2c"] [data-bn-panel="b2b"],
+  #banners-page[data-bview="b2b"] [data-bn-panel="b2c"] { display: none; }
+
   .bn-item figcaption {
     margin-top: 10px;
     font-size: var(--fs-small);
@@ -614,6 +665,17 @@
     .bn-row--screen { --bn-h: min(122vw, 78vh); }
   }
 
+
+  .motion-more {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-top: clamp(48px, 5vw, 96px);
+    text-align: center;
+  }
+
+  .motion-more-note { margin: 0; font-size: var(--fs-small); color: var(--grey); }
 
   /* ---------- Motion Graphics ---------- */
 
@@ -715,6 +777,9 @@
   .ring:has(:focus-visible)::before { opacity: 1; }
 
   .bn-ring { display: block; width: fit-content; border-radius: var(--radius-sm); }
+
+  /* B2B banners have no hover frame */
+  [data-bn-panel="b2b"] .bn-ring::before { display: none; }
 
   .about-talk { margin-top: 28px; }
 
@@ -2241,9 +2306,13 @@
     </div>
   </section>
 
-  <section class="section stream" id="banners-page" data-page="banners" aria-labelledby="bpp-title">
+  <section class="section stream" id="banners-page" data-page="banners" data-bview="b2c" aria-labelledby="bpp-title">
     <h2 class="section-title stream-title" id="bpp-title">Banners Production <span class="muted">Design Stream</span></h2>
-    <div class="bn-list">
+    <div class="bn-tabs" role="group" aria-label="Banner type">
+      <button type="button" class="bn-tab" aria-pressed="true" data-bn-tab="b2c">B2C</button>
+      <button type="button" class="bn-tab" aria-pressed="false" data-bn-tab="b2b">B2B</button>
+    </div>
+    <div class="bn-list" data-bn-panel="b2c">
       <div class="bn-group">
         <h3 class="bn-label">Daily Banners <span class="muted">Lucky Rush</span></h3>
         <div class="bn-row bn-row--post" role="group" aria-roledescription="carousel" aria-label="Lucky Rush daily banners: 28. Drag, swipe or use the arrow keys to scroll." tabindex="0">
@@ -2505,12 +2574,124 @@
         </div>
       </div>
     </div>
+    <div class="bn-list" data-bn-panel="b2b">
+      <div class="bn-group">
+        <h3 class="bn-label">Banners <span class="muted">One Spin for Win</span></h3>
+        <div class="bn-row bn-row--wide" role="group" aria-roledescription="carousel" aria-label="One Spin for Win banners: 3. Drag, swipe or use the arrow keys to scroll." tabindex="0">
+          <div class="bn-track">
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-1spin-01-600.webp" srcset="banners/s/b2b-1spin-01-600.webp 600w, banners/s/b2b-1spin-01-1080.webp 1080w" sizes="(max-width: 640px) 90vw, 760px" width="1080" height="608" alt="One Spin for Win banner 1" loading="lazy" decoding="async" draggable="false"></span><figcaption>One Spin for Win</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-1spin-02-600.webp" srcset="banners/s/b2b-1spin-02-600.webp 600w, banners/s/b2b-1spin-02-1080.webp 1080w" sizes="(max-width: 640px) 90vw, 760px" width="1080" height="608" alt="One Spin for Win banner 2" loading="lazy" decoding="async" draggable="false"></span><figcaption>One Spin for Win</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-1spin-03-600.webp" srcset="banners/s/b2b-1spin-03-600.webp 600w, banners/s/b2b-1spin-03-1080.webp 1080w" sizes="(max-width: 640px) 90vw, 760px" width="1080" height="608" alt="One Spin for Win banner 3" loading="lazy" decoding="async" draggable="false"></span><figcaption>One Spin for Win</figcaption></figure>
+          </div>
+        </div>
+      </div>
+      <div class="bn-group">
+        <h3 class="bn-label">Banners <span class="muted">Big Gaming</span></h3>
+        <div class="bn-row bn-row--post" role="group" aria-roledescription="carousel" aria-label="Big Gaming banners: 11. Drag, swipe or use the arrow keys to scroll." tabindex="0">
+          <div class="bn-track">
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-bgaming-01-600.webp" srcset="banners/s/b2b-bgaming-01-600.webp 600w, banners/s/b2b-bgaming-01-1080.webp 1080w" sizes="(max-width: 640px) 95vw, 600px" width="1080" height="1080" alt="Big Gaming banner 1" loading="lazy" decoding="async" draggable="false"></span><figcaption>Big Gaming</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-bgaming-02-600.webp" srcset="banners/s/b2b-bgaming-02-600.webp 600w, banners/s/b2b-bgaming-02-1080.webp 1080w" sizes="(max-width: 640px) 95vw, 600px" width="1080" height="1080" alt="Big Gaming banner 2" loading="lazy" decoding="async" draggable="false"></span><figcaption>Big Gaming</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-bgaming-03-600.webp" srcset="banners/s/b2b-bgaming-03-600.webp 600w, banners/s/b2b-bgaming-03-1080.webp 1080w" sizes="(max-width: 640px) 95vw, 600px" width="1080" height="1080" alt="Big Gaming banner 3" loading="lazy" decoding="async" draggable="false"></span><figcaption>Big Gaming</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-bgaming-04-600.webp" srcset="banners/s/b2b-bgaming-04-600.webp 600w, banners/s/b2b-bgaming-04-1080.webp 1080w" sizes="(max-width: 640px) 95vw, 600px" width="1080" height="1080" alt="Big Gaming banner 4" loading="lazy" decoding="async" draggable="false"></span><figcaption>Big Gaming</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-bgaming-05-600.webp" srcset="banners/s/b2b-bgaming-05-600.webp 600w, banners/s/b2b-bgaming-05-1080.webp 1080w" sizes="(max-width: 640px) 95vw, 600px" width="1080" height="1080" alt="Big Gaming banner 5" loading="lazy" decoding="async" draggable="false"></span><figcaption>Big Gaming</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-bgaming-06-600.webp" srcset="banners/s/b2b-bgaming-06-600.webp 600w, banners/s/b2b-bgaming-06-1080.webp 1080w" sizes="(max-width: 640px) 95vw, 600px" width="1080" height="1080" alt="Big Gaming banner 6" loading="lazy" decoding="async" draggable="false"></span><figcaption>Big Gaming</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-bgaming-07-600.webp" srcset="banners/s/b2b-bgaming-07-600.webp 600w, banners/s/b2b-bgaming-07-1080.webp 1080w" sizes="(max-width: 640px) 95vw, 600px" width="1080" height="1080" alt="Big Gaming banner 7" loading="lazy" decoding="async" draggable="false"></span><figcaption>Big Gaming</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-bgaming-08-600.webp" srcset="banners/s/b2b-bgaming-08-600.webp 600w, banners/s/b2b-bgaming-08-1080.webp 1080w" sizes="(max-width: 640px) 95vw, 600px" width="1080" height="1080" alt="Big Gaming banner 8" loading="lazy" decoding="async" draggable="false"></span><figcaption>Big Gaming</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-bgaming-09-600.webp" srcset="banners/s/b2b-bgaming-09-600.webp 600w, banners/s/b2b-bgaming-09-1080.webp 1080w" sizes="(max-width: 640px) 95vw, 600px" width="1080" height="1080" alt="Big Gaming banner 9" loading="lazy" decoding="async" draggable="false"></span><figcaption>Big Gaming</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-bgaming-10-600.webp" srcset="banners/s/b2b-bgaming-10-600.webp 600w, banners/s/b2b-bgaming-10-1080.webp 1080w" sizes="(max-width: 640px) 95vw, 600px" width="1080" height="1080" alt="Big Gaming banner 10" loading="lazy" decoding="async" draggable="false"></span><figcaption>Big Gaming</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-bgaming-11-600.webp" srcset="banners/s/b2b-bgaming-11-600.webp 600w, banners/s/b2b-bgaming-11-1080.webp 1080w" sizes="(max-width: 640px) 95vw, 600px" width="1080" height="1080" alt="Big Gaming banner 11" loading="lazy" decoding="async" draggable="false"></span><figcaption>Big Gaming</figcaption></figure>
+          </div>
+        </div>
+      </div>
+      <div class="bn-group">
+        <h3 class="bn-label">Onlyplay <span class="muted">Brand Announcement</span></h3>
+        <div class="bn-row bn-row--post" role="group" aria-roledescription="carousel" aria-label="Onlyplay brand announcements: 19. Drag, swipe or use the arrow keys to scroll." tabindex="0">
+          <div class="bn-track">
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-brand-01-600.webp" srcset="banners/s/b2b-onlyplay-brand-01-600.webp 600w, banners/s/b2b-onlyplay-brand-01-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay brand announcement 1" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-brand-02-600.webp" srcset="banners/s/b2b-onlyplay-brand-02-600.webp 600w, banners/s/b2b-onlyplay-brand-02-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay brand announcement 2" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-brand-03-600.webp" srcset="banners/s/b2b-onlyplay-brand-03-600.webp 600w, banners/s/b2b-onlyplay-brand-03-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay brand announcement 3" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-brand-04-600.webp" srcset="banners/s/b2b-onlyplay-brand-04-600.webp 600w, banners/s/b2b-onlyplay-brand-04-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay brand announcement 4" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-brand-05-600.webp" srcset="banners/s/b2b-onlyplay-brand-05-600.webp 600w, banners/s/b2b-onlyplay-brand-05-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay brand announcement 5" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-brand-06-600.webp" srcset="banners/s/b2b-onlyplay-brand-06-600.webp 600w, banners/s/b2b-onlyplay-brand-06-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay brand announcement 6" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-brand-07-600.webp" srcset="banners/s/b2b-onlyplay-brand-07-600.webp 600w, banners/s/b2b-onlyplay-brand-07-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay brand announcement 7" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-brand-08-600.webp" srcset="banners/s/b2b-onlyplay-brand-08-600.webp 600w, banners/s/b2b-onlyplay-brand-08-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay brand announcement 8" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-brand-09-600.webp" srcset="banners/s/b2b-onlyplay-brand-09-600.webp 600w, banners/s/b2b-onlyplay-brand-09-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay brand announcement 9" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-brand-10-600.webp" srcset="banners/s/b2b-onlyplay-brand-10-600.webp 600w, banners/s/b2b-onlyplay-brand-10-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay brand announcement 10" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-brand-11-600.webp" srcset="banners/s/b2b-onlyplay-brand-11-600.webp 600w, banners/s/b2b-onlyplay-brand-11-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay brand announcement 11" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-brand-12-600.webp" srcset="banners/s/b2b-onlyplay-brand-12-600.webp 600w, banners/s/b2b-onlyplay-brand-12-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay brand announcement 12" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-brand-13-600.webp" srcset="banners/s/b2b-onlyplay-brand-13-600.webp 600w, banners/s/b2b-onlyplay-brand-13-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay brand announcement 13" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-brand-14-600.webp" srcset="banners/s/b2b-onlyplay-brand-14-600.webp 600w, banners/s/b2b-onlyplay-brand-14-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay brand announcement 14" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-brand-15-600.webp" srcset="banners/s/b2b-onlyplay-brand-15-600.webp 600w, banners/s/b2b-onlyplay-brand-15-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay brand announcement 15" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-brand-16-600.webp" srcset="banners/s/b2b-onlyplay-brand-16-600.webp 600w, banners/s/b2b-onlyplay-brand-16-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay brand announcement 16" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-brand-17-600.webp" srcset="banners/s/b2b-onlyplay-brand-17-600.webp 600w, banners/s/b2b-onlyplay-brand-17-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay brand announcement 17" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-brand-18-600.webp" srcset="banners/s/b2b-onlyplay-brand-18-600.webp 600w, banners/s/b2b-onlyplay-brand-18-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay brand announcement 18" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-brand-19-600.webp" srcset="banners/s/b2b-onlyplay-brand-19-600.webp 600w, banners/s/b2b-onlyplay-brand-19-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay brand announcement 19" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+          </div>
+        </div>
+      </div>
+      <div class="bn-group">
+        <h3 class="bn-label">Onlyplay <span class="muted">Game Releases</span></h3>
+        <div class="bn-row bn-row--post" role="group" aria-roledescription="carousel" aria-label="Onlyplay game releases: 8. Drag, swipe or use the arrow keys to scroll." tabindex="0">
+          <div class="bn-track">
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-releases-01-600.webp" srcset="banners/s/b2b-onlyplay-releases-01-600.webp 600w, banners/s/b2b-onlyplay-releases-01-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay game release 1" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-releases-02-600.webp" srcset="banners/s/b2b-onlyplay-releases-02-600.webp 600w, banners/s/b2b-onlyplay-releases-02-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay game release 2" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-releases-03-600.webp" srcset="banners/s/b2b-onlyplay-releases-03-600.webp 600w, banners/s/b2b-onlyplay-releases-03-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay game release 3" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-releases-04-600.webp" srcset="banners/s/b2b-onlyplay-releases-04-600.webp 600w, banners/s/b2b-onlyplay-releases-04-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay game release 4" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-releases-05-600.webp" srcset="banners/s/b2b-onlyplay-releases-05-600.webp 600w, banners/s/b2b-onlyplay-releases-05-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay game release 5" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-releases-06-600.webp" srcset="banners/s/b2b-onlyplay-releases-06-600.webp 600w, banners/s/b2b-onlyplay-releases-06-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay game release 6" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-releases-07-600.webp" srcset="banners/s/b2b-onlyplay-releases-07-600.webp 600w, banners/s/b2b-onlyplay-releases-07-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay game release 7" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/b2b-onlyplay-releases-08-600.webp" srcset="banners/s/b2b-onlyplay-releases-08-600.webp 600w, banners/s/b2b-onlyplay-releases-08-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Onlyplay game release 8" loading="lazy" decoding="async" draggable="false"></span><figcaption>Onlyplay</figcaption></figure>
+          </div>
+        </div>
+      </div>
+      <div class="bn-group">
+        <h3 class="bn-label">Banners <span class="muted">Collectem</span></h3>
+        <div class="bn-row bn-row--post" role="group" aria-roledescription="carousel" aria-label="Collectem banners: 26. Drag, swipe or use the arrow keys to scroll." tabindex="0">
+          <div class="bn-track">
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-01-600.webp" srcset="banners/s/cm-01-600.webp 600w, banners/s/cm-01-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 1" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-02-600.webp" srcset="banners/s/cm-02-600.webp 600w, banners/s/cm-02-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 2" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-03-600.webp" srcset="banners/s/cm-03-600.webp 600w, banners/s/cm-03-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 3" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-04-600.webp" srcset="banners/s/cm-04-600.webp 600w, banners/s/cm-04-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 4" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-05-600.webp" srcset="banners/s/cm-05-600.webp 600w, banners/s/cm-05-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 5" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-06-600.webp" srcset="banners/s/cm-06-600.webp 600w, banners/s/cm-06-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 6" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-07-600.webp" srcset="banners/s/cm-07-600.webp 600w, banners/s/cm-07-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 7" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-08-600.webp" srcset="banners/s/cm-08-600.webp 600w, banners/s/cm-08-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 8" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-09-600.webp" srcset="banners/s/cm-09-600.webp 600w, banners/s/cm-09-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 9" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-10-600.webp" srcset="banners/s/cm-10-600.webp 600w, banners/s/cm-10-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 10" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-11-600.webp" srcset="banners/s/cm-11-600.webp 600w, banners/s/cm-11-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 11" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-12-600.webp" srcset="banners/s/cm-12-600.webp 600w, banners/s/cm-12-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 12" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-13-600.webp" srcset="banners/s/cm-13-600.webp 600w, banners/s/cm-13-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 13" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-14-600.webp" srcset="banners/s/cm-14-600.webp 600w, banners/s/cm-14-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 14" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-15-600.webp" srcset="banners/s/cm-15-600.webp 600w, banners/s/cm-15-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 15" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-16-600.webp" srcset="banners/s/cm-16-600.webp 600w, banners/s/cm-16-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 16" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-17-600.webp" srcset="banners/s/cm-17-600.webp 600w, banners/s/cm-17-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 17" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-18-600.webp" srcset="banners/s/cm-18-600.webp 600w, banners/s/cm-18-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 18" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-19-600.webp" srcset="banners/s/cm-19-600.webp 600w, banners/s/cm-19-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 19" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-20-600.webp" srcset="banners/s/cm-20-600.webp 600w, banners/s/cm-20-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 20" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-21-600.webp" srcset="banners/s/cm-21-600.webp 600w, banners/s/cm-21-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 21" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-22-600.webp" srcset="banners/s/cm-22-600.webp 600w, banners/s/cm-22-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 22" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-23-600.webp" srcset="banners/s/cm-23-600.webp 600w, banners/s/cm-23-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 23" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-24-600.webp" srcset="banners/s/cm-24-600.webp 600w, banners/s/cm-24-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 24" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-25-600.webp" srcset="banners/s/cm-25-600.webp 600w, banners/s/cm-25-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 25" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+            <figure class="bn-item"><span class="ring bn-ring"><img src="banners/s/cm-26-600.webp" srcset="banners/s/cm-26-600.webp 600w, banners/s/cm-26-1080.webp 1080w" sizes="(max-width: 640px) 76vw, 520px" width="1080" height="1350" alt="Collectem banner 26" loading="lazy" decoding="async" draggable="false"></span><figcaption>Collectem</figcaption></figure>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
   <section class="section motion" id="motion-page" data-page="motion" aria-labelledby="mp-title">
     <h2 class="section-title" id="mp-title">Motion</h2>
     <div class="motion-list">
+      <div class="motion-group motion-group--onlyplay">
+        <h3 class="motion-label">Onlyplay <span class="muted">Promo videos</span> <a class="motion-drive" href="https://drive.google.com/drive/folders/1VVG5KXKcr8mzmoTz6Mr-4jd1tWLFuXJF?usp=sharing" target="_blank" rel="noopener">More videos on Google Drive</a></h3>
+        <div class="motion-row">
+          <figure class="shot is-square"><div class="motion-frame"><video src="video/onlyplay-intro.mp4" poster="video/onlyplay-intro-poster.webp" width="720" height="720" muted loop playsinline preload="none" data-autoplay aria-label="Onlyplay brand intro video: the new logo and the game characters"></video></div></figure>
+          <figure class="shot is-square"><div class="motion-frame"><video src="video/tiger-jackpots.mp4" poster="video/tiger-jackpots-poster.webp" width="720" height="720" muted loop playsinline preload="none" data-autoplay aria-label="Tiger Jackpots: game promo video for Onlyplay"></video><button class="video-sound" type="button" aria-pressed="false" aria-label="Sound on"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div></figure>
+          <figure class="shot is-square"><div class="motion-frame"><video src="video/3-rich-chickens.mp4" poster="video/3-rich-chickens-poster.webp" width="720" height="720" muted loop playsinline preload="none" data-autoplay aria-label="3 Rich Chickens: game promo video for Onlyplay"></video></div></figure>
+        </div>
+      </div>
       <div class="motion-group">
-        <h3 class="motion-label">Lucky Rush <span class="muted">Video ads</span> <a class="motion-drive" href="https://drive.google.com/drive/folders/1DCZb0P5HvSqu1GtyxofxJwQDib9ZcLaa?usp=sharing" target="_blank" rel="noopener">More videos on Google Drive</a></h3>
+        <h3 class="motion-label">Lucky Rush <span class="muted">Video ads</span> <a class="motion-drive" href="https://drive.google.com/drive/folders/12Gh_xDtF2Jh0m48ypxbTx9-54TDHxlZZ?usp=sharing" target="_blank" rel="noopener">More videos on Google Drive</a></h3>
         <div class="motion-row">
           <figure class="shot is-portrait"><div class="motion-frame"><video src="video/lr-ad-ugc.mp4" poster="video/lr-ad-ugc-poster.webp" width="720" height="1280" muted loop playsinline preload="none" data-autoplay aria-label="Lucky Rush video ad: the mascot and Ocean King gameplay"></video><button class="video-sound" type="button" aria-pressed="false" aria-label="Sound on"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div></figure>
           <figure class="shot is-portrait"><div class="motion-frame"><video src="video/lr-ad-promo.mp4" poster="video/lr-ad-promo-poster.webp" width="720" height="1280" muted loop playsinline preload="none" data-autoplay aria-label="Lucky Rush promo video: gold coins, instant prize redemption and three easy steps"></video><button class="video-sound" type="button" aria-pressed="false" aria-label="Sound on"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div></figure>
@@ -2518,14 +2699,14 @@
         </div>
       </div>
       <div class="motion-group motion-group--trailers">
-        <h3 class="motion-label">1Spin4Win <span class="muted">Game release trailers</span> <a class="motion-drive" href="https://drive.google.com/drive/folders/1DCZb0P5HvSqu1GtyxofxJwQDib9ZcLaa?usp=sharing" target="_blank" rel="noopener">More videos on Google Drive</a></h3>
+        <h3 class="motion-label">1Spin4Win <span class="muted">Game release trailers</span> <a class="motion-drive" href="https://drive.google.com/drive/folders/1nwy-jL7fd_BplakQyDAVj7r9FnkeHucA?usp=sharing" target="_blank" rel="noopener">More videos on Google Drive</a></h3>
         <div class="motion-row">
           <figure class="shot is-landscape"><div class="motion-frame"><video src="video/cash-n-fruits.mp4" poster="video/cash-n-fruits-poster.webp" width="1280" height="720" muted loop playsinline preload="none" data-autoplay aria-label="Cash’n Fruits 40: game release trailer for 1Spin4Win"></video><button class="video-sound" type="button" aria-pressed="false" aria-label="Sound on"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div></figure>
           <figure class="shot is-landscape"><div class="motion-frame"><video src="video/classic-chilli-fortune.mp4" poster="video/classic-chilli-fortune-poster.webp" width="1280" height="720" muted loop playsinline preload="none" data-autoplay aria-label="Classic Chilli Fortune: game release trailer for 1Spin4Win"></video><button class="video-sound" type="button" aria-pressed="false" aria-label="Sound on"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div></figure>
         </div>
       </div>
       <div class="motion-group">
-        <h3 class="motion-label">Rectangle Games <span class="muted">Motion</span> <a class="motion-drive" href="https://drive.google.com/drive/folders/1DCZb0P5HvSqu1GtyxofxJwQDib9ZcLaa?usp=sharing" target="_blank" rel="noopener">More videos on Google Drive</a></h3>
+        <h3 class="motion-label">Rectangle Games <span class="muted">Motion</span> <a class="motion-drive" href="https://drive.google.com/drive/folders/1X7Uz6F4H5fmg5qWsfhDaeSUU9E3mGMCG?usp=sharing" target="_blank" rel="noopener">More videos on Google Drive</a></h3>
         <div class="motion-row motion-row--quad">
           <figure class="shot"><div class="motion-frame motion-frame--wide"><iframe src="https://player.vimeo.com/video/1201715813?background=1&amp;dnt=1" title="Rectangle Games motion clip 1" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></figure>
           <figure class="shot"><div class="motion-frame motion-frame--wide"><iframe src="https://player.vimeo.com/video/1201715827?background=1&amp;dnt=1" title="Rectangle Games motion clip 2" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></figure>
@@ -2533,6 +2714,10 @@
           <figure class="shot"><div class="motion-frame motion-frame--wide"><iframe src="https://player.vimeo.com/video/1201715912?background=1&amp;dnt=1" title="Rectangle Games motion clip 4" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div></figure>
         </div>
       </div>
+    </div>
+    <div class="motion-more">
+      <a class="talk-btn talk-btn--lg talk-btn--ghost" href="https://drive.google.com/drive/folders/14HeioX5HQqB-TrRUJXbltYQXy0NAtQyL?usp=sharing" target="_blank" rel="noopener"><span class="talk-btn__fill" aria-hidden="true"></span>More promotion videos<svg class="talk-btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (Google Drive folder, opens in a new tab)</span></a>
+      <p class="motion-more-note">The full collection is on Google Drive</p>
     </div>
   </section>
 
@@ -2801,7 +2986,7 @@
   </section>
   <section class="rail results">
     <h3 class="rail-title">Results</h3>
-    <div class="rail-body"><p>The project delivered a cohesive and recognizable brand, consistent visual communication across channels, and an engaging website experience that supports marketing and user growth.</p><p>Motion design: <a href="https://drive.google.com/drive/folders/1utLi1w2B8NIgAc_BLVUsl4MskpzgRyFC?usp=sharing">Google Drive folder</a></p></div>
+    <div class="rail-body"><p>The project delivered a cohesive and recognizable brand, consistent visual communication across channels, and an engaging website experience that supports marketing and user growth.</p><p>Motion design: <a href="https://drive.google.com/drive/folders/12Gh_xDtF2Jh0m48ypxbTx9-54TDHxlZZ?usp=sharing">Google Drive folder</a></p></div>
   </section>
 <div class="shots gallery">
   <figure class="shot span-2"><img src="img/lr-g-banner-web-1280.webp" srcset="img/lr-g-banner-web-1280.webp 1280w, img/lr-g-banner-web-2400.webp 2400w" sizes="(max-width: 900px) 92vw, 88vw" width="2400" height="1257" alt="Lucky Rush website banner" loading="lazy" decoding="async"></figure>
@@ -3463,7 +3648,15 @@
       <li class="rail step">
         <h4 class="rail-title"><span class="num" aria-hidden="true">5</span>Motion Graphics</h4>
         <div class="rail-body">
-          <div class="text"><p>Motion graphics for the LED screens on the stand.</p><ul class="links"><li><a href="https://drive.google.com/file/d/1m3sCXS3RNsvFXV_H2oXrZA0xTBHIOnp8/view?usp=sharing">Watch the motion video</a></li></ul></div>
+          <div class="text"><p>Motion graphics for the LED screens on the stand, a brand intro and promo videos for the games.</p><ul class="links"><li><a href="https://drive.google.com/file/d/1m3sCXS3RNsvFXV_H2oXrZA0xTBHIOnp8/view?usp=sharing">Watch the motion video</a></li><li><a href="https://drive.google.com/drive/folders/1VVG5KXKcr8mzmoTz6Mr-4jd1tWLFuXJF?usp=sharing">More videos on Google Drive</a></li></ul></div>
+<div class="shots">
+  <figure class="shot video-shot ring"><video src="video/onlyplay-intro.mp4" poster="video/onlyplay-intro-poster.webp" width="720" height="720" muted loop playsinline preload="none" data-autoplay aria-label="Onlyplay brand intro video: the new logo and the game characters"></video></figure>
+  <figure class="shot video-shot ring"><video src="video/tiger-jackpots.mp4" poster="video/tiger-jackpots-poster.webp" width="720" height="720" muted loop playsinline preload="none" data-autoplay aria-label="Tiger Jackpots: game promo video for Onlyplay"></video><button class="video-sound" type="button" aria-pressed="false" aria-label="Sound on"><svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></figure>
+  <figure class="shot video-shot ring"><video src="video/3-rich-chickens.mp4" poster="video/3-rich-chickens-poster.webp" width="720" height="720" muted loop playsinline preload="none" data-autoplay aria-label="3 Rich Chickens: game promo video for Onlyplay"></video></figure>
+  <figure class="shot video-shot ring"><video src="video/piggy-tap.mp4" poster="video/piggy-tap-poster.webp" width="720" height="720" muted loop playsinline preload="none" data-autoplay aria-label="Piggy Tap: game promo video for Onlyplay"></video></figure>
+  <figure class="shot video-shot ring"><video src="video/pepper-coins.mp4" poster="video/pepper-coins-poster.webp" width="720" height="720" muted loop playsinline preload="none" data-autoplay aria-label="Pepper Coins: game promo video for Onlyplay"></video></figure>
+  <figure class="shot video-shot ring"><video src="video/hit-of-pig.mp4" poster="video/hit-of-pig-poster.webp" width="720" height="720" muted loop playsinline preload="none" data-autoplay aria-label="Hit of Pig: game promo video for Onlyplay"></video></figure>
+</div>
         </div>
       </li>
       <li class="rail step">
@@ -4309,6 +4502,25 @@
     } else {
       window.addEventListener('resize', measure);
     }
+  });
+})();
+</script>
+<script>
+/* Banners Production: B2C / B2B switch. Only the panel of the open tab is shown. The URL hash is not touched, so the router keeps working. */
+(function () {
+  const section = document.getElementById('banners-page');
+  if (!section) return;
+  const tabs = Array.from(section.querySelectorAll('[data-bn-tab]'));
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const view = tab.getAttribute('data-bn-tab');
+      if (section.getAttribute('data-bview') === view) return;
+      section.setAttribute('data-bview', view);
+      tabs.forEach((t) => t.setAttribute('aria-pressed', String(t === tab)));
+      /* Rows measure themselves when their panel appears (ResizeObserver). The resize event reaches the fallback in the carousel script. */
+      window.dispatchEvent(new Event('resize'));
+    });
   });
 })();
 </script>
